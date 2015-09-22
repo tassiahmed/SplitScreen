@@ -156,6 +156,8 @@
 		43AE6B221B9F84EA000B2B53 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = SplitScreen;
 				TargetAttributes = {
@@ -404,6 +406,7 @@
 				43AE6B4B1B9F84EA000B2B53 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		43AE6B4C1B9F84EA000B2B53 /* Build configuration list for PBXNativeTarget "SplitScreenTests" */ = {
 			isa = XCConfigurationList;
@@ -412,6 +415,7 @@
 				43AE6B4E1B9F84EA000B2B53 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
