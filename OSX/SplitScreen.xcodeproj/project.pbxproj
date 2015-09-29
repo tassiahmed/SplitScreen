@@ -13,6 +13,7 @@
 		43AE6B371B9F84EA000B2B53 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43AE6B361B9F84EA000B2B53 /* Images.xcassets */; };
 		43AE6B3A1B9F84EA000B2B53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43AE6B381B9F84EA000B2B53 /* Main.storyboard */; };
 		43AE6B461B9F84EA000B2B53 /* SplitScreenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE6B451B9F84EA000B2B53 /* SplitScreenTests.swift */; };
+		E88F19111BBB48D600F3EE74 /* resize_window.scpt in Resources */ = {isa = PBXBuildFile; fileRef = E88F19101BBB48D600F3EE74 /* resize_window.scpt */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		43AE6B3F1B9F84EA000B2B53 /* SplitScreenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SplitScreenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		43AE6B441B9F84EA000B2B53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43AE6B451B9F84EA000B2B53 /* SplitScreenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitScreenTests.swift; sourceTree = "<group>"; };
+		E88F19101BBB48D600F3EE74 /* resize_window.scpt */ = {isa = PBXFileReference; lastKnownFileType = file; name = resize_window.scpt; path = ../resize_window.scpt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		43AE6B2C1B9F84EA000B2B53 /* SplitScreen */ = {
 			isa = PBXGroup;
 			children = (
+				E88F19101BBB48D600F3EE74 /* resize_window.scpt */,
 				43AE6B2F1B9F84EA000B2B53 /* AppDelegate.swift */,
 				43AE6B311B9F84EA000B2B53 /* ViewController.swift */,
 				43AE6B361B9F84EA000B2B53 /* Images.xcassets */,
@@ -196,6 +199,7 @@
 			files = (
 				43AE6B371B9F84EA000B2B53 /* Images.xcassets in Resources */,
 				43AE6B3A1B9F84EA000B2B53 /* Main.storyboard in Resources */,
+				E88F19111BBB48D600F3EE74 /* resize_window.scpt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
