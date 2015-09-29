@@ -1,5 +1,0 @@
-version: "Apple Swift version 1.2 (swiftlang-602.0.53.1 clang-602.0.53)"
-options: "b9b24c82f7b680facdddd9bf0af4af0e"
-inputs: 
-- "/Users/tassiahmed/Documents/Programming/RCOS/SplitScreen/OSX/SplitScreen/ViewController.swift"
-- "/Users/tassiahmed/Documents/Programming/RCOS/SplitScreen/OSX/SplitScreen/AppDelegate.swift"
