@@ -9,7 +9,7 @@
 import Foundation
 
 class SnapLayout {
-    
+
     private struct point{
         var x = 0;
         var y = 0;
@@ -20,7 +20,7 @@ class SnapLayout {
             }
         }*/
     }
-    
+    //how to resize the hardpoint
     private struct hardpoint_resize{
         var upper_left_corner = point()
         var lower_right_corner = point()
@@ -40,10 +40,10 @@ class SnapLayout {
         hp2.y = 840
         p1_r.upper_left_corner = hp1
         p1_r.lower_right_corner = hp2
-        hardpoints.append((p1, p1_r))
+        hardpoints.append((p1, p1_r)) //bottom left corner of the screen
     }
     
-    //checks if the location given is a snap point
+    //checks if the location given is a hard point
     func is_hardpoint(x: CGFloat, y: CGFloat) -> Bool{
         let xpos:Int = Int(x)
         let ypos:Int = Int(y)
@@ -62,6 +62,5 @@ class SnapLayout {
         return (0,0,400,400)
     }
     
-    //private var hardpoints = Dictionary<point, hardpoint_resize>()
     private var hardpoints = [(point, hardpoint_resize)]()
 }

@@ -9,16 +9,17 @@
 import Foundation
 import AppKit
 
-
+//layout currently being used
 var layout: SnapLayout = SnapLayout()
 
+//event handler for the mouse drag event
 func mouse_dragged_handler(event: NSEvent){
     let x = event.locationInWindow.x
     let y = event.locationInWindow.y
     print("[ \(x) ][ \(y) ]  ====  \(layout.is_hardpoint(x, y: y))")
     
 }
-
+//completely broken as of right now --> possible swift way of doing it?
 func exec_resize(proc_name: String, window_num: Int, x: Int, y: Int, x_pos: Int, y_pos: Int){
     
     
