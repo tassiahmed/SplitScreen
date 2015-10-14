@@ -10,11 +10,17 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-
+    
 
 	func applicationDidFinishLaunching(aNotification: NSNotification) {
 		// Insert code here to initialize your application
+        
+        //loads a layout using a file location (blank string for testing)
+        layout.load("")
+        
+        //setup a global listener for mouse drag events
+        NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.LeftMouseDraggedMask, handler: mouse_dragged_handler)
+        
 	}
 
 	func applicationWillTerminate(aNotification: NSNotification) {

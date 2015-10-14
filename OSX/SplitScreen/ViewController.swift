@@ -13,31 +13,6 @@ import AppKitScripting
 
 class ViewController: NSViewController {
     
-    //needs to be fixed
-    func exec_resize(proc_name: String, window_num: Int, x: Int, y: Int, x_pos: Int, y_pos: Int){
-        
-        
-        let RESIZE_SCRIPT = "property defaultWindowName : \"Chrome\" on set_window_size(window_name, window_num, x, y, x_pos, y_pos) #log window_name & \" | \" & window_num & \" | \" & x & \" | \" & y & \" | \" & x_pos & \" | \" & y_pos ignoring application responses tell application \"System Events\" tell process window_name activate set size of window window_num to {x, y} set position of window window_num to {x_pos, y_pos} end tell end tell end ignoring end set_window_size on run set_window_size(\(proc_name), \(window_num), \(x), \(y), \(x_pos), \(y_pos)) end run"
-        
-        var error: NSDictionary?
-        if let scriptObj = NSAppleScript(source: RESIZE_SCRIPT){
-            if let output: NSAppleEventDescriptor = scriptObj.executeAndReturnError(&error){
-                print(output.stringValue)
-            }else if(error != nil){
-                print("ERROR: \(error)")
-            }
-        }
-        
-    }
-    
-    func print_all_processes(){
-        let apps = NSWorkspace.sharedWorkspace().runningApplications
-        var count = 0
-        for application in apps{
-            print("\(count) : \(application)")
-            count++
-        }
-    }
     
     @IBAction func resizeChrome(sender: NSButton) {
         // call the resize script on chrome to see if it works
@@ -51,8 +26,9 @@ class ViewController: NSViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-        let activeApp = NSWorkspace.sharedWorkspace().activeApplication()
+        let activeApp = NSWorkspace.sharedWorkspace().frontmostApplication
         print("-------------\n\(activeApp)\n-------------")
+        
         
         
         
