@@ -19,6 +19,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         layout.load("")
         
         //setup a global listener for mouse drag events
+        NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.LeftMouseUpMask, handler: mouse_up_handler)
         NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.LeftMouseDraggedMask, handler: mouse_dragged_handler)
         
 	}

@@ -29,8 +29,8 @@ class ViewController: NSViewController {
         let activeApp = NSWorkspace.sharedWorkspace().frontmostApplication
         print("-------------\n\(activeApp)\n-------------")
         
-        
-        
+        let (height, width) = (NSScreen.mainScreen()?.frame.height, NSScreen.mainScreen()?.frame.width)
+        print("++++++++++++++ \(width) x \(height)")
         
         
 		// Do any additional setup after loading the view.
