@@ -23,6 +23,8 @@ func mouse_up_handler(event: NSEvent){
         if layout.is_hardpoint(loc.0, y: loc.1){
             let resize = layout.get_snap_dimensions(loc.0, y: loc.1)
             
+            print("{ \(resize.0) : \(resize.1) : \(resize.2) : \(resize.3) }")
+            
             let RESIZE_SCRIPT: String = "tell application \"System Events\"\n set theprocess to the first process whose frontmost is true\n set thewindow to the value of attribute \"AXFocusedWindow\" of theprocess\n set size of thewindow to {\(resize.2), \(resize.3)}\n set the position of thewindow to {\(resize.0), \(resize.1)}\n end tell"
             
             var error: NSDictionary?
@@ -45,7 +47,7 @@ func mouse_dragged_handler(event: NSEvent){
     dragged_pane = true
     let x = event.locationInWindow.x
     let y = event.locationInWindow.y
-    print("[ \(x) ][ \(y) ]  ====  \(layout.is_hardpoint(x, y: y))  ----- \(event.windowNumber)")
+    //print("[ \(x) ][ \(y) ]  ====  \(layout.is_hardpoint(x, y: y))  ----- \(event.windowNumber)")
     //event.ac
     
 }
