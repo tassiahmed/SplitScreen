@@ -119,6 +119,9 @@ class SnapLayout {
             if xpos == hardpoints[i].0.x && ypos == hardpoints[i].0.y {
                 return true
             }
+            if xpos == 0 || xpos == WIDTH {
+                return true
+            }
         }
         
         return false
@@ -133,6 +136,13 @@ class SnapLayout {
             if x_i == hardpoints[i].0.x && y_i == hardpoints[i].0.y{
                 return (hardpoints[i].1.upper_left_corner.x, hardpoints[i].1.upper_left_corner.y, abs(hardpoints[i].1.upper_left_corner.x - hardpoints[i].1.lower_right_corner.x), abs(hardpoints[i].1.upper_left_corner.y - hardpoints[i].1.lower_right_corner.y))
             }
+        }
+        
+        if x_i == 0 {
+            return (0,0,WIDTH/2,HEIGHT)
+        }
+        if x_i == WIDTH {
+            return (WIDTH/2,0,WIDTH/2,HEIGHT)
         }
         
         return (0,0,0,0)
