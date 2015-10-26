@@ -25,7 +25,7 @@ func mouse_up_handler(event: NSEvent) {
             
             print("{ \(resize.0) : \(resize.1) : \(resize.2) : \(resize.3) }")
             
-            let RESIZE_SCRIPT: String = "tell application \"System Events\"\n set theprocess to the first process whose frontmost is true\n set thewindow to the value of attribute \"AXFocusedWindow\" of theprocess\n set the position of thewindow to {\(resize.0), \(resize.1)}\n set size of thewindow to {\(resize.2), \(resize.3)}\n end tell"
+            let RESIZE_SCRIPT: String = "tell application \"System Events\"\n set theprocess to the first process whose frontmost is true\n set thewindow to the value of attribute \"AXFocusedWindow\" of theprocess\n set size of thewindow to {\(resize.2), \(resize.3)}\n set the position of thewindow to {\(resize.0), \(resize.1)}\n end tell"
             
             var error: NSDictionary?
             if let scriptObj = NSAppleScript(source: RESIZE_SCRIPT) {

@@ -119,6 +119,12 @@ class SnapLayout {
             if xpos == hardpoints[i].0.x && ypos == hardpoints[i].0.y {
                 return true
             }
+            if xpos == 0 || xpos == WIDTH {
+                return true
+            }
+            if ypos == HEIGHT {
+                return true
+            }
         }
         
         return false
@@ -130,14 +136,34 @@ class SnapLayout {
         let y_i:Int = Int(y + 0.5)
         print(" ++ \(x_i) {} \(y_i) ++ ")
         for var i = 0; i < hardpoints.count; ++i{
-            if x_i == hardpoints[i].0.x && y_i == hardpoints[i].0.y{
+            if x_i == hardpoints[i].0.x && y_i == hardpoints[i].0.y {
+                
+                // Fix height for the main menu bar
+                if hardpoints[i].1.upper_left_corner.y == 0 {
+                    return (hardpoints[i].1.upper_left_corner.x, Int(menu!.menuBarHeight), abs(hardpoints[i].1.upper_left_corner.x - hardpoints[i].1.lower_right_corner.x), abs(hardpoints[i].1.upper_left_corner.y - hardpoints[i].1.lower_right_corner.y))
+                }
+                
                 return (hardpoints[i].1.upper_left_corner.x, hardpoints[i].1.upper_left_corner.y, abs(hardpoints[i].1.upper_left_corner.x - hardpoints[i].1.lower_right_corner.x), abs(hardpoints[i].1.upper_left_corner.y - hardpoints[i].1.lower_right_corner.y))
             }
+        }
+        
+        // Check if location is on a side
+        if x_i == 0 {
+            return (0,Int(menu!.menuBarHeight),WIDTH/2,HEIGHT)
+        }
+        else if x_i == WIDTH {
+            return (WIDTH/2,Int(menu!.menuBarHeight),WIDTH/2,HEIGHT)
+        }
+        
+        // Check if location is on top of screen
+        if y_i == HEIGHT {
+            return (0,Int(menu!.menuBarHeight),WIDTH, HEIGHT)
         }
         
         return (0,0,0,0)
     }
     
+    let menu = NSApplication.sharedApplication().mainMenu
     private var hardpoints = [(point, hardpoint_resize)]()
     private let HEIGHT: Int = Int((NSScreen.mainScreen()?.frame.height)!)
     private let WIDTH: Int = Int((NSScreen.mainScreen()?.frame.width)!)
