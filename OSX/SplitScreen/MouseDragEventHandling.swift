@@ -23,18 +23,15 @@ func mouse_up_handler(event: NSEvent) {
         if layout.is_hardpoint(loc.0, y: loc.1) {
             let resize = layout.get_snap_dimensions(loc.0, y: loc.1)
             
+            //print(" [|| \(event.window?.description) ||]")
             print("{ \(resize.0) : \(resize.1) : \(resize.2) : \(resize.3) }")
             
-            let RESIZE_SCRIPT: String = "tell application \"System Events\"\n set theprocess to the first process whose frontmost is true\n set thewindow to the value of attribute \"AXFocusedWindow\" of theprocess\n set position of thewindow to {\(resize.0), \(resize.1)}\n set the size of thewindow to {\(resize.2), \(resize.3)}\n end tell"
+            //var window_rect = event.window?.accessibilityFrame()
             
-            var error: NSDictionary?
-            if let scriptObj = NSAppleScript(source: RESIZE_SCRIPT) {
-                if let output: NSAppleEventDescriptor = scriptObj.executeAndReturnError(&error) {
-                    print(output.stringValue)
-                } else if (error != nil) {
-                    print("ERROR: \(error)")
-                }
-            }
+            //window_rect?.size = NSSize.init(width: resize.2, height: resize.3)
+            //window_rect?.origin = NSPoint.init(x: resize.0, y: resize.1)
+            
+            
         }
     } else {
         print("NOT dragging...")
