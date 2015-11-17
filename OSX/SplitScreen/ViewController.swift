@@ -13,6 +13,7 @@ import AppKitScripting
 
 class ViewController: NSViewController {
     
+    var templateWindow: NSWindow = NSWindow()
     
     @IBAction func resizeChrome(sender: NSButton) {
         // call the resize script on chrome to see if it works
@@ -23,6 +24,16 @@ class ViewController: NSViewController {
         print_all_processes()
     }
     
+    @IBAction func accessTemplates(sender: NSButton) {
+        // display a window of stored templates (including custom ones)
+        
+        templateWindow = NSWindow(contentRect: NSMakeRect(0,NSApplication.sharedApplication().mainMenu!.menuBarHeight,NSScreen.mainScreen()!.frame.width/2,NSScreen.mainScreen()!.frame.height), styleMask: NSResizableWindowMask, backing: NSBackingStoreType.Buffered, `defer`: true)
+        templateWindow.makeKeyAndOrderFront(templateWindow)
+        
+        let windowController = NSWindowController(window: templateWindow)
+        windowController.showWindow(templateWindow)
+        
+    }
 	override func viewDidLoad() {
 		super.viewDidLoad()
 

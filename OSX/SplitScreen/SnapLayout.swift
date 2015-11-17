@@ -21,6 +21,7 @@ class SnapLayout {
             }
         }*/
     }
+    
     //how to resize the hardpoint
     private struct hardpoint_resize{
         var upper_left_corner = point()
