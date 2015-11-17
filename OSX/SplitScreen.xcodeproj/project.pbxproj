@@ -13,9 +13,9 @@
 		43AE6B371B9F84EA000B2B53 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43AE6B361B9F84EA000B2B53 /* Images.xcassets */; };
 		43AE6B3A1B9F84EA000B2B53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43AE6B381B9F84EA000B2B53 /* Main.storyboard */; };
 		43AE6B461B9F84EA000B2B53 /* SplitScreenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE6B451B9F84EA000B2B53 /* SplitScreenTests.swift */; };
-		E8076D9C1BF649EF00BD84C7 /* MoveAndResize.c in Sources */ = {isa = PBXBuildFile; fileRef = E8076D9A1BF649EF00BD84C7 /* MoveAndResize.c */; settings = {ASSET_TAGS = (); }; };
-		E855D4E21BCDA77D008C511B /* MouseDragEventHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = E855D4E11BCDA77D008C511B /* MouseDragEventHandling.swift */; settings = {ASSET_TAGS = (); }; };
-		E855D4E41BCDAAA0008C511B /* SnapLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E855D4E31BCDAAA0008C511B /* SnapLayout.swift */; settings = {ASSET_TAGS = (); }; };
+		E8076D9C1BF649EF00BD84C7 /* MoveAndResize.c in Sources */ = {isa = PBXBuildFile; fileRef = E8076D9A1BF649EF00BD84C7 /* MoveAndResize.c */; };
+		E855D4E21BCDA77D008C511B /* MouseDragEventHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = E855D4E11BCDA77D008C511B /* MouseDragEventHandling.swift */; };
+		E855D4E41BCDAAA0008C511B /* SnapLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E855D4E31BCDAAA0008C511B /* SnapLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,7 +171,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = SplitScreen;
 				TargetAttributes = {
 					43AE6B291B9F84EA000B2B53 = {
@@ -286,6 +286,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -353,6 +354,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SplitScreen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "SplitScreen.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SplitScreen/SplitScreen-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -367,6 +369,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SplitScreen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "SplitScreen.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SplitScreen/SplitScreen-Bridging-Header.h";
 			};
@@ -387,6 +390,7 @@
 				);
 				INFOPLIST_FILE = SplitScreenTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "SplitScreen.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SplitScreen.app/Contents/MacOS/SplitScreen";
 			};
@@ -403,6 +407,7 @@
 				);
 				INFOPLIST_FILE = SplitScreenTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "SplitScreen.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SplitScreen.app/Contents/MacOS/SplitScreen";
 			};
