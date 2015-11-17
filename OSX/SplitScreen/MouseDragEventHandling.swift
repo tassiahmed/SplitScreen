@@ -10,10 +10,13 @@ import Foundation
 import AppKit
 import Carbon
 
-//layout currently being used
+// Layout currently being used
 var layout: SnapLayout = SnapLayout()
 var dragged_pane: Bool = false
+var current_window_number: Int = 0
+var current_window_position: CGPoint?
 
+// Get the current top application by pid
 func get_focused_pid() -> pid_t{
     let info = NSWorkspace.sharedWorkspace().frontmostApplication
     
@@ -24,54 +27,60 @@ func get_focused_pid() -> pid_t{
     return (info?.processIdentifier)!
 }
 
+// Compare the coordinates between new_postion and current_window_position
+func comparePosition(new_position: CGPoint) -> Bool {
+	return (current_window_position!.x == new_position.x && current_window_position!.y == new_position.y)
+}
+
+// Makes sure that a window has been dragged
+func confirmWindowDragged(event: NSEvent) -> Bool {
+	if current_window_number != event.windowNumber {
+		return false
+	}
+	if comparePosition(get_focused_window_position()) {
+		return false
+	}
+	return true
+}
+
+// Event handler for the mouse release event
 func mouse_up_handler(event: NSEvent) {
-    if dragged_pane {
-        print("was dragging...")
-//		print(" ----- \(RESIZE_SCRIPT)")
-		
+	// Check for window drag
+    if dragged_pane && confirmWindowDragged(event) {
         let loc: (CGFloat, CGFloat) = (event.locationInWindow.x, event.locationInWindow.y)
-        
-        let wind_num: Int = event.windowNumber
-        //print(" event information: \(event.description)\n_____\n")
-        //print(" Window number: \(wind_num)")
-        
+		
         if layout.is_hardpoint(loc.0, y: loc.1) {
             let resize = layout.get_snap_dimensions(loc.0, y: loc.1)
             
-            //get the focused app
+            // Get the focused app
             let focused_pid = get_focused_pid()
             
             if(focused_pid == pid_t(0)){
                 return
             }
-            
-            print(" focused pid: \(focused_pid.description) -> \(resize.0), \(resize.1)")
-            
+			
+			// Move and resize focused windows
             move_focused_window(CFloat(resize.0), CFloat(resize.1))
-            
             resize_focused_window(CFloat(resize.0), CFloat(resize.1), CFloat(resize.2), CFloat(resize.3))
-            
-            //print(" [|| \(event.window?.description) ||]")
-            print("{ \(resize.0) : \(resize.1) : \(resize.2) : \(resize.3) }")
-            
-            
-            
+			
+//            print(" focused pid: \(focused_pid.description) -> \(resize.0), \(resize.1)")
+//            print(" [|| \(event.window?.description) ||]")
+//            print("{ \(resize.0) : \(resize.1) : \(resize.2) : \(resize.3) }")
+			
             
         }
-    } else {
-        print("NOT dragging...")
     }
     dragged_pane = false
 }
 
-//event handler for the mouse drag event
+// Event handler for the mouse drag event
 func mouse_dragged_handler(event: NSEvent) {
-    dragged_pane = true
-//    let x = event.locationInWindow.x
-//    let y = event.locationInWindow.y
-//    print("[ \(x) ][ \(y) ]  ====  \(layout.is_hardpoint(x, y: y))  ----- \(event.windowNumber)")
-//    event.ac
-	
+	// Handle the case of dragging to corner
+	if !dragged_pane {
+		dragged_pane = true
+		current_window_number = event.windowNumber
+		current_window_position = get_focused_window_position()
+	}
 }
 
 func print_all_processes() {

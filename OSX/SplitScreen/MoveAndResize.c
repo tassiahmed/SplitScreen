@@ -17,7 +17,23 @@ static AXUIElementRef getFrontMostApp(){
         return AXUIElementCreateApplication(pid);
 }
 
-void move_focused_window(float x, float y){
+CGPoint get_focused_window_position() {
+	CGPoint ret;
+	AXValueRef temp;
+	AXUIElementRef frontMostApp;
+	AXUIElementRef frontMostWindow;
+	
+	frontMostApp = getFrontMostApp();
+	AXUIElementCopyAttributeValue(frontMostApp, kAXFocusedWindowAttribute, (CFTypeRef *)&frontMostWindow);
+	
+	AXUIElementCopyAttributeValue(frontMostWindow, kAXPositionAttribute, (CFTypeRef *)&temp);
+	AXValueGetValue(temp, kAXValueCGPointType, &ret);
+	CFRelease(temp);
+	
+	return ret;
+}
+
+void move_focused_window(float x, float y) {
     AXValueRef temp;
     CGSize windowSize;
     CGPoint windowPosition;
