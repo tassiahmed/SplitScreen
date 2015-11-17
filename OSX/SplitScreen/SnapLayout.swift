@@ -92,29 +92,12 @@ class SnapLayout {
         p4_r.upper_left_corner = hp7
         
         hardpoints.append((p4, p4_r)) //top right corner of the screen
-
-        
-        /*
-        var p1 = point()
-        p1.x = 0
-        p1.y = 0
-        var p1_r = hardpoint_resize()
-        var hp1 = point()
-        hp1.x = 0
-        hp1.y = 0
-        var hp2 = point()
-        hp2.x = 525
-        hp2.y = 840
-        p1_r.upper_left_corner = hp1
-        p1_r.lower_right_corner = hp2
-        */
     }
     
     //checks if the location given is a hard point
     func is_hardpoint(x: CGFloat, y: CGFloat) -> Bool{
         let xpos:Int = Int(x + 0.5)
         let ypos:Int = Int(y + 0.5)
-        print(" ++ \(xpos) {} \(ypos) ++ ")
         for var i = 0; i < hardpoints.count; ++i{
             if xpos == hardpoints[i].0.x && ypos == hardpoints[i].0.y {
                 return true
@@ -134,7 +117,6 @@ class SnapLayout {
     func get_snap_dimensions(x: CGFloat, y: CGFloat) ->(Int,Int,Int,Int){
         let x_i:Int = Int(x + 0.5)
         let y_i:Int = Int(y + 0.5)
-        print(" ++ \(x_i) {} \(y_i) ++ ")
         for var i = 0; i < hardpoints.count; ++i{
             if x_i == hardpoints[i].0.x && y_i == hardpoints[i].0.y {
                 
