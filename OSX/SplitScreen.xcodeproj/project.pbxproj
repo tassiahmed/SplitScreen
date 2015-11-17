@@ -13,9 +13,9 @@
 		43AE6B371B9F84EA000B2B53 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43AE6B361B9F84EA000B2B53 /* Images.xcassets */; };
 		43AE6B3A1B9F84EA000B2B53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43AE6B381B9F84EA000B2B53 /* Main.storyboard */; };
 		43AE6B461B9F84EA000B2B53 /* SplitScreenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE6B451B9F84EA000B2B53 /* SplitScreenTests.swift */; };
+		E8076D9C1BF649EF00BD84C7 /* MoveAndResize.c in Sources */ = {isa = PBXBuildFile; fileRef = E8076D9A1BF649EF00BD84C7 /* MoveAndResize.c */; settings = {ASSET_TAGS = (); }; };
 		E855D4E21BCDA77D008C511B /* MouseDragEventHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = E855D4E11BCDA77D008C511B /* MouseDragEventHandling.swift */; settings = {ASSET_TAGS = (); }; };
 		E855D4E41BCDAAA0008C511B /* SnapLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E855D4E31BCDAAA0008C511B /* SnapLayout.swift */; settings = {ASSET_TAGS = (); }; };
-		E88F19111BBB48D600F3EE74 /* resize_window.scpt in Resources */ = {isa = PBXBuildFile; fileRef = E88F19101BBB48D600F3EE74 /* resize_window.scpt */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,10 +39,11 @@
 		43AE6B3F1B9F84EA000B2B53 /* SplitScreenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SplitScreenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		43AE6B441B9F84EA000B2B53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43AE6B451B9F84EA000B2B53 /* SplitScreenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitScreenTests.swift; sourceTree = "<group>"; };
+		E8076D971BF6490500BD84C7 /* SplitScreen-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SplitScreen-Bridging-Header.h"; sourceTree = "<group>"; };
+		E8076D9A1BF649EF00BD84C7 /* MoveAndResize.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MoveAndResize.c; sourceTree = "<group>"; };
+		E8076D9B1BF649EF00BD84C7 /* MoveAndResize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveAndResize.h; sourceTree = "<group>"; };
 		E855D4E11BCDA77D008C511B /* MouseDragEventHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MouseDragEventHandling.swift; sourceTree = "<group>"; };
 		E855D4E31BCDAAA0008C511B /* SnapLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapLayout.swift; sourceTree = "<group>"; };
-		E88F19101BBB48D600F3EE74 /* resize_window.scpt */ = {isa = PBXFileReference; lastKnownFileType = file; name = resize_window.scpt; path = ../resize_window.scpt; sourceTree = "<group>"; };
-		E88F19121BC4660500F3EE74 /* resize_bootsrap.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = resize_bootsrap.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,16 +85,17 @@
 		43AE6B2C1B9F84EA000B2B53 /* SplitScreen */ = {
 			isa = PBXGroup;
 			children = (
-				E88F19101BBB48D600F3EE74 /* resize_window.scpt */,
 				43AE6B2F1B9F84EA000B2B53 /* AppDelegate.swift */,
 				43AE6B311B9F84EA000B2B53 /* ViewController.swift */,
 				43AE6B361B9F84EA000B2B53 /* Images.xcassets */,
 				43AE6B381B9F84EA000B2B53 /* Main.storyboard */,
 				43AE6B331B9F84EA000B2B53 /* SplitScreen.xcdatamodeld */,
 				43AE6B2D1B9F84EA000B2B53 /* Supporting Files */,
-				E88F19121BC4660500F3EE74 /* resize_bootsrap.sh */,
 				E855D4E11BCDA77D008C511B /* MouseDragEventHandling.swift */,
 				E855D4E31BCDAAA0008C511B /* SnapLayout.swift */,
+				E8076D971BF6490500BD84C7 /* SplitScreen-Bridging-Header.h */,
+				E8076D9A1BF649EF00BD84C7 /* MoveAndResize.c */,
+				E8076D9B1BF649EF00BD84C7 /* MoveAndResize.h */,
 			);
 			path = SplitScreen;
 			sourceTree = "<group>";
@@ -207,7 +209,6 @@
 			files = (
 				43AE6B371B9F84EA000B2B53 /* Images.xcassets in Resources */,
 				43AE6B3A1B9F84EA000B2B53 /* Main.storyboard in Resources */,
-				E88F19111BBB48D600F3EE74 /* resize_window.scpt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +228,7 @@
 			files = (
 				43AE6B321B9F84EA000B2B53 /* ViewController.swift in Sources */,
 				E855D4E21BCDA77D008C511B /* MouseDragEventHandling.swift in Sources */,
+				E8076D9C1BF649EF00BD84C7 /* MoveAndResize.c in Sources */,
 				E855D4E41BCDAAA0008C511B /* SnapLayout.swift in Sources */,
 				43AE6B351B9F84EA000B2B53 /* SplitScreen.xcdatamodeld in Sources */,
 				43AE6B301B9F84EA000B2B53 /* AppDelegate.swift in Sources */,
@@ -347,10 +349,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SplitScreen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SplitScreen/SplitScreen-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -358,10 +363,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SplitScreen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SplitScreen/SplitScreen-Bridging-Header.h";
 			};
 			name = Release;
 		};
