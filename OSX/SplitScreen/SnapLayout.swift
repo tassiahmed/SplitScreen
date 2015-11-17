@@ -11,7 +11,7 @@ import AppKit
 
 class SnapLayout {
 
-    struct point{
+    struct point {
         var x = 0;
         var y = 0;
     }
@@ -45,7 +45,7 @@ class SnapLayout {
 	}
     
     // Load layout from file
-    func load(file_path: NSString){
+    func load(file_path: NSString) {
         
 //        var p1 = point()
 //        p1.x = 0
@@ -120,7 +120,7 @@ class SnapLayout {
     }
     
     // Checks if the location given is a hard point
-    func is_hardpoint(x: CGFloat, y: CGFloat) -> Bool{
+    func is_hardpoint(x: CGFloat, y: CGFloat) -> Bool {
         let xpos:Int = Int(x + 0.5)
         let ypos:Int = Int(y + 0.5)
         for var i = 0; i < hardpoints.count; ++i{
@@ -139,7 +139,7 @@ class SnapLayout {
     }
     
     // Returns x, y, x_size, y_size
-    func get_snap_dimensions(x: CGFloat, y: CGFloat) ->(Int,Int,Int,Int){
+    func get_snap_dimensions(x: CGFloat, y: CGFloat) ->(Int,Int,Int,Int) {
         let x_i:Int = Int(x + 0.5)
         let y_i:Int = Int(y + 0.5)
         for var i = 0; i < hardpoints.count; ++i{
