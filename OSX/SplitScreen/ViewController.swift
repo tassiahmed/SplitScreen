@@ -15,23 +15,18 @@ class ViewController: NSViewController {
     
     
     @IBAction func resizeChrome(sender: NSButton) {
-        // call the resize script on chrome to see if it works
-        //let task1 = NSTask()
-        //task1.launchPath = "/bin/pwd"
-        //task1.launch()
-        //exec_resize("Chrome", window_num: 1, x: 500, y: 400, x_pos: 50, y_pos: 50)
         print_all_processes()
     }
     
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-        let activeApp = NSWorkspace.sharedWorkspace().frontmostApplication
-        print("-------------\n\(activeApp)\n-------------")
-        
-        let (height, width) = (NSScreen.mainScreen()?.frame.height, NSScreen.mainScreen()?.frame.width)
-        print("++++++++++++++ \(width) x \(height)")
-        
+//        let activeApp = NSWorkspace.sharedWorkspace().frontmostApplication
+//        print("-------------\n\(activeApp)\n-------------")
+//        
+//        let (height, width) = (NSScreen.mainScreen()?.frame.height, NSScreen.mainScreen()?.frame.width)
+//        print("++++++++++++++ \(width) x \(height)")
+		
         
 		// Do any additional setup after loading the view.
 	}

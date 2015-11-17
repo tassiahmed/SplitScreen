@@ -37,7 +37,12 @@ func confirmWindowDragged(event: NSEvent) -> Bool {
 	if current_window_number != event.windowNumber {
 		return false
 	}
+	
+	print("Current Position: X:\(current_window_position!.x) Y:\(current_window_position!.y)")
+	print("New Position: X:\(get_focused_window_position().x) Y:\(get_focused_window_position().y)\n")
+	
 	if comparePosition(get_focused_window_position()) {
+		print ("Position is unchanged")
 		return false
 	}
 	return true
@@ -87,7 +92,7 @@ func print_all_processes() {
     let apps = NSWorkspace.sharedWorkspace().runningApplications
     var count = 0
     for application in apps {
-        print("\(count) : \(application)")
-        count++
+		print("\(count) : \(application)")
+		count++
     }
 }
