@@ -79,10 +79,10 @@ func mouse_up_handler(event: NSEvent) {
 }
 
 func mouse_down_handler(event: NSEvent) {
-	print("Mouse Down")
 	current_window_number = event.windowNumber
 	current_window_position = get_focused_window_position()
-	print("Current Position: X:\(current_window_position!.x) Y:\(current_window_position!.y)")
+//	print("Mouse Down")
+//	print("Current Position: X:\(current_window_position!.x) Y:\(current_window_position!.y)")
 }
 
 // Event handler for the mouse drag event
@@ -90,8 +90,6 @@ func mouse_dragged_handler(event: NSEvent) {
 	// Handle the case of dragging to corner
 	if !dragged_pane {
 		dragged_pane = true
-//		current_window_number = event.windowNumber
-//		current_window_position = get_focused_window_position()
 	}
 }
 
