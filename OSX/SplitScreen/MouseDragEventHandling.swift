@@ -92,7 +92,7 @@ func mouse_up_handler(event: NSEvent) {
 			
 			// Moves and resizes the focused window
             move_focused_window(CFloat(resize.0), CFloat(resize.1))
-            resize_focused_window(CFloat(resize.0), CFloat(resize.1), CFloat(resize.2), CFloat(resize.3))
+            resize_focused_window(CFloat(resize.2), CFloat(resize.3))
         }
     }
     dragged_pane = false

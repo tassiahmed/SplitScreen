@@ -8,7 +8,11 @@
 
 #include "MoveAndResize.h"
 
-
+/**
+	Get the front most app
+ 
+	- Returns: `AXUIElementRef` of front most app
+ */
 static AXUIElementRef getFrontMostApp(){
         pid_t pid;
         ProcessSerialNumber psn;
@@ -17,15 +21,22 @@ static AXUIElementRef getFrontMostApp(){
         return AXUIElementCreateApplication(pid);
 }
 
+/**
+	Get position of the user focused window
+ 
+	- Returns: `CGPoint` that corresponds to the focused window's position
+ */
 CGPoint get_focused_window_position() {
 	CGPoint ret;
 	AXValueRef temp;
 	AXUIElementRef frontMostApp;
 	AXUIElementRef frontMostWindow;
 	
+	// Get the front most app
 	frontMostApp = getFrontMostApp();
 	AXUIElementCopyAttributeValue(frontMostApp, kAXFocusedWindowAttribute, (CFTypeRef *)&frontMostWindow);
 	
+	// Copy the window position attribute from frontMostWindow
 	AXUIElementCopyAttributeValue(frontMostWindow, kAXPositionAttribute, (CFTypeRef *)&temp);
 	AXValueGetValue(temp, kAXValueCGPointType, &ret);
 	CFRelease(temp);
@@ -33,6 +44,13 @@ CGPoint get_focused_window_position() {
 	return ret;
 }
 
+/**
+	Moves the focused window to specified `x`, `y` coordinates
+ 
+	- Parameter x: new window screen x coordinate
+ 
+	- Parameter y: new window screen y coordinate
+ */
 void move_focused_window(float x, float y) {
     AXValueRef temp;
     CGSize windowSize;
@@ -40,9 +58,11 @@ void move_focused_window(float x, float y) {
     CFStringRef windowTitle;
     AXUIElementRef frontMostApp;
     AXUIElementRef frontMostWindow;
-    
+	
+	// Get the front most app
     frontMostApp = getFrontMostApp();
 
+	// Copy window attributes from frontMostApp
     AXUIElementCopyAttributeValue(frontMostApp, kAXFocusedWindowAttribute, (CFTypeRef *)&frontMostWindow);
 
     AXUIElementCopyAttributeValue(frontMostWindow, kAXSizeAttribute, (CFTypeRef *)&windowTitle);
@@ -59,6 +79,7 @@ void move_focused_window(float x, float y) {
 //    CFShow(windowTitle);
 //    printf("Moved window to (%f, %f)\n", windowPosition.x, windowPosition.y);
 	
+	// Change the window position to prevent error upon trying to move to same position
     windowPosition.x += 1;
     windowPosition.y += 1;
     temp = AXValueCreate(kAXValueCGPointType, &windowPosition);
@@ -68,7 +89,8 @@ void move_focused_window(float x, float y) {
     AXUIElementCopyAttributeValue(frontMostWindow, kAXPositionAttribute, (CFTypeRef *)&temp);
     AXValueGetValue(temp, kAXValueCGPointType, &windowPosition);
     CFRelease(temp);
-    
+	
+	// Change the window position to the desired position that is provided in params
     windowPosition.x = x;
     windowPosition.y = y;
     temp = AXValueCreate(kAXValueCGPointType, &windowPosition);
@@ -80,16 +102,25 @@ void move_focused_window(float x, float y) {
 }
 
 
-void resize_focused_window(float x, float y, float x1, float y1){
+/**
+	Resizes the focused window to specified sizes `x`, `y`
+ 
+	- Parameter x: new window width
+ 
+	- Parameter y: new window height
+ */
+void resize_focused_window(float x, float y){
     AXValueRef temp;
     CGSize windowSize;
     CGPoint windowPosition;
     CFStringRef windowTitle;
     AXUIElementRef frontMostApp;
     AXUIElementRef frontMostWindow;
-    
+	
+	// Get the frontMostApp
     frontMostApp = getFrontMostApp();
-    
+	
+	// Copy window attributes
     AXUIElementCopyAttributeValue(frontMostApp, kAXFocusedWindowAttribute, (CFTypeRef *)&frontMostWindow);
     
     AXUIElementCopyAttributeValue(frontMostWindow, kAXSizeAttribute, (CFTypeRef *)&windowTitle);
@@ -106,8 +137,9 @@ void resize_focused_window(float x, float y, float x1, float y1){
 //    CFShow(windowTitle);
     //printf("RESIZE: Window is at (%f, %f) and has dimensions of (%f, %f) resized to (%f, %f) according to (%f, %f, %f, %f)\n", windowPosition.x, windowPosition.y, windowSize.width, windowSize.height, x1-x, y1 - y, x, y, x1, y1);
 
-    windowSize.width = x1;
-    windowSize.height = y1;
+	// Change the window size
+    windowSize.width = x;
+    windowSize.height = y;
 
 //    printf(" \n-- Resized window to dimensions: (%f, %f))\n\n", windowSize.width, windowSize.height);
 	
