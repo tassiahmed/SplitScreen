@@ -16,7 +16,12 @@ var dragged_pane: Bool = false
 var current_window_number: Int = 0
 var current_window_position: CGPoint?
 
-// Get the current top application by pid
+
+/**
+	Returns the current top application by pid
+
+	- Returns: The pid that is the top application
+*/
 func get_focused_pid() -> pid_t{
     let info = NSWorkspace.sharedWorkspace().frontmostApplication
     
@@ -27,74 +32,97 @@ func get_focused_pid() -> pid_t{
     return (info?.processIdentifier)!
 }
 
-// Compare the coordinates between new_postion and current_window_position
+
+/**
+	Compares the coordinates of `current_window_position` with the coordinates of `new_position`
+
+	- Parameter new_position: The `CGPoint` whose coordinates to compare w/ those of `current_window_position`
+	
+	- Returns: `true` or `false` depending on whether `current_window_position` and `new_position` have the same coordinates
+*/
 func comparePosition(new_position: CGPoint) -> Bool {
 	return (current_window_position!.x == new_position.x && current_window_position!.y == new_position.y)
 }
 
-// Makes sure that a window has been dragged
+
+/**
+	Confirms that the top window application has been dragged to a new position
+
+	- Parameter event: `NSEvent` that is passed along from when the user has released the mouse
+
+	- Returns: `false` if the `current_window_number` is not the same as `event.windowNumber` or `comparePosition()` is `true`
+*/
 func confirmWindowDragged(event: NSEvent) -> Bool {
 	if current_window_number != event.windowNumber {
 		return false
 	}
 	
-	print("Current Position: X:\(current_window_position!.x) Y:\(current_window_position!.y)")
-	print("New Position: X:\(get_focused_window_position().x) Y:\(get_focused_window_position().y)\n")
+//	print("Current Position: X:\(current_window_position!.x) Y:\(current_window_position!.y)")
+//	print("New Position: X:\(get_focused_window_position().x) Y:\(get_focused_window_position().y)\n")
 	
 	if comparePosition(get_focused_window_position()) {
-		print ("Position is unchanged")
+//		print ("Position is unchanged")
 		return false
 	}
 	return true
 }
 
-// Event handler for the mouse release event
+
+/**
+	Handles the event of user releasing the mouse
+
+	- Parameter event: `NSEvent` that is received when user releases the mouse
+*/
 func mouse_up_handler(event: NSEvent) {
 	// Check for window drag
     if dragged_pane && confirmWindowDragged(event) {
+		// Get the
         let loc: (CGFloat, CGFloat) = (event.locationInWindow.x, event.locationInWindow.y)
 		
         if layout.is_hardpoint(loc.0, y: loc.1) {
             let resize = layout.get_snap_dimensions(loc.0, y: loc.1)
             
-            // Get the focused app
+            // Gets the focused app
             let focused_pid = get_focused_pid()
-            
+			
+			// Stops if there was no focused app to resize
             if(focused_pid == pid_t(0)){
                 return
             }
 			
-			// Move and resize focused windows
+			// Moves and resizes the focused window
             move_focused_window(CFloat(resize.0), CFloat(resize.1))
             resize_focused_window(CFloat(resize.0), CFloat(resize.1), CFloat(resize.2), CFloat(resize.3))
-			
-//            print(" focused pid: \(focused_pid.description) -> \(resize.0), \(resize.1)")
-//            print(" [|| \(event.window?.description) ||]")
-//            print("{ \(resize.0) : \(resize.1) : \(resize.2) : \(resize.3) }")
-			
-            
         }
     }
     dragged_pane = false
 }
 
+/**
+	Handles the event of user clicking down on the mouse
+
+	- Parameter event: `NSEvent` that is received when user clicks the mouse
+*/
 func mouse_down_handler(event: NSEvent) {
-	print("Mouse Down")
 	current_window_number = event.windowNumber
 	current_window_position = get_focused_window_position()
-	print("Current Position: X:\(current_window_position!.x) Y:\(current_window_position!.y)")
 }
 
-// Event handler for the mouse drag event
+/**
+	Handles the event of user drags the mouse
+
+	- Parameter event: `NSEvent` that is received when user drags the mouse
+*/
 func mouse_dragged_handler(event: NSEvent) {
 	// Handle the case of dragging to corner
 	if !dragged_pane {
 		dragged_pane = true
-//		current_window_number = event.windowNumber
-//		current_window_position = get_focused_window_position()
 	}
 }
 
+/**
+	Prints all current running process on computer
+*/
 func print_all_processes() {
     let apps = NSWorkspace.sharedWorkspace().runningApplications
     var count = 0

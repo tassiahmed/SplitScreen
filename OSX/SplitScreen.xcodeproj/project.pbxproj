@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4325A6BD1BFFD0E000C172FF /* Scripting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4325A6BC1BFFD0E000C172FF /* Scripting.framework */; };
+		4325A6BF1BFFD0E800C172FF /* AppKitScripting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4325A6BE1BFFD0E800C172FF /* AppKitScripting.framework */; };
 		43AE6B301B9F84EA000B2B53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE6B2F1B9F84EA000B2B53 /* AppDelegate.swift */; };
 		43AE6B321B9F84EA000B2B53 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE6B311B9F84EA000B2B53 /* ViewController.swift */; };
 		43AE6B351B9F84EA000B2B53 /* SplitScreen.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 43AE6B331B9F84EA000B2B53 /* SplitScreen.xcdatamodeld */; };
@@ -29,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4325A6BC1BFFD0E000C172FF /* Scripting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Scripting.framework; path = System/Library/Frameworks/Scripting.framework; sourceTree = SDKROOT; };
+		4325A6BE1BFFD0E800C172FF /* AppKitScripting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKitScripting.framework; path = System/Library/Frameworks/AppKitScripting.framework; sourceTree = SDKROOT; };
 		43AE6B2A1B9F84EA000B2B53 /* SplitScreen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SplitScreen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43AE6B2E1B9F84EA000B2B53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43AE6B2F1B9F84EA000B2B53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +55,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4325A6BF1BFFD0E800C172FF /* AppKitScripting.framework in Frameworks */,
+				4325A6BD1BFFD0E000C172FF /* Scripting.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +73,8 @@
 		43AE6B211B9F84EA000B2B53 = {
 			isa = PBXGroup;
 			children = (
+				4325A6BE1BFFD0E800C172FF /* AppKitScripting.framework */,
+				4325A6BC1BFFD0E000C172FF /* Scripting.framework */,
 				43AE6B2C1B9F84EA000B2B53 /* SplitScreen */,
 				43AE6B421B9F84EA000B2B53 /* SplitScreenTests */,
 				43AE6B2B1B9F84EA000B2B53 /* Products */,
