@@ -11,13 +11,11 @@
 /**
 	Get the front most app
  
+    - Parameter pid: front most pid (use swift to get this)
+ 
 	- Returns: `AXUIElementRef` of front most app
  */
-static AXUIElementRef getFrontMostApp(){
-        pid_t pid;
-        ProcessSerialNumber psn;
-        GetFrontProcess(&psn);
-        GetProcessPID(&psn, &pid);
+static AXUIElementRef getFrontMostApp(pid_t pid){
         return AXUIElementCreateApplication(pid);
 }
 
@@ -26,14 +24,14 @@ static AXUIElementRef getFrontMostApp(){
  
 	- Returns: `CGPoint` that corresponds to the focused window's position
  */
-CGPoint get_focused_window_position() {
+CGPoint get_focused_window_position(pid_t pid) {
 	CGPoint ret;
 	AXValueRef temp;
 	AXUIElementRef frontMostApp;
 	AXUIElementRef frontMostWindow;
 	
 	// Get the front most app
-	frontMostApp = getFrontMostApp();
+	frontMostApp = getFrontMostApp(pid);
 	AXUIElementCopyAttributeValue(frontMostApp, kAXFocusedWindowAttribute, (CFTypeRef *)&frontMostWindow);
 	
 	// Copy the window position attribute from frontMostWindow
@@ -50,8 +48,10 @@ CGPoint get_focused_window_position() {
 	- Parameter x: new window screen x coordinate
  
 	- Parameter y: new window screen y coordinate
+ 
+    - Parameter pid: front most pid (use swift to get this)
  */
-void move_focused_window(float x, float y) {
+void move_focused_window(float x, float y, pid_t pid) {
     AXValueRef temp;
     CGSize windowSize;
     CGPoint windowPosition;
@@ -60,7 +60,7 @@ void move_focused_window(float x, float y) {
     AXUIElementRef frontMostWindow;
 	
 	// Get the front most app
-    frontMostApp = getFrontMostApp();
+    frontMostApp = getFrontMostApp(pid);
 
 	// Copy window attributes from frontMostApp
     AXUIElementCopyAttributeValue(frontMostApp, kAXFocusedWindowAttribute, (CFTypeRef *)&frontMostWindow);
@@ -108,8 +108,10 @@ void move_focused_window(float x, float y) {
 	- Parameter x: new window width
  
 	- Parameter y: new window height
+ 
+    - Parameter pid: front most pid (use swift to get this)
  */
-void resize_focused_window(float x, float y){
+void resize_focused_window(float x, float y, pid_t pid){
     AXValueRef temp;
     CGSize windowSize;
     CGPoint windowPosition;
@@ -118,7 +120,7 @@ void resize_focused_window(float x, float y){
     AXUIElementRef frontMostWindow;
 	
 	// Get the frontMostApp
-    frontMostApp = getFrontMostApp();
+    frontMostApp = getFrontMostApp(pid);
 	
 	// Copy window attributes
     AXUIElementCopyAttributeValue(frontMostApp, kAXFocusedWindowAttribute, (CFTypeRef *)&frontMostWindow);

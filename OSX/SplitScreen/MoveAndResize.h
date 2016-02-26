@@ -13,10 +13,10 @@
 #include <Carbon/Carbon.h>
 #include <unistd.h>
 
-void move_focused_window(float x, float y);
+void move_focused_window(float x, float y, pid_t pid);
 
-void resize_focused_window(float x, float y);
+void resize_focused_window(float x, float y, pid_t pid);
 
-CGPoint get_focused_window_position();
+CGPoint get_focused_window_position(pid_t pid);
 
 #endif /* MoveAndResize_h */

@@ -60,7 +60,7 @@ func confirmWindowDragged(event: NSEvent) -> Bool {
 //	print("Current Position: X:\(current_window_position!.x) Y:\(current_window_position!.y)")
 //	print("New Position: X:\(get_focused_window_position().x) Y:\(get_focused_window_position().y)\n")
 	
-	if comparePosition(get_focused_window_position()) {
+	if comparePosition(get_focused_window_position(get_focused_pid())) {
 //		print ("Position is unchanged")
 		return false
 	}
@@ -90,9 +90,10 @@ func mouse_up_handler(event: NSEvent) {
                 return
             }
 			
+            
 			// Moves and resizes the focused window
-            move_focused_window(CFloat(resize.0), CFloat(resize.1))
-            resize_focused_window(CFloat(resize.2), CFloat(resize.3))
+            move_focused_window(CFloat(resize.0), CFloat(resize.1), focused_pid)
+            resize_focused_window(CFloat(resize.2), CFloat(resize.3), focused_pid)
         }
     }
     dragged_pane = false
@@ -105,7 +106,7 @@ func mouse_up_handler(event: NSEvent) {
 */
 func mouse_down_handler(event: NSEvent) {
 	current_window_number = event.windowNumber
-	current_window_position = get_focused_window_position()
+	current_window_position = get_focused_window_position(get_focused_pid())
 }
 
 /**
