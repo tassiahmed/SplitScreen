@@ -17,6 +17,8 @@ void move_focused_window(float x, float y, pid_t pid);
 
 void resize_focused_window(float x, float y, pid_t pid);
 
+void print_window_size(pid_t pid);
+
 CGPoint get_focused_window_position(pid_t pid);
 
 #endif /* MoveAndResize_h */

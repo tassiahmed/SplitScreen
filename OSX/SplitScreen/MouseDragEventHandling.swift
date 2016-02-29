@@ -60,10 +60,10 @@ func confirmWindowDragged(event: NSEvent) -> Bool {
 //	print("Current Position: X:\(current_window_position!.x) Y:\(current_window_position!.y)")
 //	print("New Position: X:\(get_focused_window_position().x) Y:\(get_focused_window_position().y)\n")
 	
-	if comparePosition(get_focused_window_position(get_focused_pid())) {
+	//if comparePosition(get_focused_window_position(get_focused_pid())) {
 //		print ("Position is unchanged")
-		return false
-	}
+	//	return false
+	//}
 	return true
 }
 
@@ -100,25 +100,20 @@ func mouse_up_handler(event: NSEvent) {
 }
 
 /**
-	Handles the event of user clicking down on the mouse
-
-	- Parameter event: `NSEvent` that is received when user clicks the mouse
-*/
-func mouse_down_handler(event: NSEvent) {
-	current_window_number = event.windowNumber
-	current_window_position = get_focused_window_position(get_focused_pid())
-}
-
-/**
 	Handles the event of user drags the mouse
 
 	- Parameter event: `NSEvent` that is received when user drags the mouse
 */
 func mouse_dragged_handler(event: NSEvent) {
 	// Handle the case of dragging to corner
-	if !dragged_pane {
+    
+    current_window_number = event.windowNumber
+    current_window_position = get_focused_window_position(get_focused_pid())
+
+    
+//	if event.modifierFlags.contains(NSEventModifierFlags.AlternateKeyMask){
 		dragged_pane = true
-	}
+//	}
 }
 
 /**

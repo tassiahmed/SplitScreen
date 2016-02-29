@@ -101,6 +101,39 @@ void move_focused_window(float x, float y, pid_t pid) {
     
 }
 
+/**
+    Prints the size of the window of the given pid
+    
+    - Parameter pid: the pid of the desired window
+ */
+void print_window_size(pid_t pid){
+    AXValueRef temp;
+    CGSize windowSize;
+    CGPoint windowPosition;
+    CFStringRef windowTitle;
+    AXUIElementRef frontMostApp;
+    AXUIElementRef frontMostWindow;
+    
+    // Get the frontMostApp
+    frontMostApp = getFrontMostApp(pid);
+    
+    // Copy window attributes
+    AXUIElementCopyAttributeValue(frontMostApp, kAXFocusedWindowAttribute, (CFTypeRef *)&frontMostWindow);
+    
+    AXUIElementCopyAttributeValue(frontMostWindow, kAXSizeAttribute, (CFTypeRef *)&windowTitle);
+    
+    AXUIElementCopyAttributeValue(frontMostWindow, kAXSizeAttribute, (CFTypeRef *)&temp);
+    AXValueGetValue(temp, kAXValueCGSizeType, &windowSize);
+    CFRelease(temp);
+    
+    AXUIElementCopyAttributeValue(frontMostWindow, kAXPositionAttribute, (CFTypeRef *)&temp);
+    AXValueGetValue(temp, kAXValueCGPointType, &windowPosition);
+    CFRelease(temp);
+    
+    printf(" SIZE OF WINDOW IS: %f, %f \n", windowSize.width, windowSize.height);
+    
+}
+
 
 /**
 	Resizes the focused window to specified sizes `x`, `y`
