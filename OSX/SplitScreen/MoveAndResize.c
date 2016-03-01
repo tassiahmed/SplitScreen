@@ -33,7 +33,7 @@ CGPoint get_focused_window_position(pid_t pid) {
 	// Get the front most app
 	frontMostApp = getFrontMostApp(pid);
 	AXUIElementCopyAttributeValue(frontMostApp, kAXFocusedWindowAttribute, (CFTypeRef *)&frontMostWindow);
-	
+    
 	// Copy the window position attribute from frontMostWindow
 	AXUIElementCopyAttributeValue(frontMostWindow, kAXPositionAttribute, (CFTypeRef *)&temp);
 	AXValueGetValue(temp, kAXValueCGPointType, &ret);

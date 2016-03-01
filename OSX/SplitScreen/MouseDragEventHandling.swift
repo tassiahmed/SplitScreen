@@ -15,7 +15,8 @@ var layout: SnapLayout = SnapLayout()
 var dragged_pane: Bool = false
 var current_window_number: Int = 0
 var current_window_position: CGPoint?
-
+var new_window_position: CGPoint?
+var first_instance: Bool = true
 
 /**
 	Returns the current top application by pid
@@ -40,8 +41,8 @@ func get_focused_pid() -> pid_t{
 	
 	- Returns: `true` or `false` depending on whether `current_window_position` and `new_position` have the same coordinates
 */
-func comparePosition(new_position: CGPoint) -> Bool {
-	return (current_window_position!.x == new_position.x && current_window_position!.y == new_position.y)
+func comparePosition() -> Bool {
+	return (current_window_position!.x == new_window_position!.x && current_window_position!.y == new_window_position!.y)
 }
 
 
@@ -60,10 +61,10 @@ func confirmWindowDragged(event: NSEvent) -> Bool {
 //	print("Current Position: X:\(current_window_position!.x) Y:\(current_window_position!.y)")
 //	print("New Position: X:\(get_focused_window_position().x) Y:\(get_focused_window_position().y)\n")
 	
-	//if comparePosition(get_focused_window_position(get_focused_pid())) {
+	if comparePosition() {
 //		print ("Position is unchanged")
-	//	return false
-	//}
+		return false
+	}
 	return true
 }
 
@@ -74,6 +75,7 @@ func confirmWindowDragged(event: NSEvent) -> Bool {
 	- Parameter event: `NSEvent` that is received when user releases the mouse
 */
 func mouse_up_handler(event: NSEvent) {
+    first_instance = true
 	// Check for window drag
     if dragged_pane && confirmWindowDragged(event) {
 		// Get the
@@ -106,11 +108,15 @@ func mouse_up_handler(event: NSEvent) {
 */
 func mouse_dragged_handler(event: NSEvent) {
 	// Handle the case of dragging to corner
-    
     current_window_number = event.windowNumber
-    current_window_position = get_focused_window_position(get_focused_pid())
-
-    
+    if first_instance{
+        current_window_position = get_focused_window_position(get_focused_pid())
+        new_window_position = current_window_position
+        first_instance = false
+    }else{
+        new_window_position = get_focused_window_position(get_focused_pid())
+    }
+    print("{ OLD: \(current_window_position)\n  NEW: \(new_window_position) }")
 //	if event.modifierFlags.contains(NSEventModifierFlags.AlternateKeyMask){
 		dragged_pane = true
 //	}
