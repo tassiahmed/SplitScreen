@@ -9,7 +9,6 @@
 import Cocoa
 import Foundation
 import AppKit
-import AppKitScripting
 
 class ViewController: NSViewController {
     
