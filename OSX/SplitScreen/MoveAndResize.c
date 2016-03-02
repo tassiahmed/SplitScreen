@@ -38,7 +38,8 @@ CGPoint get_focused_window_position(pid_t pid) {
 	AXUIElementCopyAttributeValue(frontMostWindow, kAXPositionAttribute, (CFTypeRef *)&temp);
 	AXValueGetValue(temp, kAXValueCGPointType, &ret);
 	CFRelease(temp);
-	
+    CFRelease(frontMostWindow);
+    CFRelease(frontMostApp);
 	return ret;
 }
 

@@ -21,8 +21,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         //setup a global listener for mouse drag events
         NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.LeftMouseUpMask, handler: mouse_up_handler)
         NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.LeftMouseDraggedMask, handler: mouse_dragged_handler)
+        NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.LeftMouseDownMask, handler: mouse_down_handler)
 		
-	}
+    }
 
 	func applicationWillTerminate(aNotification: NSNotification) {
 		// Insert code here to tear down your application
