@@ -21,4 +21,6 @@ void print_window_size(pid_t pid);
 
 CGPoint get_focused_window_position(pid_t pid);
 
+static AXUIElementRef getFrontMostApp(pid_t pid);
+
 #endif /* MoveAndResize_h */
