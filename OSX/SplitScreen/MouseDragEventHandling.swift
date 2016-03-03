@@ -149,15 +149,19 @@ func setup_observer(pid: pid_t){
     
     frontMostApp = AXUIElementCreateApplication(pid).takeUnretainedValue()
     AXUIElementCopyAttributeValue(frontMostApp, kAXFocusedWindowAttribute, frontMostWindow);
-    let frontMostWindow_true = frontMostWindow.memory as! AXUIElementRef
     
-    let observer: UnsafeMutablePointer<AXObserverRef?> = UnsafeMutablePointer<AXObserverRef?>.alloc(1)
-    AXObserverCreate(pid, moved_callback, observer)
-    let observer_true: AXObserverRef = observer.memory!
-    let data_ptr: UnsafeMutablePointer<Void> = UnsafeMutablePointer<Void>.alloc(1)
-    data_ptr.memory = data()
-    AXObserverAddNotification(observer_true, frontMostWindow_true, kAXMovedNotification, data_ptr);
-    CFRunLoopAddSource(CFRunLoopGetCurrent(), AXObserverGetRunLoopSource(observer_true).takeUnretainedValue(), kCFRunLoopDefaultMode);
+    //Causes crashes. Need extra guards in this
+    if let placeHolder = frontMostWindow.memory {
+        let frontMostWindow_true: AXUIElementRef = placeHolder as! AXUIElementRef
+       
+        let observer: UnsafeMutablePointer<AXObserverRef?> = UnsafeMutablePointer<AXObserverRef?>.alloc(1)
+        AXObserverCreate(pid, moved_callback, observer)
+        let observer_true: AXObserverRef = observer.memory!
+        let data_ptr: UnsafeMutablePointer<Void> = UnsafeMutablePointer<Void>.alloc(1)
+        data_ptr.memory = data()
+        AXObserverAddNotification(observer_true, frontMostWindow_true, kAXMovedNotification, data_ptr);
+        CFRunLoopAddSource(CFRunLoopGetCurrent(), AXObserverGetRunLoopSource(observer_true).takeUnretainedValue(), kCFRunLoopDefaultMode);
+    }
 }
 
 /**
