@@ -51,15 +51,6 @@ func comparePosition() -> Bool {
 }
 
 /**
-	Handles the event of user drags the mouse
-
-	- Parameter event: `NSEvent` that is received when user drags the mouse
-*/
-func mouse_dragged_handler(event: NSEvent) {
-    print("mouse_dragged")
-}
-
-/**
     Moves and Resizes the current window depending on the location of where the mouse up location was
 */
 func move_and_resize(){
@@ -124,7 +115,7 @@ func moved_callback(observer: AXObserverRef ,element: AXUIElementRef, notificati
     if mouse_seen == false {
         return
     }
-    
+
     callback_executed = true
     move_and_resize();
 }
@@ -150,7 +141,7 @@ func setup_observer(pid: pid_t){
     frontMostApp = AXUIElementCreateApplication(pid).takeUnretainedValue()
     AXUIElementCopyAttributeValue(frontMostApp, kAXFocusedWindowAttribute, frontMostWindow);
     
-    //Causes crashes. Need extra guards in this
+    //Check if the frontMostWindow object is nil or not
     if let placeHolder = frontMostWindow.memory {
         let frontMostWindow_true: AXUIElementRef = placeHolder as! AXUIElementRef
        
@@ -169,20 +160,9 @@ func setup_observer(pid: pid_t){
  */
 func mouse_down_handler(event: NSEvent){
     print("Mouse_down")
+    //reset all of the sync checks
     mouse_seen = false
     callback_seen = false
     callback_executed = false
     setup_observer(get_focused_pid())
-}
-
-/**
-	Prints all current running process on computer
-*/
-func print_all_processes() {
-    let apps = NSWorkspace.sharedWorkspace().runningApplications
-    var count = 0
-    for application in apps {
-		print("\(count) : \(application)")
-		count++
-    }
 }

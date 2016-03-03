@@ -12,11 +12,6 @@ import AppKit
 
 class ViewController: NSViewController {
     
-    
-    @IBAction func resizeChrome(sender: NSButton) {
-        print_all_processes()
-    }
-    
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
