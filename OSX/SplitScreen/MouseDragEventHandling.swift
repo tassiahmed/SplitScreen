@@ -59,6 +59,10 @@ func move_and_resize(){
     if layout.is_hardpoint(loc.0, y: loc.1) {
         let resize = layout.get_snap_dimensions(loc.0, y: loc.1)
         
+        if resize.0 == -1 || resize.1 == -1 || resize.2 == -1 || resize.3 == -1 {
+            return
+        }
+        
         // Gets the focused app
         let focused_pid = get_focused_pid()
         
