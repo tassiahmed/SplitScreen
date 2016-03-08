@@ -18,6 +18,25 @@ class SnapPoint{
     private var orig_height: Int
     private var orig_width: Int
     
+    /**
+        Initializes this SnapPoint
+     
+        Parameters:
+        
+        height - the original height this layout was designed for
+     
+        width - the original width this layout was designed for
+     
+        x_dim - the x dimension of the resize
+     
+        y_dim - the y dimension of the resize
+     
+        x_snap_loc - the x-coordinate of where the window will be moved to
+     
+        y_snap_loc - the y-coordinate of where the window will be moved to
+     
+        log - the logic bit to determine what action will be performed by the snap
+     */
     init(height: Int, width: Int, x_dim: Int, y_dim: Int, x_snap_loc: Int, y_snap_loc: Int, log: Int) {
         snap_location = (x_snap_loc, y_snap_loc)
         dimensions = (x_dim,y_dim)
@@ -131,21 +150,15 @@ class SnapPoint{
         return (Int(orig_height), Int(orig_width))
     }
     
-    /**
-        Refreshes the
-     */
-    func refresh(){
-        
-    }
-    
-    
-    
-    
-    
     //*************************************************
     //               Private Functions
     //*************************************************
     
+    /**
+        INTERNAL
+            
+        returns the scale factor for the dimensions and snap locations
+     */
     private func get_scale_factors() -> (CGFloat, CGFloat){
         let curr_height: Int = Int((NSScreen.mainScreen()?.frame.height)!)
         let curr_width: Int = Int((NSScreen.mainScreen()?.frame.width)!)
