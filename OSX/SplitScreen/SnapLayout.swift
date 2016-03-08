@@ -66,8 +66,30 @@ class SnapLayout {
         snap_points.append(top)
         
         }
-   
-    /**
+    
+	/**
+		Checks to see if the given `x` and `y` points are hardpoints
+	
+		- Parameter x: Screen's x coordinate that will be compared
+	
+		- Paramter y: Screen's y coordinate that will be compared
+	
+		- Returns: `true` or `false` if `x` and `y` both compare to an existing hardpoint
+	*/
+    func is_hardpoint(x: CGFloat, y: CGFloat) -> Bool {
+        let xpos:Int = Int(x + 0.5)
+        let ypos:Int = Int(y + 0.5)
+        
+        for var i = 0; i < snap_points.count; ++i {
+            if snap_points[i].check_point(xpos, y: ypos){
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+	/**
 		Get the new dimensions for a dragged window
 	
 		- Parameter x: `CGFloat` that corresponds to screen x coordinate of mouse

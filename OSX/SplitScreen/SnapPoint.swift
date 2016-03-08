@@ -88,11 +88,6 @@ class SnapPoint{
     func check_point(x: Int, y: Int) -> Bool {
         
         let (scale_factor_h, scale_factor_w) = get_scale_factors()
-        print(" \n\nscales: \(scale_factor_h), \(scale_factor_w)")
-        
-        /*if x * y != 0 {
-            return false
-        }*/
         
         // run through each snap_point and check if it fits the guessed location
         
@@ -101,15 +96,12 @@ class SnapPoint{
         
         for snaps in snap_point{
             
-            print(" -- \(x_f) >= \(CGFloat(snaps.0.0) * scale_factor_w) && \(x_f) <= \(CGFloat(snaps.1.0) * scale_factor_w) && \(y_f) >= \(CGFloat(snaps.0.1) * scale_factor_h) && \(y_f) >= \(CGFloat(snaps.1.1) * scale_factor_h)")
             if x_f >= CGFloat(snaps.0.0) * scale_factor_w && x_f <= CGFloat(snaps.1.0) * scale_factor_w && y_f >= CGFloat(snaps.0.1) * scale_factor_h && y_f <= CGFloat(snaps.1.1) * scale_factor_h {
                 return true
             }
             
         }
-        
-        print(" got past for loop")
-        
+    
         return false
     }
     

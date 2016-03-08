@@ -155,7 +155,7 @@ func setup_observer(pid: pid_t){
         let data_ptr: UnsafeMutablePointer<Void> = UnsafeMutablePointer<Void>.alloc(1)
         data_ptr.memory = data()
         
-        let err = AXObserverAddNotification(observer_true, frontMostWindow_true, kAXMovedNotification, data_ptr);
+        AXObserverAddNotification(observer_true, frontMostWindow_true, kAXMovedNotification, data_ptr);
         CFRunLoopAddSource(CFRunLoopGetCurrent(), AXObserverGetRunLoopSource(observer_true).takeUnretainedValue(), kCFRunLoopDefaultMode);
     }
 }
