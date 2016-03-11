@@ -67,10 +67,6 @@ class SnapPoint{
             return false
         }
         
-        /*if x0 * y0 != 0 || x1 * y1 != 0 {
-            return false
-        }*/
-        
         snap_point.append(((x0, y0),(x1, y1)))
         return true
     }
@@ -90,13 +86,11 @@ class SnapPoint{
         let (scale_factor_h, scale_factor_w) = get_scale_factors()
         
         // run through each snap_point and check if it fits the guessed location
-        
-        let x_f = CGFloat(x)
-        let y_f = CGFloat(y)
-        
         for snaps in snap_point{
             
-            if x_f >= CGFloat(snaps.0.0) * scale_factor_w && x_f <= CGFloat(snaps.1.0) * scale_factor_w && y_f >= CGFloat(snaps.0.1) * scale_factor_h && y_f <= CGFloat(snaps.1.1) * scale_factor_h {
+            print("snap_point scaled: x0: \(CGFloat(snaps.0.0) * scale_factor_w) x1: \(CGFloat(snaps.1.0) * scale_factor_w) y0: \(CGFloat(snaps.0.1) * scale_factor_h) y1: \(CGFloat(snaps.1.1) * scale_factor_h)")
+            
+            if x >= Int(CGFloat(snaps.0.0) * scale_factor_w) && x <= Int(CGFloat(snaps.1.0) * scale_factor_w) && y >= Int(CGFloat(snaps.0.1) * scale_factor_h) && y <= Int(CGFloat(snaps.1.1) * scale_factor_h) {
                 return true
             }
             
