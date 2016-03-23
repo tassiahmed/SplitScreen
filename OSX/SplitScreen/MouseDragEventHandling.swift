@@ -22,6 +22,7 @@ var mouse_seen: Bool = false
 var mouse_up_pos: NSPoint?
 var callback_seen: Bool = false
 var callback_executed: Bool = false
+var drawing: Bool = false
 
 /**
 	Returns the current top application by pid
@@ -80,6 +81,20 @@ func move_and_resize(){
 }
 
 /**
+    Handles the dragging of mouse
+ */
+func mouse_dragged_handler(event: NSEvent){
+    if drawing {
+        let loc: (CGFloat, CGFloat) = (event.locationInWindow.x, event.locationInWindow.y)
+        if layout.is_hardpoint(loc.0, y: loc.1) == false {
+            print(" !! need to stop drawing")
+        }else{
+            print(" -- drawing - \(event.locationInWindow) - check_point: \(layout.is_hardpoint(loc.0, y: loc.1)), \(layout.get_snap_dimensions(loc.0, y: loc.1))")
+        }
+    }
+}
+
+/**
 	Handles the event of user releasing the mouse
  
 	- Parameter event: `NSEvent` that is received when user releases the mouse
@@ -96,6 +111,11 @@ func mouse_up_handler(event: NSEvent) {
     }else{
         callback_executed = false
         callback_seen = false
+    }
+    
+    if drawing {
+        drawing = false
+        print("Stopped Drawing")
     }
     
 }
@@ -117,6 +137,8 @@ func moved_callback(observer: AXObserverRef ,element: AXUIElementRef, notificati
     
     //check if the mouse up handler was executed
     if mouse_seen == false {
+        drawing = true
+        print("Started Drawing...")
         return
     }
 
@@ -168,6 +190,7 @@ func mouse_down_handler(event: NSEvent){
     //reset all of the sync checks
     mouse_seen = false
     callback_seen = false
+    drawing = false
     callback_executed = false
     setup_observer(get_focused_pid())
 }

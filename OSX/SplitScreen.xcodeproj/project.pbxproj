@@ -17,6 +17,7 @@
 		E855D4E21BCDA77D008C511B /* MouseDragEventHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = E855D4E11BCDA77D008C511B /* MouseDragEventHandling.swift */; };
 		E855D4E41BCDAAA0008C511B /* SnapLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E855D4E31BCDAAA0008C511B /* SnapLayout.swift */; };
 		E898E5301C8A2BF1008D8DCF /* SnapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E898E52F1C8A2BF1008D8DCF /* SnapPoint.swift */; };
+		E8BD3F8B1CA1E7CB00433D61 /* StatusMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BD3F8A1CA1E7CB00433D61 /* StatusMenuController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		E855D4E11BCDA77D008C511B /* MouseDragEventHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MouseDragEventHandling.swift; sourceTree = "<group>"; };
 		E855D4E31BCDAAA0008C511B /* SnapLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapLayout.swift; sourceTree = "<group>"; };
 		E898E52F1C8A2BF1008D8DCF /* SnapPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapPoint.swift; sourceTree = "<group>"; };
+		E8BD3F8A1CA1E7CB00433D61 /* StatusMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusMenuController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				E855D4E11BCDA77D008C511B /* MouseDragEventHandling.swift */,
 				E855D4E31BCDAAA0008C511B /* SnapLayout.swift */,
 				E898E52F1C8A2BF1008D8DCF /* SnapPoint.swift */,
+				E8BD3F8A1CA1E7CB00433D61 /* StatusMenuController.swift */,
 				E8076D971BF6490500BD84C7 /* SplitScreen-Bridging-Header.h */,
 				E8076D9A1BF649EF00BD84C7 /* MoveAndResize.c */,
 				E8076D9B1BF649EF00BD84C7 /* MoveAndResize.h */,
@@ -231,6 +234,7 @@
 			files = (
 				43AE6B321B9F84EA000B2B53 /* ViewController.swift in Sources */,
 				E855D4E21BCDA77D008C511B /* MouseDragEventHandling.swift in Sources */,
+				E8BD3F8B1CA1E7CB00433D61 /* StatusMenuController.swift in Sources */,
 				E8076D9C1BF649EF00BD84C7 /* MoveAndResize.c in Sources */,
 				E855D4E41BCDAAA0008C511B /* SnapLayout.swift in Sources */,
 				43AE6B351B9F84EA000B2B53 /* SplitScreen.xcdatamodeld in Sources */,

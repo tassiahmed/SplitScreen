@@ -12,8 +12,15 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
     
 
-	func applicationDidFinishLaunching(aNotification: NSNotification) {
-		// Insert code here to initialize your application
+    /*@IBOutlet weak var statusMenu: NSMenuItem!
+    let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
+
+    @IBAction func quitClicked(sender: NSMenuItem) {
+        NSApplication.sharedApplication().terminate(self)
+
+    }*/
+    
+	func applicationDidFinishLaunching(aNotification: NSNotification){
         
         //loads a layout using a file location (blank string for testing)
         layout.load("")
@@ -21,7 +28,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         //setup a global listener for mouse drag events
         NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.LeftMouseUpMask, handler: mouse_up_handler)
         NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.LeftMouseDownMask, handler: mouse_down_handler)
-		
+		NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.LeftMouseDraggedMask, handler: mouse_dragged_handler)
     }
 
 	func applicationWillTerminate(aNotification: NSNotification) {
