@@ -88,9 +88,10 @@ class SnapPoint{
         // run through each snap_point and check if it fits the guessed location
         for snaps in snap_point{
             
-            //print("snap_point scaled: x0: \(CGFloat(snaps.0.0) * scale_factor_w) x1: \(CGFloat(snaps.1.0) * scale_factor_w) y0: \(CGFloat(snaps.0.1) * scale_factor_h) y1: \(CGFloat(snaps.1.1) * scale_factor_h)")
+            print("snap_point scaled: x0: \(CGFloat(snaps.0.0) * scale_factor_w) x1: \(CGFloat(snaps.1.0) * scale_factor_w) y0: \(CGFloat(snaps.0.1) * scale_factor_h) y1: \(CGFloat(snaps.1.1) * scale_factor_h)")
             
             if x >= Int(CGFloat(snaps.0.0) * scale_factor_w) && x <= Int(CGFloat(snaps.1.0) * scale_factor_w) && y >= Int(CGFloat(snaps.0.1) * scale_factor_h) && y <= Int(CGFloat(snaps.1.1) * scale_factor_h) {
+                print(" - falls in range (\(x),\(y))")
                 return true
             }
             

@@ -2,6 +2,8 @@
 //  StatusMenuController.swift
 //  SplitScreen
 //
+//
+//
 //  Created by Evan Thompson on 3/22/16.
 //  Copyright © 2016 SplitScreen. All rights reserved.
 //
@@ -10,32 +12,51 @@ import Cocoa
 
 class StatusMenuController: NSObject {
     @IBOutlet weak var statusMenu: NSMenu!
-    
-    @IBAction func templateDesignerClicked(sender: NSMenuItem) {
-        print("Template Designer was clicked!")
-    }
-
-    //@IBOutlet weak var RecentTemplates: NSMenuItem!
-    
-    @IBAction func AboutClicked(sender: NSMenuItem) {
-        print("About was clicked")
-    }
-    
-    func TemplateClicked(send: NSMenuItem?){
-        print(" template was clicked: \(send)")
-    }
-    
-    func OthersClicked(send: AnyObject?){
-        print(" Others was clicked: \(send)")
-    }
-    
     @IBOutlet weak var MenuTemplates: NSMenu!
     
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
     
+    //***********************************************************************
+    
+    //Action handlers for buttons
+    
+    //Opens the template designer
+    @IBAction func templateDesignerClicked(sender: NSMenuItem) {
+        print("Template Designer was clicked!")
+    }
+
+    //redirect to our website? Open new window? no idea really
+    @IBAction func AboutClicked(sender: NSMenuItem) {
+        print("About was clicked")
+    }
+    
     @IBAction func quitClicked(sender: NSMenuItem) {
         NSApplication.sharedApplication().terminate(self)
     }
+    
+    //***********************************************************************
+    
+    //Selectors for menu items
+    
+    //When a template is clicked
+    func TemplateClicked(send: NSMenuItem?){
+        print(" template was clicked: \(send)")
+        
+        layout.load(send!.title)
+        
+        //rearranges the positions of the menu items
+        let index = MenuTemplates.indexOfItem(send!)
+        MenuTemplates.removeItemAtIndex(index)
+        MenuTemplates.insertItem(send!, atIndex: 0)
+    }
+    
+    //When the others option is clicked. Probably open up the Template Designer?
+    func OthersClicked(send: AnyObject?){
+        print(" Others was clicked: \(send)")
+    }
+    
+    //***********************************************************************
+    
     override func awakeFromNib() {
         let icon = NSImage(named: "MenuIcons")
         icon?.template = false // best for dark mode
@@ -45,11 +66,11 @@ class StatusMenuController: NSObject {
         
         MenuTemplates.removeItemAtIndex(0)
         
-        MenuTemplates.addItemWithTitle("Template 1", action: Selector("TemplateClicked:"), keyEquivalent: "")
+        MenuTemplates.addItemWithTitle("standard", action: Selector("TemplateClicked:"), keyEquivalent: "")
         MenuTemplates.itemAtIndex(0)?.target = self
-        MenuTemplates.addItemWithTitle("Template 2", action: Selector("TemplateClicked:"), keyEquivalent: "")
+        MenuTemplates.addItemWithTitle("horizontal", action: Selector("TemplateClicked:"), keyEquivalent: "")
         MenuTemplates.itemAtIndex(1)?.target = self
-        MenuTemplates.addItemWithTitle("Template 3", action: Selector("TemplateClicked:"), keyEquivalent: "")
+        MenuTemplates.addItemWithTitle("Default", action: Selector("TemplateClicked:"), keyEquivalent: "")
         MenuTemplates.itemAtIndex(2)?.target = self
         MenuTemplates.addItemWithTitle("Others...", action: Selector("OthersClicked:"), keyEquivalent: "")
         MenuTemplates.itemAtIndex(3)?.target = self

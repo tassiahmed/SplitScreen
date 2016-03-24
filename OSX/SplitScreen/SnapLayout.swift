@@ -17,16 +17,10 @@ class SnapLayout {
     
     //******
     
-	/**
-		Loads a file at `file_path` with preset hardpoints
-	
-		- Parameter file_path: `NSString` that corresponds to a file with preset hardpoints
-	*/
-    func load(file_path: NSString) {
-        
+    func standard_dummy(){
         HEIGHT = Int((NSScreen.mainScreen()?.frame.height)!)
         WIDTH = Int((NSScreen.mainScreen()?.frame.width)!)
-		
+        
         // Need file I/O here
         
         // hardcoded windows 10 aerosnap
@@ -64,8 +58,51 @@ class SnapLayout {
         top.add_snap_point(1, y0: HEIGHT, x1: WIDTH-1, y1: HEIGHT)
         
         snap_points.append(top)
+    }
+    
+    func horizontal_dummy(){
         
+        let left_upper: SnapPoint = SnapPoint.init(height: HEIGHT, width: WIDTH, x_dim: WIDTH, y_dim: HEIGHT/2, x_snap_loc: 0, y_snap_loc: 0, log: 0)
+        left_upper.add_snap_point(0, y0: HEIGHT/2, x1: 0, y1: HEIGHT)
+        
+        snap_points.append(left_upper)
+    
+        let left_lower: SnapPoint = SnapPoint.init(height: HEIGHT, width: WIDTH, x_dim: WIDTH, y_dim: HEIGHT/2, x_snap_loc: 0, y_snap_loc: HEIGHT/2, log: 0)
+        left_lower.add_snap_point(0, y0: 0, x1: 0, y1: HEIGHT/2)
+        
+        snap_points.append(left_lower)
+        
+        let right_upper: SnapPoint = SnapPoint.init(height: HEIGHT, width: WIDTH, x_dim: WIDTH, y_dim: HEIGHT/2, x_snap_loc: 0, y_snap_loc: 0, log: 0)
+        right_upper.add_snap_point(WIDTH, y0: HEIGHT/2, x1: WIDTH, y1: HEIGHT)
+        
+        snap_points.append(right_upper)
+        
+        let right_lower: SnapPoint = SnapPoint.init(height: HEIGHT, width: WIDTH, x_dim: WIDTH, y_dim: HEIGHT/2, x_snap_loc: 0, y_snap_loc: HEIGHT/2, log: 0)
+        right_lower.add_snap_point(WIDTH, y0: 0, x1: WIDTH, y1: HEIGHT/2)
+        
+        snap_points.append(right_lower)
+    }
+    
+    
+	/**
+		Loads a file at `file_path` with preset hardpoints
+	
+		- Parameter file_path: `NSString` that corresponds to a file with preset hardpoints
+	*/
+    func load(template_name: NSString) {
+        
+        //refreshes the snap points
+        snap_points.removeAll()
+        
+        if(template_name == "standard"){
+            standard_dummy()
+        }else if(template_name == "horizontal"){
+            horizontal_dummy()
+        }else if(template_name == "Default"){
+            
         }
+        
+    }
     
 	/**
 		Checks to see if the given `x` and `y` points are hardpoints
@@ -104,6 +141,7 @@ class SnapLayout {
         
         for var i = 0; i < snap_points.count; ++i {
             if snap_points[i].check_point(x_i, y: y_i) {
+                print(" using snappoint: \(i) - \(snap_points[i].check_point(x_i, y: y_i))")
                 let (x_snap, y_snap) = snap_points[i].get_snap_location()
                 let (x_dim, y_dim) = snap_points[i].get_dimensions()
                 return (x_snap, y_snap, x_dim, y_dim)
