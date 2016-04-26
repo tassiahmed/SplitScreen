@@ -29,11 +29,12 @@ class File {
 		return path.path!
 	}
 	
-	func parseSnapLayoutToString(layout: SnapLayout) -> String {
-		var ret_string: String = String()
-		for snap_point in layout.snap_points {
-			
-		}
-	}
+//	func parseSnapLayoutToString(layout: SnapLayout) -> String {
+//		var ret_string: String = String()
+//		for snap_point in layout.snap_points {
+//			
+//		}
+//		return ret_string
+//	}
 	
 }
