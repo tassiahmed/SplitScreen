@@ -91,11 +91,6 @@ class SnapLayout {
 	*/
     func load(template_name: NSString) {
 		
-		// Read File System
-		let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
-		appDelegate.fileSystem.readBasicTemplates()
-		
-        
         //refreshes the snap points
         snap_points.removeAll()
         

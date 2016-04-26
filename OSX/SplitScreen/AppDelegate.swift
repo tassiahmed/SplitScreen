@@ -29,6 +29,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         //loads a layout using a file location (blank string for testing)
         layout.load("standard")
+		
+		fileSystem.saveLayout(layout, name: "Standard")
                 
         //setup a global listener for mouse drag events
         NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.LeftMouseUpMask, handler: mouse_up_handler)

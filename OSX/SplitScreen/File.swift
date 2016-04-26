@@ -29,12 +29,13 @@ class File {
 		return path.path!
 	}
 	
-//	func parseSnapLayoutToString(layout: SnapLayout) -> String {
-//		var ret_string: String = String()
-//		for snap_point in layout.snap_points {
-//			
-//		}
-//		return ret_string
-//	}
+	func parseSnapLayoutToString(layout: SnapLayout) -> String {
+		var retString: String = String()
+		for snap_point in layout.snap_points {
+			retString = retString.stringByAppendingString(snap_point.get_string_representation())
+		}
+		print(retString)
+		return retString
+	}
 	
 }

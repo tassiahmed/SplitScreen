@@ -49,7 +49,12 @@ class FileSystem {
 			print(text)
 		}
 //		let file = File(dirPath: dirPath, name: "test.lao")
-
+	}
+	
+	func saveLayout(layout: SnapLayout, name: String) {
+		let file = File(dirPath: dirPath, name: name)
+		file.parseSnapLayoutToString(layout)
+		
 	}
 	
 }
