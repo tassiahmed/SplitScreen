@@ -90,6 +90,11 @@ class SnapLayout {
 		- Parameter file_path: `NSString` that corresponds to a file with preset hardpoints
 	*/
     func load(template_name: NSString) {
+		
+		// Read File System
+		let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+		appDelegate.fileSystem.readBasicTemplates()
+		
         
         //refreshes the snap points
         snap_points.removeAll()
@@ -117,7 +122,7 @@ class SnapLayout {
         let xpos:Int = Int(x + 0.5)
         let ypos:Int = Int(y + 0.5)
         
-        for var i = 0; i < snap_points.count; ++i {
+        for i in 0 ..< snap_points.count {
             if snap_points[i].check_point(xpos, y: ypos){
                 return true
             }
@@ -139,7 +144,7 @@ class SnapLayout {
         let x_i:Int = Int(x + 0.5)
         let y_i:Int = Int(y + 0.5)
         
-        for var i = 0; i < snap_points.count; ++i {
+        for i in 0 ..< snap_points.count {
             if snap_points[i].check_point(x_i, y: y_i) {
                 print(" using snappoint: \(i) - \(snap_points[i].check_point(x_i, y: y_i))")
                 let (x_snap, y_snap) = snap_points[i].get_snap_location()

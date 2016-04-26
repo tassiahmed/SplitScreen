@@ -19,8 +19,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSApplication.sharedApplication().terminate(self)
 
     }*/
-    
+	
 	func applicationDidFinishLaunching(aNotification: NSNotification){
+		
+		// Creates file system
+//		let file_system: FileSystem = FileSystem.init()
+		fileSystem.createBasicTemplates()
+
         
         //loads a layout using a file location (blank string for testing)
         layout.load("standard")
@@ -34,6 +39,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	func applicationWillTerminate(aNotification: NSNotification) {
 		// Insert code here to tear down your application
 	}
+	
+	// MARK: - Global Variables
+	lazy var fileSystem: FileSystem = FileSystem.init()
+	
+	
+	
 
 	// MARK: - Core Data stack
 

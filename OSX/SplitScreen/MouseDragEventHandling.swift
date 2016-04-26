@@ -10,6 +10,10 @@ import Foundation
 import AppKit
 import Carbon
 
+
+//File System
+var file_system: FileSystem = FileSystem.init()
+
 // Layout currently being used
 var layout: SnapLayout = SnapLayout()
 var dragged_pane: Bool = false

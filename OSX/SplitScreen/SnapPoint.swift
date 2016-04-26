@@ -135,8 +135,24 @@ class SnapPoint{
      */
     func get_orig_resolution() -> (Int, Int){
         return (Int(orig_height), Int(orig_width))
-    }
-    
+	}
+		
+	
+		func get_string_representation() -> String {
+			var ret_String: String = String()
+			ret_String = ret_String.stringByAppendingString(String(orig_height))
+			ret_String = ret_String.stringByAppendingString(String(orig_width))
+			ret_String = ret_String.stringByAppendingString(String(dimensions.0))
+			ret_String = ret_String.stringByAppendingString(String(dimensions.1))
+			ret_String = ret_String.stringByAppendingString(String(snap_location.0))
+			ret_String = ret_String.stringByAppendingString(String(snap_location.1))
+			ret_String = ret_String.stringByAppendingString(String(logic))
+
+
+			
+			return ret_String
+		}
+	
     //*************************************************
     //               Private Functions
     //*************************************************
