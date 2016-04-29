@@ -22,16 +22,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
 	func applicationDidFinishLaunching(aNotification: NSNotification){
 		
-		// Creates file system
-//		let file_system: FileSystem = FileSystem.init()
-		fileSystem.createBasicTemplates()
-
-        
         //loads a layout using a file location (blank string for testing)
         layout.load("standard")
-		
 		fileSystem.saveLayout(layout, name: "Standard")
-                
+		
+		layout.load("horizontal")
+		fileSystem.saveLayout(layout, name: "Horizontal")
+		
+		layout.load("standard")
+		
+		fileSystem.readLayouts()
+		
         //setup a global listener for mouse drag events
         NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.LeftMouseUpMask, handler: mouse_up_handler)
         NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.LeftMouseDownMask, handler: mouse_down_handler)
@@ -44,9 +45,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
 	// MARK: - Global Variables
 	lazy var fileSystem: FileSystem = FileSystem.init()
-	
-	
-	
 
 	// MARK: - Core Data stack
 

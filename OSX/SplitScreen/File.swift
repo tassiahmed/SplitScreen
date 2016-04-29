@@ -9,7 +9,7 @@
 import Foundation
 import AppKit
 
-class File {
+class File: Equatable {
 	
 	private var path: NSURL
 	private var file_name: String
@@ -18,7 +18,9 @@ class File {
 	
 	init(dirPath: NSURL, name: String) {
 		file_name = name
-		path = dirPath.URLByAppendingPathExtension(name)
+		path = dirPath.URLByAppendingPathComponent(name)
+//		path = NSURL(string: (dirPath.path)!.stringByAppendingString("/\(name)"))!
+//		path = dirPath.URLByAppendingPathExtension(name)
 	}
 	
 	func getFileName() -> String {
@@ -28,14 +30,8 @@ class File {
 	func getPathString() -> String {
 		return path.path!
 	}
-	
-	func parseSnapLayoutToString(layout: SnapLayout) -> String {
-		var retString: String = String()
-		for snap_point in layout.snap_points {
-			retString = retString.stringByAppendingString(snap_point.get_string_representation())
-		}
-		print(retString)
-		return retString
-	}
-	
+}
+
+func ==(lhs: File, rhs: File) -> Bool {
+	return lhs.getPathString() == rhs.getPathString() && lhs.getFileName() == rhs.getFileName()
 }
