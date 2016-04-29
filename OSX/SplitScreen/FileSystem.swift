@@ -11,18 +11,18 @@ import AppKit
 
 class FileSystem {
 	
-	private var bundleID: NSString
 	private var fileManager: NSFileManager
 	private var dirPath: NSURL
 	private var files: [File]
+	private let pathExtension = ".lao"
 	
 	init() {
-		bundleID = NSBundle.mainBundle().bundleIdentifier!
 		fileManager = NSFileManager.defaultManager()
 		
 		let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
 		dirPath = appDelegate.applicationDocumentsDirectory
 		files = [File]()
+		self.getAllLayoutFiles()
 	}
 	
 	
@@ -38,7 +38,7 @@ class FileSystem {
 		files.append(file)
 	}
 	
-	func readBasicTemplates() {
+	func readLayouts() {
 		for file in files {
 			var text: String = String()
 			do {
@@ -46,10 +46,42 @@ class FileSystem {
 			} catch _ {
 				print("Could not read from \(file.getFileName())")
 			}
+			print(file.getFileName())
 			print(text)
 		}
-//		let file = File(dirPath: dirPath, name: "test.lao")
+	}
+	
+	func saveLayout(layout: SnapLayout, name: String) {
+		let file = File(dirPath: dirPath, name: name.stringByAppendingString(pathExtension))
+		let content = self.parseSnapLayoutToString(layout)
 
+		do {
+			try content.writeToFile(file.getPathString(), atomically: false, encoding: NSUTF8StringEncoding)
+		} catch _ {
+			print("Could not write to \(file.getFileName()))")
+		}
+		if files.indexOf(file) == nil {
+			files.append(file)
+		}
+	}
+	
+	func parseSnapLayoutToString(layout: SnapLayout) -> String {
+		var retString: String = String()
+		for snap_point in layout.snap_points {
+			retString = retString.stringByAppendingString(snap_point.get_string_representation())
+		}
+		return retString
+	}
+	
+	func getAllLayoutFiles() {
+		if let enumerator = fileManager.enumeratorAtPath(dirPath.path!) {
+			while let file = enumerator.nextObject() {
+				let file_name = file as! String
+				if file_name.hasSuffix(".lao") {
+					files.append( File(dirPath: dirPath, name: file_name) )
+				}
+			}
+		}
 	}
 	
 }

@@ -138,22 +138,32 @@ class SnapPoint{
 	}
 		
 	
-		func get_string_representation() -> String {
-			var ret_String: String = String()
-			ret_String = ret_String.stringByAppendingString(String(orig_height))
-			ret_String = ret_String.stringByAppendingString(String(orig_width))
-			ret_String = ret_String.stringByAppendingString(String(dimensions.0))
-			ret_String = ret_String.stringByAppendingString(String(dimensions.1))
-			ret_String = ret_String.stringByAppendingString(String(snap_location.0))
-			ret_String = ret_String.stringByAppendingString(String(snap_location.1))
-			ret_String = ret_String.stringByAppendingString(String(logic))
-
-
-			
-			return ret_String
+	func get_string_representation() -> String {
+		var ret_String: String = String()
+		ret_String = ret_String.stringByAppendingString(String(orig_height))
+		ret_String.append("," as Character)
+		ret_String = ret_String.stringByAppendingString(String(orig_width))
+		ret_String.append("," as Character)
+		ret_String = ret_String.stringByAppendingString(String(dimensions.0))
+		ret_String.append("," as Character)
+		ret_String = ret_String.stringByAppendingString(String(dimensions.1))
+		ret_String.append("," as Character)
+		ret_String = ret_String.stringByAppendingString(String(snap_location.0))
+		ret_String.append("," as Character)
+		ret_String = ret_String.stringByAppendingString(String(snap_location.1))
+		ret_String.append("," as Character)
+		ret_String = ret_String.stringByAppendingString(String(logic))
+		for point in snap_point {
+			ret_String.append("," as Character)
+			ret_String = ret_String.stringByAppendingString(String(point.0))
+			ret_String.append(":" as Character)
+			ret_String = ret_String.stringByAppendingString(String(point.1))
 		}
+		ret_String.append("\n" as Character)
+		return ret_String
+	}
 	
-    //*************************************************
+    //*******************g******************************
     //               Private Functions
     //*************************************************
     
