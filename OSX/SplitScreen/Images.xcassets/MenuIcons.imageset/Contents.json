@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "18x18SplitScreenMenuIconTransparent.png",
+      "filename" : "18x18.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "36x36SplitScreenMenuIconTransparent.png",
+      "filename" : "36x36.png",
       "scale" : "2x"
     },
     {
