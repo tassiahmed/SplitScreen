@@ -15,6 +15,8 @@ class FileSystem {
 	private var dirPath: NSURL
 	private var files: [File]
 	private let pathExtension = ".lao"
+	let HEIGHT = Int((NSScreen.mainScreen()?.frame.height)!)
+	let WIDTH = Int((NSScreen.mainScreen()?.frame.width)!)
 	
 	init() {
 		fileManager = NSFileManager.defaultManager()
@@ -40,20 +42,14 @@ class FileSystem {
 	
 	func readLayouts() {
 		for file in files {
-			var text: String = String()
-			do {
-				try text = String(contentsOfFile: file.getPathString(), encoding: NSUTF8StringEncoding)
-			} catch _ {
-				print("Could not read from \(file.getFileName())")
-			}
-			print(file.getFileName())
-			print(text)
+			file.parseFileContent(HEIGHT, width: WIDTH)
+			print("******************")
 		}
 	}
 	
 	func saveLayout(layout: SnapLayout, name: String) {
 		let file = File(dirPath: dirPath, name: name.stringByAppendingString(pathExtension))
-		let content = self.parseSnapLayoutToString(layout)
+		let content = layout.toString()
 
 		do {
 			try content.writeToFile(file.getPathString(), atomically: false, encoding: NSUTF8StringEncoding)
@@ -63,14 +59,6 @@ class FileSystem {
 		if files.indexOf(file) == nil {
 			files.append(file)
 		}
-	}
-	
-	func parseSnapLayoutToString(layout: SnapLayout) -> String {
-		var retString: String = String()
-		for snap_point in layout.snap_points {
-			retString = retString.stringByAppendingString(snap_point.get_string_representation())
-		}
-		return retString
 	}
 	
 	func getAllLayoutFiles() {

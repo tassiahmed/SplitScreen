@@ -96,7 +96,6 @@ class SnapPoint{
             }
             
         }
-    
         return false
     }
     
@@ -136,34 +135,74 @@ class SnapPoint{
     func get_orig_resolution() -> (Int, Int){
         return (Int(orig_height), Int(orig_width))
 	}
-		
 	
-	func get_string_representation() -> String {
+	
+	func get_string_scalar_representation(scalar: Int, original: Int, original_string: String) -> String {
+		if scalar == 0 {
+			return "0"
+		}
+		if (scalar + 1) == original {
+			return "\(original_string)-1"
+		}
+		let scale = original/scalar
+		return "\(original_string)/\(scale)"
+	}
+	
+	func get_string_snap_point(point: (Int,Int), height: Int, width: Int) -> String {
+		let scalar_x = get_string_scalar_representation(point.0, original: width, original_string: "WIDTH")
+		let scalar_y = get_string_scalar_representation(point.1, original: height, original_string: "HEIGHT")
+		return "(\(scalar_x); \(scalar_y))"
+	}
+
+	/**
+		Returns the string representation of the SnapPoint
+	*/
+	func get_string_representation(screenHeight: Int, screenWidth: Int) -> String {
 		var ret_String: String = String()
-		ret_String = ret_String.stringByAppendingString(String(orig_height))
+		ret_String = ret_String.stringByAppendingString("HEIGHT")
 		ret_String.append("," as Character)
-		ret_String = ret_String.stringByAppendingString(String(orig_width))
+		ret_String = ret_String.stringByAppendingString("WIDTH")
 		ret_String.append("," as Character)
-		ret_String = ret_String.stringByAppendingString(String(dimensions.0))
+		ret_String = ret_String.stringByAppendingString(
+			self.get_string_scalar_representation(dimensions.0,
+				original: screenWidth,
+				original_string: "WIDTH"))
+		
 		ret_String.append("," as Character)
-		ret_String = ret_String.stringByAppendingString(String(dimensions.1))
+		ret_String = ret_String.stringByAppendingString(
+			self.get_string_scalar_representation(dimensions.1,
+				original: screenHeight,
+				original_string: "HEIGHT"))
+		
 		ret_String.append("," as Character)
-		ret_String = ret_String.stringByAppendingString(String(snap_location.0))
+		ret_String = ret_String.stringByAppendingString(
+			self.get_string_scalar_representation(snap_location.0,
+				original: screenWidth,
+				original_string: "WIDTH"))
+		
 		ret_String.append("," as Character)
-		ret_String = ret_String.stringByAppendingString(String(snap_location.1))
+		ret_String = ret_String.stringByAppendingString(
+			self.get_string_scalar_representation(snap_location.1,
+				original: screenHeight,
+				original_string: "HEIGHT"))
+		
 		ret_String.append("," as Character)
 		ret_String = ret_String.stringByAppendingString(String(logic))
 		for point in snap_point {
 			ret_String.append("," as Character)
-			ret_String = ret_String.stringByAppendingString(String(point.0))
+			ret_String = ret_String.stringByAppendingString(get_string_snap_point(point.0,
+				height: screenHeight,
+				width: screenWidth))
 			ret_String.append(":" as Character)
-			ret_String = ret_String.stringByAppendingString(String(point.1))
+			ret_String = ret_String.stringByAppendingString(get_string_snap_point(point.1,
+				height: screenHeight,
+				width: screenWidth))
 		}
 		ret_String.append("\n" as Character)
 		return ret_String
 	}
 	
-    //*******************g******************************
+    //*************************************************
     //               Private Functions
     //*************************************************
     

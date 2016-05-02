@@ -151,6 +151,14 @@ class SnapLayout {
         //should never reach this point
         return (-1,-1,-1,-1)
     }
+	
+	func toString() -> String {
+		var retString: String = String()
+		for snap_point in snap_points {
+			retString = retString.stringByAppendingString(snap_point.get_string_representation(HEIGHT,screenWidth: WIDTH))
+		}
+		return retString
+	}
     
     let menu = NSApplication.sharedApplication().mainMenu
     private var HEIGHT: Int = Int((NSScreen.mainScreen()?.frame.height)!)

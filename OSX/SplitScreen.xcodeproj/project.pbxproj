@@ -93,17 +93,17 @@
 		43AE6B2C1B9F84EA000B2B53 /* SplitScreen */ = {
 			isa = PBXGroup;
 			children = (
-				43AE6B2F1B9F84EA000B2B53 /* AppDelegate.swift */,
-				43AE6B311B9F84EA000B2B53 /* ViewController.swift */,
 				43AE6B361B9F84EA000B2B53 /* Images.xcassets */,
 				43AE6B381B9F84EA000B2B53 /* Main.storyboard */,
 				43AE6B331B9F84EA000B2B53 /* SplitScreen.xcdatamodeld */,
 				43AE6B2D1B9F84EA000B2B53 /* Supporting Files */,
 				E855D4E11BCDA77D008C511B /* MouseDragEventHandling.swift */,
+				43AE6B2F1B9F84EA000B2B53 /* AppDelegate.swift */,
+				43AE6B311B9F84EA000B2B53 /* ViewController.swift */,
 				E855D4E31BCDAAA0008C511B /* SnapLayout.swift */,
+				E898E52F1C8A2BF1008D8DCF /* SnapPoint.swift */,
 				43737BB31CB45D2900198D34 /* FileSystem.swift */,
 				437BF8331CCFE82100F66E4B /* File.swift */,
-				E898E52F1C8A2BF1008D8DCF /* SnapPoint.swift */,
 				E8BD3F8A1CA1E7CB00433D61 /* StatusMenuController.swift */,
 				E8076D971BF6490500BD84C7 /* SplitScreen-Bridging-Header.h */,
 				E8076D9A1BF649EF00BD84C7 /* MoveAndResize.c */,
