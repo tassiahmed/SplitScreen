@@ -144,6 +144,10 @@ class SnapPoint{
 		if (scalar + 1) == original {
 			return "\(original_string)-1"
 		}
+		if original == scalar {
+			return "\(original_string)"
+		}
+		
 		let scale = original/scalar
 		return "\(original_string)/\(scale)"
 	}
@@ -151,7 +155,7 @@ class SnapPoint{
 	func get_string_snap_point(point: (Int,Int), height: Int, width: Int) -> String {
 		let scalar_x = get_string_scalar_representation(point.0, original: width, original_string: "WIDTH")
 		let scalar_y = get_string_scalar_representation(point.1, original: height, original_string: "HEIGHT")
-		return "(\(scalar_x); \(scalar_y))"
+		return "(\(scalar_x);\(scalar_y))"
 	}
 
 	/**
