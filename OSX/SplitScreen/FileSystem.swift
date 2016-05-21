@@ -28,16 +28,34 @@ class FileSystem {
 	}
 	
 	
-	func createBasicTemplates() {
-		let file = File(dirPath: dirPath, name: "test.lao")
-		let test_text = "TESTING FILE CREATION"
-		
-		do {
-			try test_text.writeToFile(file.getPathString(), atomically: false, encoding: NSUTF8StringEncoding)
-		} catch _ {
-			print("Could not write to \(file.getFileName())")
+	func createBasicLayouts() {
+		var file = File(dirPath: dirPath, name: "Standard.lao")
+		if files.indexOf(file) == nil {
+			layout.load("standard")
+			let content: String = layout.toString()
+			
+			do {
+				try content.writeToFile(file.getPathString(), atomically: false, encoding: NSUTF8StringEncoding)
+			} catch _ {
+				print("Could not write to \(file.getFileName()))")
+			}
+			
+			files.append(file)
 		}
-		files.append(file)
+		
+		file = File(dirPath: dirPath, name: "Horizontal.lao")
+		if files.indexOf(file) == nil {
+			layout.load("horizontal")
+			let content: String = layout.toString()
+			
+			do {
+				try content.writeToFile(file.getPathString(), atomically: false, encoding: NSUTF8StringEncoding)
+			} catch _ {
+				print("Could not write to \(file.getFileName()))")
+			}
+			
+			files.append(file)
+		}
 	}
 	
 	func readLayouts() {

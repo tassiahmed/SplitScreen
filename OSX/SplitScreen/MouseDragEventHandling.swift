@@ -91,9 +91,9 @@ func mouse_dragged_handler(event: NSEvent){
     if drawing {
         let loc: (CGFloat, CGFloat) = (event.locationInWindow.x, event.locationInWindow.y)
         if layout.is_hardpoint(loc.0, y: loc.1) == false {
-            print(" !! need to stop drawing")
+//            print(" !! need to stop drawing")
         }else{
-            print(" -- drawing - \(event.locationInWindow) - check_point: \(layout.is_hardpoint(loc.0, y: loc.1)), \(layout.get_snap_dimensions(loc.0, y: loc.1))")
+//            print(" -- drawing - \(event.locationInWindow) - check_point: \(layout.is_hardpoint(loc.0, y: loc.1)), \(layout.get_snap_dimensions(loc.0, y: loc.1))")
         }
     }
 }
@@ -104,7 +104,7 @@ func mouse_dragged_handler(event: NSEvent){
 	- Parameter event: `NSEvent` that is received when user releases the mouse
  */
 func mouse_up_handler(event: NSEvent) {
-    print("mouse_up")
+//    print("mouse_up")
     mouse_up_pos = event.locationInWindow
     mouse_seen = true;
     
@@ -119,7 +119,7 @@ func mouse_up_handler(event: NSEvent) {
     
     if drawing {
         drawing = false
-        print("Stopped Drawing")
+//        print("Stopped Drawing")
     }
     
 }
@@ -132,9 +132,9 @@ func moved_callback(observer: AXObserverRef ,element: AXUIElementRef, notificati
     AXObserverRemoveNotification(observer, element, kAXMovedNotification);
     if callback_seen == false{
         callback_seen = true
-        print(" * running callback")
+//        print(" * running callback")
     }else{
-        print(" ! exiting callback")
+//        print(" ! exiting callback")
         return
     }
     callback_executed = false
@@ -142,7 +142,7 @@ func moved_callback(observer: AXObserverRef ,element: AXUIElementRef, notificati
     //check if the mouse up handler was executed
     if mouse_seen == false {
         drawing = true
-        print("Started Drawing...")
+//        print("Started Drawing...")
         return
     }
 
@@ -190,7 +190,7 @@ func setup_observer(pid: pid_t){
     Handles the mouse down event
  */
 func mouse_down_handler(event: NSEvent){
-    print("Mouse_down")
+//    print("Mouse_down")
     //reset all of the sync checks
     mouse_seen = false
     callback_seen = false

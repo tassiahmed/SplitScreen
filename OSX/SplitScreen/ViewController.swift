@@ -15,7 +15,6 @@ class ViewController: NSViewController {
 	    
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
 //        let activeApp = NSWorkspace.sharedWorkspace().frontmostApplication
 //        print("-------------\n\(activeApp)\n-------------")
 //        

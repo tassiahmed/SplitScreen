@@ -42,7 +42,6 @@ class StatusMenuController: NSObject {
     func TemplateClicked(send: NSMenuItem?){
         print(" template was clicked: \(send)")
         
-//        layout.load(send!.title)
 		file_system.loadLayout(send!.title)
 		
 		MenuTemplates.itemAtIndex(0)?.state = NSOffState

@@ -141,7 +141,7 @@ class SnapLayout {
         
         for i in 0 ..< snap_points.count {
             if snap_points[i].check_point(x_i, y: y_i) {
-                print(" using snappoint: \(i) - \(snap_points[i].check_point(x_i, y: y_i))")
+//                print(" using snappoint: \(i) - \(snap_points[i].check_point(x_i, y: y_i))")
                 let (x_snap, y_snap) = snap_points[i].get_snap_location()
                 let (x_dim, y_dim) = snap_points[i].get_dimensions()
                 return (x_snap, y_snap, x_dim, y_dim)
