@@ -22,16 +22,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
 	func applicationDidFinishLaunching(aNotification: NSNotification){
 		
+		// Will create files for the basic templates if they don't exist
+		file_system.createBasicLayouts()
+		
         //loads a layout using a file location (blank string for testing)
-        layout.load("standard")
-		fileSystem.saveLayout(layout, name: "Standard")
-		
-		layout.load("horizontal")
-		fileSystem.saveLayout(layout, name: "Horizontal")
-		
-		layout.load("standard")
-		
-		fileSystem.readLayouts()
+		file_system.loadLayout("Standard")
 		
         //setup a global listener for mouse drag events
         NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.LeftMouseUpMask, handler: mouse_up_handler)
@@ -43,9 +38,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		// Insert code here to tear down your application
 	}
 	
-	// MARK: - Global Variables
-	lazy var fileSystem: FileSystem = FileSystem.init()
-
 	// MARK: - Core Data stack
 
 	lazy var applicationDocumentsDirectory: NSURL = {

@@ -35,7 +35,8 @@ var drawing: Bool = false
 */
 func get_focused_pid() -> pid_t{
     let info = NSWorkspace.sharedWorkspace().frontmostApplication
-    
+	
+	// If the focused app is `SplitScreen` return a `pid` of 0
     if(info == NSRunningApplication()){
         return pid_t(0)
     }
@@ -91,9 +92,9 @@ func mouse_dragged_handler(event: NSEvent){
     if drawing {
         let loc: (CGFloat, CGFloat) = (event.locationInWindow.x, event.locationInWindow.y)
         if layout.is_hardpoint(loc.0, y: loc.1) == false {
-            print(" !! need to stop drawing")
+//            print(" !! need to stop drawing")
         }else{
-            print(" -- drawing - \(event.locationInWindow) - check_point: \(layout.is_hardpoint(loc.0, y: loc.1)), \(layout.get_snap_dimensions(loc.0, y: loc.1))")
+//            print(" -- drawing - \(event.locationInWindow) - check_point: \(layout.is_hardpoint(loc.0, y: loc.1)), \(layout.get_snap_dimensions(loc.0, y: loc.1))")
         }
     }
 }
@@ -104,11 +105,11 @@ func mouse_dragged_handler(event: NSEvent){
 	- Parameter event: `NSEvent` that is received when user releases the mouse
  */
 func mouse_up_handler(event: NSEvent) {
-    print("mouse_up")
+//    print("mouse_up")
     mouse_up_pos = event.locationInWindow
     mouse_seen = true;
     
-    //check if the callback was executed too early
+    // Check if the callback was executed too early
     if callback_seen && callback_executed == false {
         callback_seen = false
         move_and_resize()
@@ -119,7 +120,7 @@ func mouse_up_handler(event: NSEvent) {
     
     if drawing {
         drawing = false
-        print("Stopped Drawing")
+//        print("Stopped Drawing")
     }
     
 }
@@ -132,17 +133,17 @@ func moved_callback(observer: AXObserverRef ,element: AXUIElementRef, notificati
     AXObserverRemoveNotification(observer, element, kAXMovedNotification);
     if callback_seen == false{
         callback_seen = true
-        print(" * running callback")
+//        print(" * running callback")
     }else{
-        print(" ! exiting callback")
+//        print(" ! exiting callback")
         return
     }
     callback_executed = false
     
-    //check if the mouse up handler was executed
+    // Check if the mouse up handler was executed
     if mouse_seen == false {
         drawing = true
-        print("Started Drawing...")
+//        print("Started Drawing...")
         return
     }
 
@@ -158,7 +159,7 @@ func moved_callback(observer: AXObserverRef ,element: AXUIElementRef, notificati
     IT ACTUALLY IS IMPORTANT
  */
 func data(){
-    //DONT YOU DARE DELETE THIS FUNCTION
+    // DONT YOU DARE DELETE THIS FUNCTION
 }
 
 /**
@@ -171,7 +172,7 @@ func setup_observer(pid: pid_t){
     frontMostApp = AXUIElementCreateApplication(pid).takeUnretainedValue()
     AXUIElementCopyAttributeValue(frontMostApp, kAXFocusedWindowAttribute, frontMostWindow);
     
-    //Check if the frontMostWindow object is nil or not
+    // Check if the frontMostWindow object is nil or not
     if let placeHolder = frontMostWindow.memory {
         let frontMostWindow_true: AXUIElementRef = placeHolder as! AXUIElementRef
        
@@ -190,8 +191,8 @@ func setup_observer(pid: pid_t){
     Handles the mouse down event
  */
 func mouse_down_handler(event: NSEvent){
-    print("Mouse_down")
-    //reset all of the sync checks
+//    print("Mouse_down")
+    // Reset all of the sync checks
     mouse_seen = false
     callback_seen = false
     drawing = false

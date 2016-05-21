@@ -13,25 +13,147 @@ class File: Equatable {
 	
 	private var path: NSURL
 	private var file_name: String
-	let HEIGHT = Int((NSScreen.mainScreen()?.frame.height)!)
-	let WIDTH = Int((NSScreen.mainScreen()?.frame.width)!)
 	
+	/**
+		Inits the `File` with the `dirPath` and	`name`
+	
+		- Parameter dirPath: `NSURL` that is where the file will be located
+	
+		- Parameter name: `String` that to the name of the `File`
+	*/
 	init(dirPath: NSURL, name: String) {
 		file_name = name
 		path = dirPath.URLByAppendingPathComponent(name)
-//		path = NSURL(string: (dirPath.path)!.stringByAppendingString("/\(name)"))!
-//		path = dirPath.URLByAppendingPathExtension(name)
 	}
 	
+	/**
+		Returns `file_name`
+	
+		- Returns: `String` that is the name of the `File`
+	*/
 	func getFileName() -> String {
 		return file_name
 	}
 	
+	/**
+		Returns `path`
+	
+		- Returns: `String` representation of the `NSURL` for the `File`
+	*/
 	func getPathString() -> String {
 		return path.path!
 	}
+	
+	/**
+		Parses the contents of a file from a text file to an `array` of `arrays` of `Int` values
+	
+		- Parameter height: `Int` that corresponds to screen's height
+	
+		- Parameter width: `Int` that corresponds to screen's width
+	
+		- Returns: `array` of `arrays` of `Int` that contains values for a `SnapPoint` for each `array`
+	*/
+	func parseFileContent(height: Int, width: Int) -> [[Int]] {
+		var text: String = String()
+		var snap_params: [[Int]] = []
+		
+		// Attempt to get text from file
+		do {
+			try text = String(contentsOfFile: path.path!, encoding: NSUTF8StringEncoding)
+		} catch _ {
+			print("Could not read from \(file_name)")
+		}
+//		print(file_name)
+		
+		// Split the text into lines
+		let lines = text.characters.split("\n").map(String.init)
+		for line in lines {
+//			print(line)
+			
+			// Split line into the different values of a SnapPoint
+			let components = line.characters.split(",").map(String.init)
+			var snap_param: [Int] = []
+			for component in components {
+				
+				// General values
+				if component == "HEIGHT" {
+					snap_param.append(height)
+				} else if component == "WIDTH" {
+					snap_param.append(width)
+				} else if component == "0" {
+					snap_param.append(0)
+				} else if component != components.last {
+					if component.rangeOfString("/") != nil {
+						let dividends = component.characters.split("/").map(String.init)
+						if dividends[0] == "HEIGHT" {
+							snap_param.append(height/Int(dividends[1])!)
+						} else {
+							snap_param.append(width/Int(dividends[1])!)
+						}
+					} else if component.rangeOfString("-") != nil {
+						let dividends = component.characters.split("-").map(String.init)
+						if dividends[0] == "HEIGHT" {
+							snap_param.append(height - Int(dividends[1])!)
+						} else {
+							snap_param.append(width - Int(dividends[1])!)
+						}
+					}
+					
+				// For the snap points that are stored as pairs
+				} else {
+					let snap_points = component.characters.split(":").map(String.init)
+					for snap_point in snap_points {
+						var xCoord: Int
+						var yCoord: Int
+						var tuple: String = snap_point
+						tuple.removeAtIndex(tuple.startIndex)
+						tuple.removeAtIndex(tuple.endIndex.predecessor())
+//						print(tuple)
+						let coords = tuple.characters.split(";").map(String.init)
+						if coords[0] == "0" {
+							xCoord = 0
+						} else if coords[0].rangeOfString("-") != nil {
+							let dividends = coords[0].characters.split("-").map(String.init)
+							xCoord = width - Int(dividends[1])!
+						} else if coords[0].rangeOfString("/") != nil {
+							let dividends = coords[0].characters.split("/").map(String.init)
+							xCoord = width/Int(dividends[1])!
+						} else {
+							xCoord = width
+						}
+						
+						if coords[1] == "0" {
+							yCoord = 0
+						} else if coords[1].rangeOfString("-") != nil {
+							let dividends = coords[1].characters.split("-").map(String.init)
+							yCoord = height - Int(dividends[1])!
+						} else if coords[1].rangeOfString("/") != nil {
+							let dividends = coords[1].characters.split("/").map(String.init)
+							yCoord = height/Int(dividends[1])!
+						} else {
+							yCoord = height
+						}
+						
+						snap_param.append(xCoord)
+						snap_param.append(yCoord)
+					}
+				}
+			}
+			snap_params.append(snap_param)
+		}
+		return snap_params
+	}
 }
 
+/**
+	Creates an equality function for files based on their `path` and `file_name`
+
+	- Parameter lhs: `File` that is the left hand `File`
+
+	- Parameter rhs: `File` that is the right hand `File`
+
+	- Returns: `Bool` that teels whether or not the 2 `File` objects are the same
+*/
 func ==(lhs: File, rhs: File) -> Bool {
 	return lhs.getPathString() == rhs.getPathString() && lhs.getFileName() == rhs.getFileName()
 }
