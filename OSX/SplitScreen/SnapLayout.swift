@@ -16,8 +16,13 @@ class SnapLayout {
     var snap_points = [SnapPoint]()
     
     //******
-    
-    func standard_dummy(){
+	
+	/**
+	Creates `SnapPoint` objects and adds them to the SnapLayout in order to make it behave
+	according the standard layout
+	
+	*/
+    func standard_layout(){
         HEIGHT = Int((NSScreen.mainScreen()?.frame.height)!)
         WIDTH = Int((NSScreen.mainScreen()?.frame.width)!)
         
@@ -59,8 +64,13 @@ class SnapLayout {
         
         snap_points.append(top)
     }
-    
-    func horizontal_dummy(){
+	
+	/**
+	Creates `SnapPoint` objects and adds them to the SnapLayout in order to make it behave
+	according the horizontal layout
+	
+	*/
+    func horizontal_layout(){
         
         let left_upper: SnapPoint = SnapPoint.init(height: HEIGHT, width: WIDTH, x_dim: WIDTH, y_dim: HEIGHT/2, x_snap_loc: 0, y_snap_loc: 0, log: 0)
         left_upper.add_snap_point(0, y0: HEIGHT/2, x1: 0, y1: HEIGHT)
@@ -95,9 +105,9 @@ class SnapLayout {
         snap_points.removeAll()
         
         if(template_name == "standard"){
-            standard_dummy()
+            standard_layout()
         }else if(template_name == "horizontal"){
-            horizontal_dummy()
+            horizontal_layout()
         }else if(template_name == "Default"){
             
         }
@@ -152,6 +162,12 @@ class SnapLayout {
         return (-1,-1,-1,-1)
     }
 	
+	
+	/**
+	Creates and returns a string representation of the SnapLayout
+	
+	- Returns: `String` which represents the SnapLayout
+	*/
 	func toString() -> String {
 		var retString: String = String()
 		for snap_point in snap_points {

@@ -136,7 +136,17 @@ class SnapPoint{
         return (Int(orig_height), Int(orig_width))
 	}
 	
+	/**
+	Returns the scalar's `String` representation of the value relative the value of `original`
 	
+	- Parameter scalar: `Int` that is a variable value of the SnapPoint
+	
+	- Parameter original: `Int` that corresponds to either the screen's width or height
+	
+	- Parameter original_string: `String` representation of the `original` value; either WIDTH or HEIGHT
+	
+	- Returns: `String` that represents the scalar in terms of its relationship to `original`
+	*/
 	func get_string_scalar_representation(scalar: Int, original: Int, original_string: String) -> String {
 		if scalar == 0 {
 			return "0"
@@ -152,6 +162,17 @@ class SnapPoint{
 		return "\(original_string)/\(scale)"
 	}
 	
+	/**
+	Returns a `String` that stnads for the snap locations of the `SnapPoint`
+	
+	- Parameter point: `tuple` that corresponds to a snap coordinate
+	
+	- Parameter height: `Int` that corresponds to screen's height
+	
+	- Parameter width: `Int` that corresponds to screen's width
+	
+	- Returns: `String` that represents the snap location
+	*/
 	func get_string_snap_point(point: (Int,Int), height: Int, width: Int) -> String {
 		let scalar_x = get_string_scalar_representation(point.0, original: width, original_string: "WIDTH")
 		let scalar_y = get_string_scalar_representation(point.1, original: height, original_string: "HEIGHT")
@@ -159,7 +180,13 @@ class SnapPoint{
 	}
 
 	/**
-		Returns the string representation of the SnapPoint
+	Return the `String` representation of the `SnapPoint`
+	
+	- Parameter screenHeight: `Int` that corresponds to the screen's height
+	
+	- Parameter screenWdith: `int` that corresponds to the screen's width
+	
+	- Returns: `String` that represents the SnapPoint
 	*/
 	func get_string_representation(screenHeight: Int, screenWidth: Int) -> String {
 		var ret_String: String = String()
