@@ -42,12 +42,17 @@ class StatusMenuController: NSObject {
     func TemplateClicked(send: NSMenuItem?){
         print(" template was clicked: \(send)")
         
-        layout.load(send!.title)
-        
+//        layout.load(send!.title)
+		file_system.loadLayout(send!.title)
+		
+		MenuTemplates.itemAtIndex(0)?.state = NSOffState
+		
         //rearranges the positions of the menu items
         let index = MenuTemplates.indexOfItem(send!)
         MenuTemplates.removeItemAtIndex(index)
         MenuTemplates.insertItem(send!, atIndex: 0)
+		
+		MenuTemplates.itemAtIndex(0)?.state = NSOnState
     }
     
     //When the others option is clicked. Probably open up the Template Designer?
@@ -66,14 +71,16 @@ class StatusMenuController: NSObject {
         
         MenuTemplates.removeItemAtIndex(0)
         
-        MenuTemplates.addItemWithTitle("standard", action: #selector(StatusMenuController.TemplateClicked(_:)), keyEquivalent: "")
+        MenuTemplates.addItemWithTitle("Standard", action: #selector(StatusMenuController.TemplateClicked(_:)), keyEquivalent: "")
         MenuTemplates.itemAtIndex(0)?.target = self
-        MenuTemplates.addItemWithTitle("horizontal", action: #selector(StatusMenuController.TemplateClicked(_:)), keyEquivalent: "")
+        MenuTemplates.addItemWithTitle("Horizontal", action: #selector(StatusMenuController.TemplateClicked(_:)), keyEquivalent: "")
         MenuTemplates.itemAtIndex(1)?.target = self
         MenuTemplates.addItemWithTitle("Default", action: #selector(StatusMenuController.TemplateClicked(_:)), keyEquivalent: "")
         MenuTemplates.itemAtIndex(2)?.target = self
         MenuTemplates.addItemWithTitle("Others...", action: #selector(StatusMenuController.OthersClicked(_:)), keyEquivalent: "")
         MenuTemplates.itemAtIndex(3)?.target = self
+		
+		MenuTemplates.itemAtIndex(0)?.state = NSOnState
         
     }
     

@@ -23,15 +23,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	func applicationDidFinishLaunching(aNotification: NSNotification){
 		
         //loads a layout using a file location (blank string for testing)
-        layout.load("standard")
-		fileSystem.saveLayout(layout, name: "Standard")
+//        layout.load("horizontal")
+		fileSystem.loadLayout("Standard")
+//		fileSystem.saveLayout(layout, name: "Standard")
+//		
+//		layout.load("horizontal")
+//		fileSystem.saveLayout(layout, name: "Horizontal")
+//		
+//		layout.load("standard")
 		
-		layout.load("horizontal")
-		fileSystem.saveLayout(layout, name: "Horizontal")
-		
-		layout.load("standard")
-		
-		fileSystem.readLayouts()
+//		fileSystem.readLayouts()
 		
         //setup a global listener for mouse drag events
         NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.LeftMouseUpMask, handler: mouse_up_handler)

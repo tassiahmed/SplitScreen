@@ -31,20 +31,20 @@ class File: Equatable {
 		return path.path!
 	}
 	
-	func parseFileContent(height: Int, width: Int) -> [[AnyObject]] {
+	func parseFileContent(height: Int, width: Int) -> [[Int]] {
 		var text: String = String()
-		var snap_params: [[AnyObject]] = []
+		var snap_params: [[Int]] = []
 		do {
 			try text = String(contentsOfFile: path.path!, encoding: NSUTF8StringEncoding)
 		} catch _ {
 			print("Could not read from \(file_name)")
 		}
-		print(file_name)
+//		print(file_name)
 		let lines = text.characters.split("\n").map(String.init)
 		for line in lines {
-			print(line)
+//			print(line)
 			let components = line.characters.split(",").map(String.init)
-			var snap_param: [AnyObject] = []
+			var snap_param: [Int] = []
 			for component in components {
 				
 				if component == "HEIGHT" {
@@ -104,7 +104,8 @@ class File: Equatable {
 							yCoord = height
 						}
 						
-						snap_param.append([xCoord, yCoord])
+						snap_param.append(xCoord)
+						snap_param.append(yCoord)
 					}
 				}
 			}
