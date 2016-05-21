@@ -18,12 +18,11 @@ class File: Equatable {
 	
 	
 	/**
-	inits the `File` with the `dirPath` and	`name`
+		Inits the `File` with the `dirPath` and	`name`
 	
-	- Parameter dirPath: `NSURL` that is where the file will be located
+		- Parameter dirPath: `NSURL` that is where the file will be located
 	
-	- Parameter name: `String` that to the name of the `File`
-	
+		- Parameter name: `String` that to the name of the `File`
 	*/
 	init(dirPath: NSURL, name: String) {
 		file_name = name
@@ -31,31 +30,31 @@ class File: Equatable {
 	}
 	
 	/**
-	Returns `file_name`
+		Returns `file_name`
 	
-	- Returns: `String` that is the name of the `File`
+		- Returns: `String` that is the name of the `File`
 	*/
 	func getFileName() -> String {
 		return file_name
 	}
 	
 	/**
-	Returns `path`
+		Returns `path`
 	
-	- Returns: `String` representation of the `NSURL` for the `File`
+		- Returns: `String` representation of the `NSURL` for the `File`
 	*/
 	func getPathString() -> String {
 		return path.path!
 	}
 	
 	/**
-	Parses the contents of a file from a text file to an `array` of `arrays` of `Int` values
+		Parses the contents of a file from a text file to an `array` of `arrays` of `Int` values
 	
-	- Parameter height: `Int` that corresponds to screen's height
+		- Parameter height: `Int` that corresponds to screen's height
 	
-	- Parameter width: `Int` that corresponds to screen's width
+		- Parameter width: `Int` that corresponds to screen's width
 	
-	- Returns: `array` of `arrays` of `Int` that contains values for a `SnapPoint` for each `array`
+		- Returns: `array` of `arrays` of `Int` that contains values for a `SnapPoint` for each `array`
 	*/
 	func parseFileContent(height: Int, width: Int) -> [[Int]] {
 		var text: String = String()
@@ -142,13 +141,13 @@ class File: Equatable {
 }
 
 /**
-Creates an equality function for files based on their `path` and `file_name`
+	Creates an equality function for files based on their `path` and `file_name`
 
-- Parameter lhs: `File` that is the left hand `File`
+	- Parameter lhs: `File` that is the left hand `File`
 
-- Parameter rhs: `File` that is the right hand `File`
+	- Parameter rhs: `File` that is the right hand `File`
 
-- Returns: `Bool` that teels whether or not the 2 `File` objects are the same
+	- Returns: `Bool` that teels whether or not the 2 `File` objects are the same
 */
 func ==(lhs: File, rhs: File) -> Bool {
 	return lhs.getPathString() == rhs.getPathString() && lhs.getFileName() == rhs.getFileName()

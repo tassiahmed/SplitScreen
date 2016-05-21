@@ -102,6 +102,8 @@ class SnapPoint{
     
     /**
         Returns scaled snap_location value (left hand corner of the snap)
+	
+		- Returns: `tuple` of `Int` that is the scaled left hand corner of the snap location
      */
     func get_snap_location() -> (Int, Int) {
         let (scale_factor_h, scale_factor_w) = get_scale_factors()
@@ -111,7 +113,9 @@ class SnapPoint{
     }
     
     /**
-        Returns scaled dimensions of SnapPoint
+        Returns scaled dimensions of `SnapPoint`
+	
+		- Returns: `tuple` of `Int` that is the scaled dimensions of `SnapPoint`
      */
     func get_dimensions() -> (Int, Int) {
         
@@ -122,6 +126,8 @@ class SnapPoint{
     
     /**
         Returns the logic associated with the snap
+	
+		- Returns: `Int` that corresponds to the logic behind the snap behavior
      */
     func get_logic() -> Int {
         return Int(logic)
@@ -131,21 +137,23 @@ class SnapPoint{
         Returns the resolution (height, width) that this layout was made with
      
         NOTE: Use for scaling purposes with different resolutions
+	
+		- Returns: `tuple` of `Int` that is the original resolution the `SnapPoint` was made with
      */
     func get_orig_resolution() -> (Int, Int){
         return (Int(orig_height), Int(orig_width))
 	}
 	
 	/**
-	Returns the scalar's `String` representation of the value relative the value of `original`
+		Returns the scalar's `String` representation of the value relative the value of `original`
 	
-	- Parameter scalar: `Int` that is a variable value of the SnapPoint
+		- Parameter scalar: `Int` that is a variable value of the SnapPoint
 	
-	- Parameter original: `Int` that corresponds to either the screen's width or height
+		- Parameter original: `Int` that corresponds to either the screen's width or height
 	
-	- Parameter original_string: `String` representation of the `original` value; either WIDTH or HEIGHT
+		- Parameter original_string: `String` representation of the `original` value; either WIDTH or HEIGHT
 	
-	- Returns: `String` that represents the scalar in terms of its relationship to `original`
+		- Returns: `String` that represents the scalar in terms of its relationship to `original`
 	*/
 	func get_string_scalar_representation(scalar: Int, original: Int, original_string: String) -> String {
 		if scalar == 0 {
@@ -163,15 +171,15 @@ class SnapPoint{
 	}
 	
 	/**
-	Returns a `String` that stnads for the snap locations of the `SnapPoint`
+		Returns a `String` that stnads for the snap locations of the `SnapPoint`
 	
-	- Parameter point: `tuple` that corresponds to a snap coordinate
+		- Parameter point: `tuple` that corresponds to a snap coordinate
 	
-	- Parameter height: `Int` that corresponds to screen's height
+		- Parameter height: `Int` that corresponds to screen's height
 	
-	- Parameter width: `Int` that corresponds to screen's width
+		- Parameter width: `Int` that corresponds to screen's width
 	
-	- Returns: `String` that represents the snap location
+		- Returns: `String` that represents the snap location
 	*/
 	func get_string_snap_point(point: (Int,Int), height: Int, width: Int) -> String {
 		let scalar_x = get_string_scalar_representation(point.0, original: width, original_string: "WIDTH")
@@ -180,13 +188,13 @@ class SnapPoint{
 	}
 
 	/**
-	Return the `String` representation of the `SnapPoint`
+		Return the `String` representation of the `SnapPoint`
 	
-	- Parameter screenHeight: `Int` that corresponds to the screen's height
+		- Parameter screenHeight: `Int` that corresponds to the screen's height
 	
-	- Parameter screenWdith: `int` that corresponds to the screen's width
+		- Parameter screenWdith: `int` that corresponds to the screen's width
 	
-	- Returns: `String` that represents the SnapPoint
+		- Returns: `String` that represents the SnapPoint
 	*/
 	func get_string_representation(screenHeight: Int, screenWidth: Int) -> String {
 		var ret_String: String = String()
@@ -241,6 +249,8 @@ class SnapPoint{
         INTERNAL
             
         returns the scale factor for the dimensions and snap locations
+	
+		- Returns: `tuple` of `CGFloat` that is the scale factor to use for the current machine
      */
     private func get_scale_factors() -> (CGFloat, CGFloat){
         let curr_height: Int = Int((NSScreen.mainScreen()?.frame.height)!)

@@ -19,9 +19,8 @@ class FileSystem {
 	let WIDTH = Int((NSScreen.mainScreen()?.frame.width)!)
 	
 	/**
-	inits `FileSystem` with default `NSFileManager`, retrieves current directory path, and
-	retrieves all currently existing `SnapLayout` files that exist in the directory
-	
+		Inits `FileSystem` with default `NSFileManager`, retrieves current directory path, and
+		retrieves all currently existing `SnapLayout` files that exist in the directory
 	*/
 	init() {
 		fileManager = NSFileManager.defaultManager()
@@ -33,9 +32,8 @@ class FileSystem {
 	}
 	
 	/**
-	Checks to see if the the basic `SnapLayout` files are in the document directory and
-	if not, then they are created and added to the directory
-	
+		Checks to see if the the basic `SnapLayout` files are in the document directory and
+		if not, then they are created and added to the directory
 	*/
 	func createBasicLayouts() {
 		var file = File(dirPath: dirPath, name: "Standard.lao")
@@ -68,8 +66,7 @@ class FileSystem {
 	}
 	
 	/**
-	Reads out all the layouts that are currently in the `FileSystem`
-	
+		Reads out all the layouts that are currently in the `FileSystem`
 	*/
 	func readLayouts() {
 		for file in files {
@@ -80,9 +77,9 @@ class FileSystem {
 	
 	
 	/**
-	Load the `SnapLayout` file with the same name as `file_name`
+		Load the `SnapLayout` file with the same name as `file_name`
 	
-	- Parameter file_name: `String` that corresponds to the speciic name of a `SnapLayout` fle
+		- Parameter file_name: `String` that corresponds to the speciic name of a `SnapLayout` fle
 	*/
 	func loadLayout(file_name: String) {
 		let file = File(dirPath: dirPath, name: file_name.stringByAppendingString(pathExtension))
@@ -99,9 +96,9 @@ class FileSystem {
 	}
 	
 	/**
-	Saves the settings of the current layout to new `File` with the name `name`
+		Saves the settings of the current layout to new `File` with the name `name`
 	
-	- Parameter name: `String` that corresponds to the new name of the `File`
+		- Parameter name: `String` that corresponds to the new name of the `File`
 	*/
 	func saveLayout(name: String) {
 		let file = File(dirPath: dirPath, name: name.stringByAppendingString(pathExtension))
@@ -118,8 +115,7 @@ class FileSystem {
 	}
 	
 	/**
-	Get all the files that are located in the current documents directory
-	
+		Get all the files that are located in the current documents directory
 	*/
 	func getAllLayoutFiles() {
 		if let enumerator = fileManager.enumeratorAtPath(dirPath.path!) {

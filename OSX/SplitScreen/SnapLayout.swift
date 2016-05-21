@@ -18,9 +18,8 @@ class SnapLayout {
     //******
 	
 	/**
-	Creates `SnapPoint` objects and adds them to the SnapLayout in order to make it behave
-	according the standard layout
-	
+		Creates `SnapPoint` objects and adds them to the SnapLayout in order to make it behave
+		according the standard layout
 	*/
     func standard_layout(){
         HEIGHT = Int((NSScreen.mainScreen()?.frame.height)!)
@@ -66,9 +65,8 @@ class SnapLayout {
     }
 	
 	/**
-	Creates `SnapPoint` objects and adds them to the SnapLayout in order to make it behave
-	according the horizontal layout
-	
+		Creates `SnapPoint` objects and adds them to the SnapLayout in order to make it behave
+		according the horizontal layout
 	*/
     func horizontal_layout(){
         
@@ -164,9 +162,9 @@ class SnapLayout {
 	
 	
 	/**
-	Creates and returns a string representation of the SnapLayout
+		Creates and returns a string representation of the SnapLayout
 	
-	- Returns: `String` which represents the SnapLayout
+		- Returns: `String` which represents the SnapLayout
 	*/
 	func toString() -> String {
 		var retString: String = String()
