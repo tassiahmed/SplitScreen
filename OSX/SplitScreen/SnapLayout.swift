@@ -24,10 +24,8 @@ class SnapLayout {
     func standard_layout(){
         HEIGHT = Int((NSScreen.mainScreen()?.frame.height)!)
         WIDTH = Int((NSScreen.mainScreen()?.frame.width)!)
-        
-        // Need file I/O here
-        
-        // hardcoded windows 10 aerosnap
+		
+        // Hardcoded Windows 10 Aero Snap
         let top_left: SnapPoint = SnapPoint.init(height: HEIGHT, width: WIDTH, x_dim: WIDTH/2, y_dim: HEIGHT/2, x_snap_loc: 0, y_snap_loc: 0, log: 0)
         top_left.add_snap_point(0, y0: HEIGHT, x1: 0, y1: HEIGHT)
         
@@ -99,7 +97,7 @@ class SnapLayout {
 	*/
     func load(template_name: NSString) {
 		
-        //refreshes the snap points
+        // Refreshes the snap points
         snap_points.removeAll()
         
         if(template_name == "standard"){
@@ -156,7 +154,7 @@ class SnapLayout {
             }
         }
         
-        //should never reach this point
+        // Should never reach this point
         return (-1,-1,-1,-1)
     }
 	

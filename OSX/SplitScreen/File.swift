@@ -13,9 +13,6 @@ class File: Equatable {
 	
 	private var path: NSURL
 	private var file_name: String
-	let HEIGHT = Int((NSScreen.mainScreen()?.frame.height)!)
-	let WIDTH = Int((NSScreen.mainScreen()?.frame.width)!)
-	
 	
 	/**
 		Inits the `File` with the `dirPath` and	`name`
@@ -59,19 +56,26 @@ class File: Equatable {
 	func parseFileContent(height: Int, width: Int) -> [[Int]] {
 		var text: String = String()
 		var snap_params: [[Int]] = []
+		
+		// Attempt to get text from file
 		do {
 			try text = String(contentsOfFile: path.path!, encoding: NSUTF8StringEncoding)
 		} catch _ {
 			print("Could not read from \(file_name)")
 		}
 //		print(file_name)
+		
+		// Split the text into lines
 		let lines = text.characters.split("\n").map(String.init)
 		for line in lines {
 //			print(line)
+			
+			// Split line into the different values of a SnapPoint
 			let components = line.characters.split(",").map(String.init)
 			var snap_param: [Int] = []
 			for component in components {
 				
+				// General values
 				if component == "HEIGHT" {
 					snap_param.append(height)
 				} else if component == "WIDTH" {
@@ -95,6 +99,7 @@ class File: Equatable {
 						}
 					}
 					
+				// For the snap points that are stored as pairs
 				} else {
 					let snap_points = component.characters.split(":").map(String.init)
 					for snap_point in snap_points {

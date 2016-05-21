@@ -85,7 +85,7 @@ class SnapPoint{
         
         let (scale_factor_h, scale_factor_w) = get_scale_factors()
         
-        // run through each snap_point and check if it fits the guessed location
+        // Run through each snap_point and check if it fits the guessed location
         for snaps in snap_point{
             
 //            print("snap_point scaled: x0: \(CGFloat(snaps.0.0) * scale_factor_w) x1: \(CGFloat(snaps.1.0) * scale_factor_w) y0: \(CGFloat(snaps.0.1) * scale_factor_h) y1: \(CGFloat(snaps.1.1) * scale_factor_h)")
@@ -198,35 +198,46 @@ class SnapPoint{
 	*/
 	func get_string_representation(screenHeight: Int, screenWidth: Int) -> String {
 		var ret_String: String = String()
+		// Add in Screen Height
 		ret_String = ret_String.stringByAppendingString("HEIGHT")
 		ret_String.append("," as Character)
+		
+		// Add in Screen Width
 		ret_String = ret_String.stringByAppendingString("WIDTH")
 		ret_String.append("," as Character)
+		
+		// Add in x-axis resize dimension
 		ret_String = ret_String.stringByAppendingString(
 			self.get_string_scalar_representation(dimensions.0,
 				original: screenWidth,
 				original_string: "WIDTH"))
 		
+		// Add in y-axis resize dimension
 		ret_String.append("," as Character)
 		ret_String = ret_String.stringByAppendingString(
 			self.get_string_scalar_representation(dimensions.1,
 				original: screenHeight,
 				original_string: "HEIGHT"))
 		
+		// Add in x-axis snape location
 		ret_String.append("," as Character)
 		ret_String = ret_String.stringByAppendingString(
 			self.get_string_scalar_representation(snap_location.0,
 				original: screenWidth,
 				original_string: "WIDTH"))
 		
+		// Add in y-axis snap location
 		ret_String.append("," as Character)
 		ret_String = ret_String.stringByAppendingString(
 			self.get_string_scalar_representation(snap_location.1,
 				original: screenHeight,
 				original_string: "HEIGHT"))
 		
+		// Add in logic for the `SnapPoint`
 		ret_String.append("," as Character)
 		ret_String = ret_String.stringByAppendingString(String(logic))
+		
+		// Add in the tuples for snap points
 		for point in snap_point {
 			ret_String.append("," as Character)
 			ret_String = ret_String.stringByAppendingString(get_string_snap_point(point.0,

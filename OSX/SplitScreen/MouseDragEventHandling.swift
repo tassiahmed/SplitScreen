@@ -35,7 +35,8 @@ var drawing: Bool = false
 */
 func get_focused_pid() -> pid_t{
     let info = NSWorkspace.sharedWorkspace().frontmostApplication
-    
+	
+	// If the focused app is `SplitScreen` return a `pid` of 0
     if(info == NSRunningApplication()){
         return pid_t(0)
     }
@@ -108,7 +109,7 @@ func mouse_up_handler(event: NSEvent) {
     mouse_up_pos = event.locationInWindow
     mouse_seen = true;
     
-    //check if the callback was executed too early
+    // Check if the callback was executed too early
     if callback_seen && callback_executed == false {
         callback_seen = false
         move_and_resize()
@@ -139,7 +140,7 @@ func moved_callback(observer: AXObserverRef ,element: AXUIElementRef, notificati
     }
     callback_executed = false
     
-    //check if the mouse up handler was executed
+    // Check if the mouse up handler was executed
     if mouse_seen == false {
         drawing = true
 //        print("Started Drawing...")
@@ -158,7 +159,7 @@ func moved_callback(observer: AXObserverRef ,element: AXUIElementRef, notificati
     IT ACTUALLY IS IMPORTANT
  */
 func data(){
-    //DONT YOU DARE DELETE THIS FUNCTION
+    // DONT YOU DARE DELETE THIS FUNCTION
 }
 
 /**
@@ -171,7 +172,7 @@ func setup_observer(pid: pid_t){
     frontMostApp = AXUIElementCreateApplication(pid).takeUnretainedValue()
     AXUIElementCopyAttributeValue(frontMostApp, kAXFocusedWindowAttribute, frontMostWindow);
     
-    //Check if the frontMostWindow object is nil or not
+    // Check if the frontMostWindow object is nil or not
     if let placeHolder = frontMostWindow.memory {
         let frontMostWindow_true: AXUIElementRef = placeHolder as! AXUIElementRef
        
@@ -191,7 +192,7 @@ func setup_observer(pid: pid_t){
  */
 func mouse_down_handler(event: NSEvent){
 //    print("Mouse_down")
-    //reset all of the sync checks
+    // Reset all of the sync checks
     mouse_seen = false
     callback_seen = false
     drawing = false
