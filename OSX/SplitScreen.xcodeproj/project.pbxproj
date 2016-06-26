@@ -16,6 +16,7 @@
 		43AE6B3A1B9F84EA000B2B53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43AE6B381B9F84EA000B2B53 /* Main.storyboard */; };
 		43AE6B461B9F84EA000B2B53 /* SplitScreenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE6B451B9F84EA000B2B53 /* SplitScreenTests.swift */; };
 		E8076D9C1BF649EF00BD84C7 /* MoveAndResize.c in Sources */ = {isa = PBXBuildFile; fileRef = E8076D9A1BF649EF00BD84C7 /* MoveAndResize.c */; };
+		E845E5111D204F6300DF35B2 /* 128x128.png in Resources */ = {isa = PBXBuildFile; fileRef = E845E5101D204F6300DF35B2 /* 128x128.png */; };
 		E855D4E21BCDA77D008C511B /* MouseDragEventHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = E855D4E11BCDA77D008C511B /* MouseDragEventHandling.swift */; };
 		E855D4E41BCDAAA0008C511B /* SnapLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E855D4E31BCDAAA0008C511B /* SnapLayout.swift */; };
 		E898E5301C8A2BF1008D8DCF /* SnapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E898E52F1C8A2BF1008D8DCF /* SnapPoint.swift */; };
@@ -48,6 +49,7 @@
 		E8076D971BF6490500BD84C7 /* SplitScreen-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SplitScreen-Bridging-Header.h"; sourceTree = "<group>"; };
 		E8076D9A1BF649EF00BD84C7 /* MoveAndResize.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MoveAndResize.c; sourceTree = "<group>"; };
 		E8076D9B1BF649EF00BD84C7 /* MoveAndResize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveAndResize.h; sourceTree = "<group>"; };
+		E845E5101D204F6300DF35B2 /* 128x128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 128x128.png; sourceTree = "<group>"; };
 		E855D4E11BCDA77D008C511B /* MouseDragEventHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MouseDragEventHandling.swift; sourceTree = "<group>"; };
 		E855D4E31BCDAAA0008C511B /* SnapLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapLayout.swift; sourceTree = "<group>"; };
 		E898E52F1C8A2BF1008D8DCF /* SnapPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapPoint.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				43AE6B361B9F84EA000B2B53 /* Images.xcassets */,
+				E845E5101D204F6300DF35B2 /* 128x128.png */,
 				43AE6B381B9F84EA000B2B53 /* Main.storyboard */,
 				43AE6B331B9F84EA000B2B53 /* SplitScreen.xcdatamodeld */,
 				43AE6B2D1B9F84EA000B2B53 /* Supporting Files */,
@@ -219,6 +222,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E845E5111D204F6300DF35B2 /* 128x128.png in Resources */,
 				43AE6B371B9F84EA000B2B53 /* Images.xcassets in Resources */,
 				43AE6B3A1B9F84EA000B2B53 /* Main.storyboard in Resources */,
 			);
