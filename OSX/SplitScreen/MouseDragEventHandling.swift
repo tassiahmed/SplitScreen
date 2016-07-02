@@ -34,6 +34,9 @@ var mouse_up_pos: NSPoint?
 var callback_seen: Bool             = false
 var callback_executed: Bool         = false
 
+//mouse position
+var last_known_mouse_drag: CGPoint?
+
 
 /**
 	Returns the current top application by pid
@@ -97,12 +100,36 @@ func move_and_resize(){
  */
 func mouse_dragged_handler(event: NSEvent){
     
+    last_known_mouse_drag = CGPoint(x: event.locationInWindow.x, y: event.locationInWindow.y)
+    
+    if drawing {
+        if layout.is_hardpoint(event.locationInWindow.x, y: event.locationInWindow.y) {
+            snap_highlighter.update_window(layout.get_snap_dimensions(event.locationInWindow.x, y: event.locationInWindow.y))
+        }else{
+            snap_highlighter.draw_destroy()
+            print(" -- Destroyed the window!")
+            drawing = false
+        }
+    }else if layout.is_hardpoint(event.locationInWindow.x, y: event.locationInWindow.y) {
+        //print(" being seen as a valid location")
+        
+        //begin drawing again
+        drawing = true
+
+        //adds the dimensions info so that a window can be created
+        snap_highlighter.update_window(layout.get_snap_dimensions(last_known_mouse_drag!.x, y: last_known_mouse_drag!.y))
+        snap_highlighter.draw_create()
+        
+        print("drawing! :)")
+
+    }
+    
     //get the window position 
     
     //window is transparent with a border?
     
     //if the window position is null
-    if drawing == false {
+    /*if drawing == false {
         //if the drag was done in a snappoint
         if layout.is_hardpoint(event.locationInWindow.x, y: event.locationInWindow.y) {
             drawing = true
@@ -141,7 +168,7 @@ func mouse_dragged_handler(event: NSEvent){
             //draw
             //save a reference to the window
     
-    
+    */
     
     /*if drawing {
         let loc: (CGFloat, CGFloat) = (event.locationInWindow.x, event.locationInWindow.y)
@@ -163,8 +190,9 @@ func mouse_up_handler(event: NSEvent) {
     mouse_seen = true
     
     if drawing {
-        snap_highlighter.kill_create()
-        snap_highlighter.preempt_destory()
+        //snap_highlighter.kill_create()
+        //snap_highlighter.preempt_destroy()
+        snap_highlighter.draw_destroy()
         drawing = false
         print("++")
         //delete the window
@@ -182,25 +210,39 @@ func mouse_up_handler(event: NSEvent) {
     
 }
 
+
 /**
     Call back function for when a specific window moves
  */
 func moved_callback(observer: AXObserverRef ,element: AXUIElementRef, notificationName: CFStringRef, contextData: UnsafeMutablePointer<Void>){
     
+    print("SEEING CALLBACK")
+    
     AXObserverRemoveNotification(observer, element, kAXMovedNotification);
     if callback_seen == false{
         callback_seen = true
-//        print(" * running callback")
     }else{
-//        print(" ! exiting callback")
         return
     }
     callback_executed = false
     
     // Check if the mouse up handler was executed
     if mouse_seen == false {
-        drawing = true
-//        print("Started Drawing...")
+        if drawing == false && layout.is_hardpoint(last_known_mouse_drag!.x, y: last_known_mouse_drag!.y) {
+            drawing = true
+            
+            snap_highlighter = SnapHighlighter()
+            
+            //adds the dimensions info so that a window can be created
+            snap_highlighter.update_window(layout.get_snap_dimensions(last_known_mouse_drag!.x, y: last_known_mouse_drag!.y))
+            snap_highlighter.draw_create()
+            
+            print("drawing! :)")
+        }
+        
+        //if not drawing && in a drawable position -> start drawing
+        //use mouse_dragged coupled with drawing to detect when this should be happening
+        
         return
     }
 
