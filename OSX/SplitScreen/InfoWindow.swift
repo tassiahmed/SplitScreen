@@ -36,9 +36,16 @@ class SnapHighlighter {
         highlight_window = NSWindow(contentRect: window_rect, styleMask: 0, backing: NSBackingStoreType.Nonretained, defer: true)
         print("@@ \(highlight_window)")
         highlight_window?.opaque = true
-        highlight_window?.backgroundColor = NSColor.blueColor()
+        highlight_window?.backgroundColor = NSColor.redColor()
         highlight_window?.display()
         highlight_window?.setIsVisible(true)
+        print(" alpha = \(highlight_window?.alphaValue)")
+        highlight_window?.alphaValue = 0.3
+        
+        //need to make the window the front most window?
+        //want it to be an overlay as opposed to behind the dragged window
+        //user needs to be able to see it
+        
         print("built the window!")
         
         timer_updater = NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: #selector(highlight_update), userInfo: nil, repeats: true)
