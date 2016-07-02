@@ -229,7 +229,6 @@ func setup_observer(pid: pid_t){
     Handles the mouse down event
  */
 func mouse_down_handler(event: NSEvent){
-//    print("Mouse_down")
     // Reset all of the sync checks
     mouse_seen = false
     callback_seen = false

@@ -17,7 +17,6 @@ class SnapHighlighter {
     var highlight_window: NSWindow? //the actual highlighting window
     var window_dims: (Int, Int, Int, Int) //the dimensions for the hightlighting window
     
-    
     init(){
         timer_delay_create = NSTimer()
         timer_updater = NSTimer()
@@ -31,9 +30,8 @@ class SnapHighlighter {
         
         //the setup for the highlighting window
         highlight_window = NSWindow(contentRect: window_rect, styleMask: 0, backing: NSBackingStoreType.Nonretained, defer: true)
-
         highlight_window?.opaque = true
-        highlight_window?.backgroundColor = NSColor.redColor()
+        highlight_window?.backgroundColor = NSColor.blueColor()
         highlight_window?.setIsVisible(true)
         highlight_window?.alphaValue = 0.3
         
