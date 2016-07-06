@@ -34,6 +34,7 @@ class SnapHighlighter {
         highlight_window?.backgroundColor = NSColor.blueColor()
         highlight_window?.setIsVisible(true)
         highlight_window?.alphaValue = 0.3
+        highlight_window?.orderFrontRegardless()
         
         //need to make the window the front most window?
         //want it to be an overlay as opposed to behind the dragged window

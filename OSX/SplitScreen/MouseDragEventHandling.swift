@@ -115,20 +115,21 @@ func mouse_dragged_handler(event: NSEvent){
     
     //holds a reference to the last position of a drag
     last_known_mouse_drag = CGPoint(x: event.locationInWindow.x, y: event.locationInWindow.y)
-    
-    if drawing {
-        //if still in a position that requires highlighting
-        if layout.is_hardpoint(event.locationInWindow.x, y: event.locationInWindow.y) {
-            snap_highlighter.update_window(layout.get_snap_dimensions(event.locationInWindow.x, y: event.locationInWindow.y))
-        }else{
-            snap_highlighter.draw_destroy()
-            drawing = false
+    if callback_seen {
+        if drawing {
+            //if still in a position that requires highlighting
+            if layout.is_hardpoint(event.locationInWindow.x, y: event.locationInWindow.y) {
+                snap_highlighter.update_window(layout.get_snap_dimensions(event.locationInWindow.x, y: event.locationInWindow.y))
+            }else{
+                snap_highlighter.draw_destroy()
+                drawing = false
+            }
+        }else if layout.is_hardpoint(event.locationInWindow.x, y: event.locationInWindow.y) {
+            drawing = true
+            //prevents annoying immediate display during quick motions
+            //also prevents lag on highligh window creation
+            snap_highlighter.delay_update(0.2)
         }
-    }else if layout.is_hardpoint(event.locationInWindow.x, y: event.locationInWindow.y) {
-        drawing = true
-        //prevents annoying immediate display during quick motions
-        //also prevents lag on highligh window creation
-        snap_highlighter.delay_update(0.2)
     }
 }
 
