@@ -178,7 +178,6 @@ func moved_callback(observer: AXObserverRef ,element: AXUIElementRef, notificati
     if mouse_seen == false {
         //handle highlighting
         if drawing == false && layout.is_hardpoint(last_known_mouse_drag!.x, y: last_known_mouse_drag!.y) {
-            
             snap_highlighter = SnapHighlighter()
             start_drawing()
         }
