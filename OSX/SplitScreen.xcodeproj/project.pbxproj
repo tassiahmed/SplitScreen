@@ -10,14 +10,12 @@
 		43737BB41CB45D2900198D34 /* FileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43737BB31CB45D2900198D34 /* FileSystem.swift */; };
 		437BF8341CCFE82100F66E4B /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437BF8331CCFE82100F66E4B /* File.swift */; };
 		43AE6B301B9F84EA000B2B53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE6B2F1B9F84EA000B2B53 /* AppDelegate.swift */; };
-		43AE6B321B9F84EA000B2B53 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE6B311B9F84EA000B2B53 /* ViewController.swift */; };
 		43AE6B351B9F84EA000B2B53 /* SplitScreen.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 43AE6B331B9F84EA000B2B53 /* SplitScreen.xcdatamodeld */; };
 		43AE6B371B9F84EA000B2B53 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43AE6B361B9F84EA000B2B53 /* Images.xcassets */; };
 		43AE6B3A1B9F84EA000B2B53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43AE6B381B9F84EA000B2B53 /* Main.storyboard */; };
 		43AE6B461B9F84EA000B2B53 /* SplitScreenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE6B451B9F84EA000B2B53 /* SplitScreenTests.swift */; };
 		E8076D9C1BF649EF00BD84C7 /* MoveAndResize.c in Sources */ = {isa = PBXBuildFile; fileRef = E8076D9A1BF649EF00BD84C7 /* MoveAndResize.c */; };
-		E845E5111D204F6300DF35B2 /* 128x128.png in Resources */ = {isa = PBXBuildFile; fileRef = E845E5101D204F6300DF35B2 /* 128x128.png */; };
-		E845E5151D26DF0200DF35B2 /* InfoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E845E5141D26DF0200DF35B2 /* InfoWindow.swift */; };
+		E845E5151D26DF0200DF35B2 /* SnapHighlighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E845E5141D26DF0200DF35B2 /* SnapHighlighter.swift */; };
 		E855D4E21BCDA77D008C511B /* MouseDragEventHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = E855D4E11BCDA77D008C511B /* MouseDragEventHandling.swift */; };
 		E855D4E41BCDAAA0008C511B /* SnapLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E855D4E31BCDAAA0008C511B /* SnapLayout.swift */; };
 		E898E5301C8A2BF1008D8DCF /* SnapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E898E52F1C8A2BF1008D8DCF /* SnapPoint.swift */; };
@@ -40,7 +38,6 @@
 		43AE6B2A1B9F84EA000B2B53 /* SplitScreen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SplitScreen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43AE6B2E1B9F84EA000B2B53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43AE6B2F1B9F84EA000B2B53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		43AE6B311B9F84EA000B2B53 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		43AE6B341B9F84EA000B2B53 /* SplitScreen.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SplitScreen.xcdatamodel; sourceTree = "<group>"; };
 		43AE6B361B9F84EA000B2B53 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		43AE6B391B9F84EA000B2B53 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -50,8 +47,7 @@
 		E8076D971BF6490500BD84C7 /* SplitScreen-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SplitScreen-Bridging-Header.h"; sourceTree = "<group>"; };
 		E8076D9A1BF649EF00BD84C7 /* MoveAndResize.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MoveAndResize.c; sourceTree = "<group>"; };
 		E8076D9B1BF649EF00BD84C7 /* MoveAndResize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveAndResize.h; sourceTree = "<group>"; };
-		E845E5101D204F6300DF35B2 /* 128x128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 128x128.png; sourceTree = "<group>"; };
-		E845E5141D26DF0200DF35B2 /* InfoWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoWindow.swift; sourceTree = "<group>"; };
+		E845E5141D26DF0200DF35B2 /* SnapHighlighter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapHighlighter.swift; sourceTree = "<group>"; };
 		E855D4E11BCDA77D008C511B /* MouseDragEventHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MouseDragEventHandling.swift; sourceTree = "<group>"; };
 		E855D4E31BCDAAA0008C511B /* SnapLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapLayout.swift; sourceTree = "<group>"; };
 		E898E52F1C8A2BF1008D8DCF /* SnapPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapPoint.swift; sourceTree = "<group>"; };
@@ -76,6 +72,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		436C1FD91D847467000F976F /* C Code */ = {
+			isa = PBXGroup;
+			children = (
+				E8076D971BF6490500BD84C7 /* SplitScreen-Bridging-Header.h */,
+				E8076D9A1BF649EF00BD84C7 /* MoveAndResize.c */,
+				E8076D9B1BF649EF00BD84C7 /* MoveAndResize.h */,
+			);
+			name = "C Code";
+			sourceTree = "<group>";
+		};
+		436C1FDA1D847486000F976F /* File System */ = {
+			isa = PBXGroup;
+			children = (
+				43737BB31CB45D2900198D34 /* FileSystem.swift */,
+				437BF8331CCFE82100F66E4B /* File.swift */,
+			);
+			name = "File System";
+			sourceTree = "<group>";
+		};
+		436C1FDB1D847697000F976F /* Windows Snapping */ = {
+			isa = PBXGroup;
+			children = (
+				E845E5141D26DF0200DF35B2 /* SnapHighlighter.swift */,
+				E855D4E31BCDAAA0008C511B /* SnapLayout.swift */,
+				E898E52F1C8A2BF1008D8DCF /* SnapPoint.swift */,
+			);
+			name = "Windows Snapping";
+			sourceTree = "<group>";
+		};
+		436C1FDC1D8476BD000F976F /* System Code */ = {
+			isa = PBXGroup;
+			children = (
+				43AE6B2F1B9F84EA000B2B53 /* AppDelegate.swift */,
+				E855D4E11BCDA77D008C511B /* MouseDragEventHandling.swift */,
+				E8BD3F8A1CA1E7CB00433D61 /* StatusMenuController.swift */,
+			);
+			name = "System Code";
+			sourceTree = "<group>";
+		};
 		43AE6B211B9F84EA000B2B53 = {
 			isa = PBXGroup;
 			children = (
@@ -98,22 +133,13 @@
 			isa = PBXGroup;
 			children = (
 				43AE6B361B9F84EA000B2B53 /* Images.xcassets */,
-				E845E5101D204F6300DF35B2 /* 128x128.png */,
 				43AE6B381B9F84EA000B2B53 /* Main.storyboard */,
 				43AE6B331B9F84EA000B2B53 /* SplitScreen.xcdatamodeld */,
 				43AE6B2D1B9F84EA000B2B53 /* Supporting Files */,
-				43AE6B2F1B9F84EA000B2B53 /* AppDelegate.swift */,
-				E855D4E11BCDA77D008C511B /* MouseDragEventHandling.swift */,
-				E845E5141D26DF0200DF35B2 /* InfoWindow.swift */,
-				43AE6B311B9F84EA000B2B53 /* ViewController.swift */,
-				E855D4E31BCDAAA0008C511B /* SnapLayout.swift */,
-				E898E52F1C8A2BF1008D8DCF /* SnapPoint.swift */,
-				43737BB31CB45D2900198D34 /* FileSystem.swift */,
-				437BF8331CCFE82100F66E4B /* File.swift */,
-				E8BD3F8A1CA1E7CB00433D61 /* StatusMenuController.swift */,
-				E8076D971BF6490500BD84C7 /* SplitScreen-Bridging-Header.h */,
-				E8076D9A1BF649EF00BD84C7 /* MoveAndResize.c */,
-				E8076D9B1BF649EF00BD84C7 /* MoveAndResize.h */,
+				436C1FDC1D8476BD000F976F /* System Code */,
+				436C1FDB1D847697000F976F /* Windows Snapping */,
+				436C1FDA1D847486000F976F /* File System */,
+				436C1FD91D847467000F976F /* C Code */,
 			);
 			path = SplitScreen;
 			sourceTree = "<group>";
@@ -225,7 +251,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E845E5111D204F6300DF35B2 /* 128x128.png in Resources */,
 				43AE6B371B9F84EA000B2B53 /* Images.xcassets in Resources */,
 				43AE6B3A1B9F84EA000B2B53 /* Main.storyboard in Resources */,
 			);
@@ -245,7 +270,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43AE6B321B9F84EA000B2B53 /* ViewController.swift in Sources */,
 				43737BB41CB45D2900198D34 /* FileSystem.swift in Sources */,
 				E855D4E21BCDA77D008C511B /* MouseDragEventHandling.swift in Sources */,
 				E8BD3F8B1CA1E7CB00433D61 /* StatusMenuController.swift in Sources */,
@@ -255,7 +279,7 @@
 				43AE6B351B9F84EA000B2B53 /* SplitScreen.xcdatamodeld in Sources */,
 				43AE6B301B9F84EA000B2B53 /* AppDelegate.swift in Sources */,
 				E898E5301C8A2BF1008D8DCF /* SnapPoint.swift in Sources */,
-				E845E5151D26DF0200DF35B2 /* InfoWindow.swift in Sources */,
+				E845E5151D26DF0200DF35B2 /* SnapHighlighter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
