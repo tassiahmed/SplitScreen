@@ -1,5 +1,5 @@
 //
-//  InfoWindow.swift
+//  SnapHighlighter.swift
 //  SplitScreen
 //
 //  Created by Evan Thompson on 7/1/16.

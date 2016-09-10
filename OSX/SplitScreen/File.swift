@@ -108,7 +108,6 @@ class File: Equatable {
 						var tuple: String = snap_point
 						tuple.removeAtIndex(tuple.startIndex)
 						tuple.removeAtIndex(tuple.endIndex.predecessor())
-//						print(tuple)
 						let coords = tuple.characters.split(";").map(String.init)
 						if coords[0] == "0" {
 							xCoord = 0
