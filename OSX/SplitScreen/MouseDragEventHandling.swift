@@ -10,33 +10,13 @@ import Foundation
 import AppKit
 import Carbon
 
-
-//File System
-var file_system: FileSystem = FileSystem.init()
-
-// Layout currently being used
-var layout: SnapLayout                  = SnapLayout()
-var dragged_pane: Bool                  = false
-var current_window_number: Int          = 0
-var current_window_position: CGPoint?
-var new_window_position: CGPoint?
-
-//display the position of potential snapping  x y x1 y1
-var draw_window_dims: (Int, Int, Int, Int) = (0,0, 0, 0)
-var drawing: Bool                          = false
-var timer_start: NSTimer                   = NSTimer()
-var timer_destroy: NSTimer                 = NSTimer()
-var snap_highlighter: SnapHighlighter      = SnapHighlighter()
-
-//Used for syncing the calls from observers
-var mouse_seen: Bool                = false
-var mouse_up_pos: NSPoint?
-var callback_seen: Bool             = false
-var callback_executed: Bool         = false
-
-//mouse position
-var last_known_mouse_drag: CGPoint?
-
+private var current_window_position: CGPoint?
+private var new_window_position: CGPoint?
+private var drawing: Bool = false
+private var mouse_seen: Bool = false
+private var mouse_up_pos: NSPoint?
+private var callback_seen: Bool = false
+private var callback_executed: Bool = false
 
 /**
 	Returns the current top application by pid

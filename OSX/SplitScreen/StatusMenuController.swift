@@ -40,13 +40,12 @@ class StatusMenuController: NSObject {
     
     //When a template is clicked
     func TemplateClicked(send: NSMenuItem?){
-        print(" template was clicked: \(send)")
-        
+		
 		file_system.loadLayout(send!.title)
 		
 		MenuTemplates.itemAtIndex(0)?.state = NSOffState
 		
-        //rearranges the positions of the menu items
+        // Rearranges the positions of the menu items
         let index = MenuTemplates.indexOfItem(send!)
         MenuTemplates.removeItemAtIndex(index)
         MenuTemplates.insertItem(send!, atIndex: 0)
@@ -54,7 +53,7 @@ class StatusMenuController: NSObject {
 		MenuTemplates.itemAtIndex(0)?.state = NSOnState
     }
     
-    //When the others option is clicked. Probably open up the Template Designer?
+    // When the others option is clicked. Probably open up the Template Designer?
     func OthersClicked(send: AnyObject?){
         print(" Others was clicked: \(send)")
     }

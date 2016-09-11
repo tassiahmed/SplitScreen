@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		436C1FE01D84D79C000F976F /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C1FDF1D84D79C000F976F /* GlobalVariables.swift */; };
 		43737BB41CB45D2900198D34 /* FileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43737BB31CB45D2900198D34 /* FileSystem.swift */; };
 		437BF8341CCFE82100F66E4B /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437BF8331CCFE82100F66E4B /* File.swift */; };
 		43AE6B301B9F84EA000B2B53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE6B2F1B9F84EA000B2B53 /* AppDelegate.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		436C1FDF1D84D79C000F976F /* GlobalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		43737BB31CB45D2900198D34 /* FileSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSystem.swift; sourceTree = "<group>"; };
 		437BF8331CCFE82100F66E4B /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		43AE6B2A1B9F84EA000B2B53 /* SplitScreen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SplitScreen.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,6 +109,7 @@
 				43AE6B2F1B9F84EA000B2B53 /* AppDelegate.swift */,
 				E855D4E11BCDA77D008C511B /* MouseDragEventHandling.swift */,
 				E8BD3F8A1CA1E7CB00433D61 /* StatusMenuController.swift */,
+				436C1FDF1D84D79C000F976F /* GlobalVariables.swift */,
 			);
 			name = "System Code";
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				437BF8341CCFE82100F66E4B /* File.swift in Sources */,
 				E855D4E41BCDAAA0008C511B /* SnapLayout.swift in Sources */,
 				43AE6B351B9F84EA000B2B53 /* SplitScreen.xcdatamodeld in Sources */,
+				436C1FE01D84D79C000F976F /* GlobalVariables.swift in Sources */,
 				43AE6B301B9F84EA000B2B53 /* AppDelegate.swift in Sources */,
 				E898E5301C8A2BF1008D8DCF /* SnapPoint.swift in Sources */,
 				E845E5151D26DF0200DF35B2 /* SnapHighlighter.swift in Sources */,
