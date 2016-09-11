@@ -10,25 +10,16 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    
-
-    /*@IBOutlet weak var statusMenu: NSMenuItem!
-    let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
-
-    @IBAction func quitClicked(sender: NSMenuItem) {
-        NSApplication.sharedApplication().terminate(self)
-
-    }*/
 	
 	func applicationDidFinishLaunching(aNotification: NSNotification){
 		
 		// Will create files for the basic templates if they don't exist
 		file_system.createBasicLayouts()
 		
-        //loads a layout using a file location (blank string for testing)
+        // Loads a layout using a file location (blank string for testing)
 		file_system.loadLayout("Standard")
 		
-        //setup a global listener for mouse drag events
+        // Setup a global listener for mouse drag events
         NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.LeftMouseUpMask, handler: mouse_up_handler)
         NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.LeftMouseDownMask, handler: mouse_down_handler)
 		NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.LeftMouseDraggedMask, handler: mouse_dragged_handler)

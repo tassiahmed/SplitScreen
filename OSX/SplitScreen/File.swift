@@ -63,12 +63,10 @@ class File: Equatable {
 		} catch _ {
 			print("Could not read from \(file_name)")
 		}
-//		print(file_name)
 		
 		// Split the text into lines
 		let lines = text.characters.split("\n").map(String.init)
 		for line in lines {
-//			print(line)
 			
 			// Split line into the different values of a SnapPoint
 			let components = line.characters.split(",").map(String.init)
