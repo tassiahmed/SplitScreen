@@ -27,7 +27,7 @@ func get_focused_pid() -> pid_t{
     let info = NSWorkspace.shared().frontmostApplication
 	
 	// If the focused app is `SplitScreen` return a `pid` of 0
-    if(info == NSRunningApplication()){
+    if(info == NSRunningApplication()) {
         return pid_t(0)
     }
     
@@ -49,7 +49,7 @@ func comparePosition() -> Bool {
 /**
     Moves and Resizes the current window depending on the location of where the mouse up location was
 */
-func move_and_resize(){
+func move_and_resize() {
     let loc: (CGFloat, CGFloat) = (mouse_up_pos!.x, mouse_up_pos!.y)
     
     if layout.is_hardpoint(loc.0, y: loc.1) {
@@ -63,7 +63,7 @@ func move_and_resize(){
         let focused_pid = get_focused_pid()
         
         // Stops if there was no focused app to resize
-        if(focused_pid == pid_t(0)){
+        if(focused_pid == pid_t(0)) {
             return
         }
         
@@ -77,7 +77,7 @@ func move_and_resize(){
 /**
     Starts the drawing process for the highlighting window
  */
-func start_drawing(){
+func start_drawing() {
     //begin drawing again
     drawing = true
     
@@ -95,16 +95,17 @@ func mouse_dragged_handler(_ event: NSEvent){
     
     //holds a reference to the last position of a drag
     last_known_mouse_drag = CGPoint(x: event.locationInWindow.x, y: event.locationInWindow.y)
+//	print(last_known_mouse_drag)
     if callback_seen {
         if drawing {
             //if still in a position that requires highlighting
             if layout.is_hardpoint(event.locationInWindow.x, y: event.locationInWindow.y) {
                 snap_highlighter.update_window(layout.get_snap_dimensions(event.locationInWindow.x, y: event.locationInWindow.y))
-            }else{
+            } else {
                 snap_highlighter.draw_destroy()
                 drawing = false
             }
-        }else if layout.is_hardpoint(event.locationInWindow.x, y: event.locationInWindow.y) {
+        } else if layout.is_hardpoint(event.locationInWindow.x, y: event.locationInWindow.y) {
             drawing = true
             //prevents annoying immediate display during quick motions
             //also prevents lag on highligh window creation
@@ -120,6 +121,7 @@ func mouse_dragged_handler(_ event: NSEvent){
  */
 func mouse_up_handler(_ event: NSEvent) {
     mouse_up_pos = event.locationInWindow
+	print(mouse_up_pos)
     mouse_seen = true
     
     if drawing {
@@ -133,7 +135,7 @@ func mouse_up_handler(_ event: NSEvent) {
     if callback_seen && callback_executed == false {
         callback_seen = false
         move_and_resize()
-    }else{
+    } else {
         callback_executed = false
         callback_seen = false
     }
@@ -148,8 +150,8 @@ func moved_callback(_ observer: AXObserver, element: AXUIElement, notificationNa
     
     AXObserverRemoveNotification(observer, element, kAXMovedNotification as CFString);
     if callback_seen == false{
-        callback_seen = true
-    }else{
+		callback_seen = true
+    } else {
         return
     }
     callback_executed = false
@@ -161,7 +163,6 @@ func moved_callback(_ observer: AXObserver, element: AXUIElement, notificationNa
             snap_highlighter = SnapHighlighter()
             start_drawing()
         }
-        
         return
     }
 

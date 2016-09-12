@@ -62,7 +62,7 @@ class SnapLayout {
 		Creates `SnapPoint` objects and adds them to the SnapLayout in order to make it behave
 		according the horizontal layout
 	*/
-    func horizontal_layout(){
+    func horizontal_layout() {
         
         let left_upper: SnapPoint = SnapPoint.init(height: HEIGHT, width: WIDTH, x_dim: WIDTH, y_dim: HEIGHT/2, x_snap_loc: 0, y_snap_loc: 0, log: 0)
         left_upper.add_snap_point(0, y0: HEIGHT/2, x1: 0, y1: HEIGHT)

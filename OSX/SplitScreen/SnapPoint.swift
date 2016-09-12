@@ -9,7 +9,7 @@
 import Foundation
 import AppKit
 
-class SnapPoint{
+class SnapPoint {
     
     fileprivate var snap_point = [((Int,Int),(Int,Int))]() // All snap locations that can snap to a point
     fileprivate var snap_location: (Int, Int)

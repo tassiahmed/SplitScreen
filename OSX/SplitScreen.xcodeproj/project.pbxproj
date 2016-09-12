@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		436C1FE01D84D79C000F976F /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C1FDF1D84D79C000F976F /* GlobalVariables.swift */; };
+		436C1FE21D84EA64000F976F /* ScreenCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C1FE11D84EA64000F976F /* ScreenCollection.swift */; };
+		436C1FE41D862B21000F976F /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C1FE31D862B21000F976F /* Screen.swift */; };
 		43737BB41CB45D2900198D34 /* FileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43737BB31CB45D2900198D34 /* FileSystem.swift */; };
 		437BF8341CCFE82100F66E4B /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437BF8331CCFE82100F66E4B /* File.swift */; };
 		43AE6B301B9F84EA000B2B53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE6B2F1B9F84EA000B2B53 /* AppDelegate.swift */; };
@@ -35,6 +37,8 @@
 
 /* Begin PBXFileReference section */
 		436C1FDF1D84D79C000F976F /* GlobalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
+		436C1FE11D84EA64000F976F /* ScreenCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenCollection.swift; sourceTree = "<group>"; };
+		436C1FE31D862B21000F976F /* Screen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		43737BB31CB45D2900198D34 /* FileSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSystem.swift; sourceTree = "<group>"; };
 		437BF8331CCFE82100F66E4B /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		43AE6B2A1B9F84EA000B2B53 /* SplitScreen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SplitScreen.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +103,8 @@
 				E845E5141D26DF0200DF35B2 /* SnapHighlighter.swift */,
 				E855D4E31BCDAAA0008C511B /* SnapLayout.swift */,
 				E898E52F1C8A2BF1008D8DCF /* SnapPoint.swift */,
+				436C1FE11D84EA64000F976F /* ScreenCollection.swift */,
+				436C1FE31D862B21000F976F /* Screen.swift */,
 			);
 			name = "Windows Snapping";
 			sourceTree = "<group>";
@@ -278,7 +284,9 @@
 				43737BB41CB45D2900198D34 /* FileSystem.swift in Sources */,
 				E855D4E21BCDA77D008C511B /* MouseDragEventHandling.swift in Sources */,
 				E8BD3F8B1CA1E7CB00433D61 /* StatusMenuController.swift in Sources */,
+				436C1FE41D862B21000F976F /* Screen.swift in Sources */,
 				E8076D9C1BF649EF00BD84C7 /* MoveAndResize.c in Sources */,
+				436C1FE21D84EA64000F976F /* ScreenCollection.swift in Sources */,
 				437BF8341CCFE82100F66E4B /* File.swift in Sources */,
 				E855D4E41BCDAAA0008C511B /* SnapLayout.swift in Sources */,
 				43AE6B351B9F84EA000B2B53 /* SplitScreen.xcdatamodeld in Sources */,
