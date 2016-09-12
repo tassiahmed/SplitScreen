@@ -8,6 +8,9 @@
 
 import Foundation
 
+let DEFAULT: String = "Standard"
+
+
 //File System
 var file_system: FileSystem = FileSystem.init()
 
@@ -19,3 +22,5 @@ var snap_highlighter: SnapHighlighter = SnapHighlighter()
 
 // Mouse position
 var last_known_mouse_drag: CGPoint?
+
+var screens: ScreenCollection = ScreenCollection.init()
