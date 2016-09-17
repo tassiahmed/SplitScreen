@@ -53,7 +53,7 @@ class File: Equatable {
 	
 		- Returns: `array` of `arrays` of `Int` that contains values for a `SnapPoint` for each `array`
 	*/
-	func parseFileContent(_ height: Int, width: Int) -> [[Int]] {
+	func parseFileContent(_ screen: Screen) -> [[Int]] {
 		var text: String = String()
 		var snap_params: [[Int]] = []
 		
@@ -67,7 +67,6 @@ class File: Equatable {
 		// Split the text into lines
 		let lines = text.characters.split(separator: "\n").map(String.init)
 		for line in lines {
-			
 			// Split line into the different values of a SnapPoint
 			let components = line.characters.split(separator: ",").map(String.init)
 			var snap_param: [Int] = []
@@ -75,25 +74,25 @@ class File: Equatable {
 				
 				// General values
 				if component == "HEIGHT" {
-					snap_param.append(height)
+					snap_param.append(screen.getTopRight().1)
 				} else if component == "WIDTH" {
-					snap_param.append(width)
+					snap_param.append(screen.getTopRight().0)
 				} else if component == "0" {
 					snap_param.append(0)
 				} else if component != components.last {
 					if component.range(of: "/") != nil {
 						let dividends = component.characters.split(separator: "/").map(String.init)
 						if dividends[0] == "HEIGHT" {
-							snap_param.append(height/Int(dividends[1])!)
+							snap_param.append(screen.getHeightFraction(Int(dividends[1])!))
 						} else {
-							snap_param.append(width/Int(dividends[1])!)
+							snap_param.append(screen.getWidthFraction(Int(dividends[1])!))
 						}
 					} else if component.range(of: "-") != nil {
 						let dividends = component.characters.split(separator: "-").map(String.init)
 						if dividends[0] == "HEIGHT" {
-							snap_param.append(height - Int(dividends[1])!)
+							snap_param.append(screen.getTopRight().1 - Int(dividends[1])!)
 						} else {
-							snap_param.append(width - Int(dividends[1])!)
+							snap_param.append(screen.getTopRight().0 - Int(dividends[1])!)
 						}
 					}
 					
@@ -111,24 +110,24 @@ class File: Equatable {
 							xCoord = 0
 						} else if coords[0].range(of: "-") != nil {
 							let dividends = coords[0].characters.split(separator: "-").map(String.init)
-							xCoord = width - Int(dividends[1])!
+							xCoord = screen.getTopRight().0 - Int(dividends[1])!
 						} else if coords[0].range(of: "/") != nil {
 							let dividends = coords[0].characters.split(separator: "/").map(String.init)
-							xCoord = width/Int(dividends[1])!
+							xCoord = screen.getWidthFraction(Int(dividends[1])!)
 						} else {
-							xCoord = width
+							xCoord = screen.getTopRight().0
 						}
 						
 						if coords[1] == "0" {
 							yCoord = 0
 						} else if coords[1].range(of: "-") != nil {
 							let dividends = coords[1].characters.split(separator: "-").map(String.init)
-							yCoord = height - Int(dividends[1])!
+							yCoord = screen.getTopRight().1 - Int(dividends[1])!
 						} else if coords[1].range(of: "/") != nil {
 							let dividends = coords[1].characters.split(separator: "/").map(String.init)
-							yCoord = height/Int(dividends[1])!
+							yCoord = screen.getHeightFraction(Int(dividends[1])!)
 						} else {
-							yCoord = height
+							yCoord = screen.getTopRight().1
 						}
 						
 						snap_param.append(xCoord)

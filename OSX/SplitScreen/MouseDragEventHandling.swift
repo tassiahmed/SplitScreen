@@ -23,7 +23,7 @@ private var callback_executed: Bool = false
 
 	- Returns: The pid that is the top application
 */
-func get_focused_pid() -> pid_t{
+func get_focused_pid() -> pid_t {
     let info = NSWorkspace.shared().frontmostApplication
 	
 	// If the focused app is `SplitScreen` return a `pid` of 0
@@ -80,7 +80,7 @@ func move_and_resize() {
 func start_drawing() {
     //begin drawing again
     drawing = true
-    
+	
     //adds the dimensions info so that a window can be created
     snap_highlighter.update_window(layout.get_snap_dimensions(last_known_mouse_drag!.x, y: last_known_mouse_drag!.y))
     snap_highlighter.draw_create()
@@ -91,11 +91,15 @@ func start_drawing() {
  
     - Parameter event: the input event for mouse dragging
  */
-func mouse_dragged_handler(_ event: NSEvent){
-    
-    //holds a reference to the last position of a drag
+func mouse_dragged_handler(_ event: NSEvent) {
+    // Holds a reference to the last position of a drag
     last_known_mouse_drag = CGPoint(x: event.locationInWindow.x, y: event.locationInWindow.y)
-//	print(last_known_mouse_drag)
+	if !current_screen.withinBounds(Int(event.locationInWindow.x), y_coord: Int(event.locationInWindow.y)) {
+		current_screen = screens.getCurrentScreen(Int(event.locationInWindow.x), y_coord: Int(event.locationInWindow.y))
+		print("Origin:", current_screen.getOrigin(), "Dimensions:", current_screen.getDimensions(),
+		      "Top-Right:", current_screen.getTopRight())
+	}
+	
     if callback_seen {
         if drawing {
             //if still in a position that requires highlighting
@@ -121,7 +125,6 @@ func mouse_dragged_handler(_ event: NSEvent){
  */
 func mouse_up_handler(_ event: NSEvent) {
     mouse_up_pos = event.locationInWindow
-	print(mouse_up_pos)
     mouse_seen = true
     
     if drawing {
@@ -139,7 +142,6 @@ func mouse_up_handler(_ event: NSEvent) {
         callback_executed = false
         callback_seen = false
     }
-    
 }
 
 
@@ -147,7 +149,6 @@ func mouse_up_handler(_ event: NSEvent) {
     Call back function for when a specific window moves
  */
 func moved_callback(_ observer: AXObserver, element: AXUIElement, notificationName: CFString, contextData: UnsafeMutableRawPointer?) -> Void {
-    
     AXObserverRemoveNotification(observer, element, kAXMovedNotification as CFString);
     if callback_seen == false{
 		callback_seen = true
@@ -183,7 +184,7 @@ func setup_observer(_ pid: pid_t){
     // Check if the frontMostWindow object is nil or not
     if let placeHolder = frontMostWindow.pointee {
         let frontMostWindow_true: AXUIElement = placeHolder as! AXUIElement
-       
+		
         let observer: UnsafeMutablePointer<AXObserver?> = UnsafeMutablePointer<AXObserver?>.allocate(capacity: 1)
         AXObserverCreate(pid, moved_callback as AXObserverCallback, observer)
         let observer_true: AXObserver = observer.pointee!
