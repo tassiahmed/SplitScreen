@@ -24,3 +24,5 @@ var snap_highlighter: SnapHighlighter = SnapHighlighter()
 var last_known_mouse_drag: CGPoint?
 
 var screens: ScreenCollection = ScreenCollection.init()
+
+var current_screen: Screen = screens.getMainScreen()
