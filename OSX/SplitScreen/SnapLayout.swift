@@ -18,8 +18,8 @@ class SnapLayout {
 		according the standard layout
 	*/
     func standard_layout(){
-        HEIGHT = Int((NSScreen.mainScreen()?.frame.height)!)
-        WIDTH = Int((NSScreen.mainScreen()?.frame.width)!)
+        HEIGHT = Int((NSScreen.main()?.frame.height)!)
+        WIDTH = Int((NSScreen.main()?.frame.width)!)
 		
         // Hardcoded Windows 10 Aero Snap
         let top_left: SnapPoint = SnapPoint.init(height: HEIGHT, width: WIDTH, x_dim: WIDTH/2, y_dim: HEIGHT/2, x_snap_loc: 0, y_snap_loc: 0, log: 0)
@@ -91,7 +91,7 @@ class SnapLayout {
 	
 		- Parameter file_path: `NSString` that corresponds to a file with preset hardpoints
 	*/
-    func load(template_name: NSString) {
+    func load(_ template_name: NSString) {
 		
         // Refreshes the snap points
         snap_points.removeAll()
@@ -115,7 +115,7 @@ class SnapLayout {
 	
 		- Returns: `true` or `false` if `x` and `y` both compare to an existing hardpoint
 	*/
-    func is_hardpoint(x: CGFloat, y: CGFloat) -> Bool {
+    func is_hardpoint(_ x: CGFloat, y: CGFloat) -> Bool {
         let xpos:Int = Int(x + 0.5)
         let ypos:Int = Int(y + 0.5)
         
@@ -137,7 +137,7 @@ class SnapLayout {
 	
 		- Returns: `tuple` of 4 `Ints` that correspond to the dragged windows four corners 
 	*/
-    func get_snap_dimensions(x: CGFloat, y: CGFloat) ->(Int,Int,Int,Int) {
+    func get_snap_dimensions(_ x: CGFloat, y: CGFloat) ->(Int,Int,Int,Int) {
         let x_i:Int = Int(x + 0.5)
         let y_i:Int = Int(y + 0.5)
         
@@ -162,12 +162,12 @@ class SnapLayout {
 	func toString() -> String {
 		var retString: String = String()
 		for snap_point in snap_points {
-			retString = retString.stringByAppendingString(snap_point.get_string_representation(HEIGHT,screenWidth: WIDTH))
+			retString = retString + snap_point.get_string_representation(HEIGHT,screenWidth: WIDTH)
 		}
 		return retString
 	}
     
-    let menu = NSApplication.sharedApplication().mainMenu
-    private var HEIGHT: Int = Int((NSScreen.mainScreen()?.frame.height)!)
-    private var WIDTH: Int = Int((NSScreen.mainScreen()?.frame.width)!)
+    let menu = NSApplication.shared().mainMenu
+    fileprivate var HEIGHT: Int = Int((NSScreen.main()?.frame.height)!)
+    fileprivate var WIDTH: Int = Int((NSScreen.main()?.frame.width)!)
 }

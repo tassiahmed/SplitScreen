@@ -11,18 +11,18 @@ import AppKit
 
 class SnapHighlighter {
     
-    private var timer_delay_create: NSTimer // Timer used to delay creation of the highlighting window
-    private var timer_updater: NSTimer // Timer used for window updating (.4 seconds)
-    private var highlight_window: NSWindow? // The actual highlighting window
-    private var window_dims: (Int, Int, Int, Int) // The dimensions for the hightlighting window
+    fileprivate var timer_delay_create: Timer // Timer used to delay creation of the highlighting window
+    fileprivate var timer_updater: Timer // Timer used for window updating (.4 seconds)
+    fileprivate var highlight_window: NSWindow? // The actual highlighting window
+    fileprivate var window_dims: (Int, Int, Int, Int) // The dimensions for the hightlighting window
 	
 	
 	/**
 		Inits `SnapHighlighter` with timer vairiables and actual window
 	*/
     init(){
-        timer_delay_create = NSTimer()
-        timer_updater = NSTimer()
+        timer_delay_create = Timer()
+        timer_updater = Timer()
         highlight_window = NSWindow()
         window_dims = (0,0,0,0)
     }
@@ -31,12 +31,12 @@ class SnapHighlighter {
 		Creates and draws the actual window also setting it up to update
 	*/
     func draw_create (){
-        let window_rect = NSRect(x: window_dims.0, y: Int((NSScreen.mainScreen()?.frame.height)!) - (window_dims.1 + window_dims.3), width: window_dims.2, height: window_dims.3)
+        let window_rect = NSRect(x: window_dims.0, y: Int((NSScreen.main()?.frame.height)!) - (window_dims.1 + window_dims.3), width: window_dims.2, height: window_dims.3)
         
         // The setup for the highlighting window
-        highlight_window = NSWindow(contentRect: window_rect, styleMask: 0, backing: NSBackingStoreType.Nonretained, defer: true)
-        highlight_window?.opaque = true
-        highlight_window?.backgroundColor = NSColor.blueColor()
+        highlight_window = NSWindow(contentRect: window_rect, styleMask: NSWindowStyleMask(rawValue: UInt(0)), backing: NSBackingStoreType.nonretained, defer: true)
+        highlight_window?.isOpaque = true
+        highlight_window?.backgroundColor = NSColor.blue
         highlight_window?.setIsVisible(true)
         highlight_window?.alphaValue = 0.3
         highlight_window?.orderFrontRegardless()
@@ -46,7 +46,7 @@ class SnapHighlighter {
         //user needs to be able to see it
         
         // Start updating the window
-        timer_updater = NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: #selector(highlight_update), userInfo: nil, repeats: true)
+        timer_updater = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(highlight_update), userInfo: nil, repeats: true)
         
     }
     
@@ -62,8 +62,8 @@ class SnapHighlighter {
 	/**
 		Sets up the timer to delay the creation of the window
 	*/
-    func delay_update(delay: Double){
-        timer_delay_create = NSTimer.scheduledTimerWithTimeInterval(delay, target: self, selector: #selector(update_on_delay), userInfo: nil, repeats: false)
+    func delay_update(_ delay: Double){
+        timer_delay_create = Timer.scheduledTimer(timeInterval: delay, target: self, selector: #selector(update_on_delay), userInfo: nil, repeats: false)
     }
     
 	/**
@@ -85,16 +85,16 @@ class SnapHighlighter {
 	*/
     func draw_destroy (){
         timer_updater.invalidate()
-        highlight_window?.opaque = false
+        highlight_window?.isOpaque = false
         highlight_window?.setIsVisible(false)
     }
     
 	/**
 		Updates the window dimensions
 	*/
-    func update_window(new_dimensions: (Int, Int, Int, Int)){
+    func update_window(_ new_dimensions: (Int, Int, Int, Int)){
         window_dims = new_dimensions
-        let new_frame = NSRect(x: window_dims.0, y: Int((NSScreen.mainScreen()?.frame.height)!) - (window_dims.1 + window_dims.3), width: window_dims.2, height: window_dims.3)
+        let new_frame = NSRect(x: window_dims.0, y: Int((NSScreen.main()?.frame.height)!) - (window_dims.1 + window_dims.3), width: window_dims.2, height: window_dims.3)
         highlight_window?.setFrame(new_frame, display: true, animate: true)
     }
 }
