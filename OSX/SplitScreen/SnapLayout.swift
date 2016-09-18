@@ -22,37 +22,37 @@ class SnapLayout {
         WIDTH = Int((NSScreen.main()?.frame.width)!)
 		
         // Hardcoded Windows 10 Aero Snap
-        let top_left: SnapPoint = SnapPoint.init(height: HEIGHT, width: WIDTH, x_dim: WIDTH/2, y_dim: HEIGHT/2, x_snap_loc: 0, y_snap_loc: 0, log: 0)
+        let top_left: SnapPoint = SnapPoint.init(height: HEIGHT, width: WIDTH, x_dim: WIDTH/2, y_dim: HEIGHT/2, x_snap_loc: 0, y_snap_loc: 0)
         top_left.add_snap_point(0, y0: HEIGHT, x1: 0, y1: HEIGHT)
         
         snap_points.append(top_left)
         
-        let bot_left: SnapPoint = SnapPoint.init(height: HEIGHT, width: WIDTH, x_dim: WIDTH/2, y_dim: HEIGHT/2, x_snap_loc: 0, y_snap_loc: HEIGHT/2, log: 0)
+        let bot_left: SnapPoint = SnapPoint.init(height: HEIGHT, width: WIDTH, x_dim: WIDTH/2, y_dim: HEIGHT/2, x_snap_loc: 0, y_snap_loc: HEIGHT/2)
         bot_left.add_snap_point(0, y0: 0, x1: 0, y1: 0)
         
         snap_points.append(bot_left)
         
-        let left_side: SnapPoint = SnapPoint.init(height: HEIGHT, width: WIDTH, x_dim: WIDTH/2, y_dim: HEIGHT, x_snap_loc: 0, y_snap_loc: 0, log: 0)
+        let left_side: SnapPoint = SnapPoint.init(height: HEIGHT, width: WIDTH, x_dim: WIDTH/2, y_dim: HEIGHT, x_snap_loc: 0, y_snap_loc: 0)
         left_side.add_snap_point(0, y0: 1, x1: 0, y1: HEIGHT - 1)
         
         snap_points.append(left_side)
         
-        let top_right: SnapPoint = SnapPoint.init(height: HEIGHT, width: WIDTH, x_dim: WIDTH/2, y_dim: HEIGHT/2, x_snap_loc: WIDTH/2, y_snap_loc: 0, log: 0)
+        let top_right: SnapPoint = SnapPoint.init(height: HEIGHT, width: WIDTH, x_dim: WIDTH/2, y_dim: HEIGHT/2, x_snap_loc: WIDTH/2, y_snap_loc: 0)
         top_right.add_snap_point(WIDTH, y0: HEIGHT, x1: WIDTH, y1: HEIGHT)
         
         snap_points.append(top_right)
         
-        let bot_right: SnapPoint = SnapPoint.init(height: HEIGHT, width: WIDTH, x_dim: WIDTH/2, y_dim: HEIGHT/2, x_snap_loc: WIDTH/2, y_snap_loc: HEIGHT/2, log: 0)
+        let bot_right: SnapPoint = SnapPoint.init(height: HEIGHT, width: WIDTH, x_dim: WIDTH/2, y_dim: HEIGHT/2, x_snap_loc: WIDTH/2, y_snap_loc: HEIGHT/2)
         bot_right.add_snap_point(WIDTH, y0: 0, x1: WIDTH, y1: 0)
         
         snap_points.append(bot_right)
         
-        let right_side: SnapPoint = SnapPoint.init(height: HEIGHT, width: WIDTH, x_dim: WIDTH/2, y_dim: HEIGHT, x_snap_loc: WIDTH/2, y_snap_loc: 0, log: 0)
+        let right_side: SnapPoint = SnapPoint.init(height: HEIGHT, width: WIDTH, x_dim: WIDTH/2, y_dim: HEIGHT, x_snap_loc: WIDTH/2, y_snap_loc: 0)
         right_side.add_snap_point(WIDTH, y0: 1, x1: WIDTH, y1: HEIGHT - 1)
         
         snap_points.append(right_side)
         
-        let top: SnapPoint = SnapPoint.init(height: HEIGHT, width: WIDTH, x_dim: WIDTH, y_dim: HEIGHT, x_snap_loc: 0, y_snap_loc: 0, log: 0)
+        let top: SnapPoint = SnapPoint.init(height: HEIGHT, width: WIDTH, x_dim: WIDTH, y_dim: HEIGHT, x_snap_loc: 0, y_snap_loc: 0)
         top.add_snap_point(1, y0: HEIGHT, x1: WIDTH-1, y1: HEIGHT)
         
         snap_points.append(top)
@@ -64,22 +64,22 @@ class SnapLayout {
 	*/
     func horizontal_layout(){
         
-        let left_upper: SnapPoint = SnapPoint.init(height: HEIGHT, width: WIDTH, x_dim: WIDTH, y_dim: HEIGHT/2, x_snap_loc: 0, y_snap_loc: 0, log: 0)
+        let left_upper: SnapPoint = SnapPoint.init(height: HEIGHT, width: WIDTH, x_dim: WIDTH, y_dim: HEIGHT/2, x_snap_loc: 0, y_snap_loc: 0)
         left_upper.add_snap_point(0, y0: HEIGHT/2, x1: 0, y1: HEIGHT)
         
         snap_points.append(left_upper)
     
-        let left_lower: SnapPoint = SnapPoint.init(height: HEIGHT, width: WIDTH, x_dim: WIDTH, y_dim: HEIGHT/2, x_snap_loc: 0, y_snap_loc: HEIGHT/2, log: 0)
+        let left_lower: SnapPoint = SnapPoint.init(height: HEIGHT, width: WIDTH, x_dim: WIDTH, y_dim: HEIGHT/2, x_snap_loc: 0, y_snap_loc: HEIGHT/2)
         left_lower.add_snap_point(0, y0: 0, x1: 0, y1: HEIGHT/2)
         
         snap_points.append(left_lower)
         
-        let right_upper: SnapPoint = SnapPoint.init(height: HEIGHT, width: WIDTH, x_dim: WIDTH, y_dim: HEIGHT/2, x_snap_loc: 0, y_snap_loc: 0, log: 0)
+        let right_upper: SnapPoint = SnapPoint.init(height: HEIGHT, width: WIDTH, x_dim: WIDTH, y_dim: HEIGHT/2, x_snap_loc: 0, y_snap_loc: 0)
         right_upper.add_snap_point(WIDTH, y0: HEIGHT/2, x1: WIDTH, y1: HEIGHT)
         
         snap_points.append(right_upper)
         
-        let right_lower: SnapPoint = SnapPoint.init(height: HEIGHT, width: WIDTH, x_dim: WIDTH, y_dim: HEIGHT/2, x_snap_loc: 0, y_snap_loc: HEIGHT/2, log: 0)
+        let right_lower: SnapPoint = SnapPoint.init(height: HEIGHT, width: WIDTH, x_dim: WIDTH, y_dim: HEIGHT/2, x_snap_loc: 0, y_snap_loc: HEIGHT/2)
         right_lower.add_snap_point(WIDTH, y0: 0, x1: WIDTH, y1: HEIGHT/2)
         
         snap_points.append(right_lower)
