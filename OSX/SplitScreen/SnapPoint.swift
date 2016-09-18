@@ -11,12 +11,12 @@ import AppKit
 
 class SnapPoint{
     
-    private var snap_point = [((Int,Int),(Int,Int))]() // All snap locations that can snap to a point
-    private var snap_location: (Int, Int)
-    private var dimensions: (Int, Int)
-    private var logic: Int
-    private var orig_height: Int
-    private var orig_width: Int
+    fileprivate var snap_point = [((Int,Int),(Int,Int))]() // All snap locations that can snap to a point
+    fileprivate var snap_location: (Int, Int)
+    fileprivate var dimensions: (Int, Int)
+    fileprivate var logic: Int
+    fileprivate var orig_height: Int
+    fileprivate var orig_width: Int
     
     /**
         Initializes this SnapPoint
@@ -61,14 +61,13 @@ class SnapPoint{
         [NOTE: at least one number in the pairings of x0,y0 and x1,y1 must be 0]
      
     */
-    func add_snap_point(x0: Int, y0: Int, x1: Int, y1: Int) -> Bool {
+    func add_snap_point(_ x0: Int, y0: Int, x1: Int, y1: Int){
         
         if x0 > x1 || y0 > y1 {
-            return false
+            return
         }
         
         snap_point.append(((x0, y0),(x1, y1)))
-        return true
     }
     
     
@@ -81,7 +80,7 @@ class SnapPoint{
      
         y - y value of location to check
      */
-    func check_point(x: Int, y: Int) -> Bool {
+    func check_point(_ x: Int, y: Int) -> Bool {
         
         let (scale_factor_h, scale_factor_w) = get_scale_factors()
         
@@ -155,7 +154,7 @@ class SnapPoint{
 	
 		- Returns: `String` that represents the scalar in terms of its relationship to `original`
 	*/
-	func get_string_scalar_representation(scalar: Int, original: Int, original_string: String) -> String {
+	func get_string_scalar_representation(_ scalar: Int, original: Int, original_string: String) -> String {
 		if scalar == 0 {
 			return "0"
 		}
@@ -181,7 +180,7 @@ class SnapPoint{
 	
 		- Returns: `String` that represents the snap location
 	*/
-	func get_string_snap_point(point: (Int,Int), height: Int, width: Int) -> String {
+	func get_string_snap_point(_ point: (Int,Int), height: Int, width: Int) -> String {
 		let scalar_x = get_string_scalar_representation(point.0, original: width, original_string: "WIDTH")
 		let scalar_y = get_string_scalar_representation(point.1, original: height, original_string: "HEIGHT")
 		return "(\(scalar_x);\(scalar_y))"
@@ -196,57 +195,53 @@ class SnapPoint{
 	
 		- Returns: `String` that represents the SnapPoint
 	*/
-	func get_string_representation(screenHeight: Int, screenWidth: Int) -> String {
+	func get_string_representation(_ screenHeight: Int, screenWidth: Int) -> String {
 		var ret_String: String = String()
 		// Add in Screen Height
-		ret_String = ret_String.stringByAppendingString("HEIGHT")
+		ret_String = ret_String + "HEIGHT"
 		ret_String.append("," as Character)
 		
 		// Add in Screen Width
-		ret_String = ret_String.stringByAppendingString("WIDTH")
+		ret_String = ret_String + "WIDTH"
 		ret_String.append("," as Character)
 		
 		// Add in x-axis resize dimension
-		ret_String = ret_String.stringByAppendingString(
-			self.get_string_scalar_representation(dimensions.0,
+		ret_String = ret_String + self.get_string_scalar_representation(dimensions.0,
 				original: screenWidth,
-				original_string: "WIDTH"))
+				original_string: "WIDTH")
 		
 		// Add in y-axis resize dimension
 		ret_String.append("," as Character)
-		ret_String = ret_String.stringByAppendingString(
-			self.get_string_scalar_representation(dimensions.1,
+		ret_String = ret_String + self.get_string_scalar_representation(dimensions.1,
 				original: screenHeight,
-				original_string: "HEIGHT"))
+				original_string: "HEIGHT")
 		
 		// Add in x-axis snape location
 		ret_String.append("," as Character)
-		ret_String = ret_String.stringByAppendingString(
-			self.get_string_scalar_representation(snap_location.0,
+		ret_String = ret_String + self.get_string_scalar_representation(snap_location.0,
 				original: screenWidth,
-				original_string: "WIDTH"))
+				original_string: "WIDTH")
 		
 		// Add in y-axis snap location
 		ret_String.append("," as Character)
-		ret_String = ret_String.stringByAppendingString(
-			self.get_string_scalar_representation(snap_location.1,
+		ret_String = ret_String + self.get_string_scalar_representation(snap_location.1,
 				original: screenHeight,
-				original_string: "HEIGHT"))
+				original_string: "HEIGHT")
 		
 		// Add in logic for the `SnapPoint`
 		ret_String.append("," as Character)
-		ret_String = ret_String.stringByAppendingString(String(logic))
+		ret_String = ret_String + String(logic)
 		
 		// Add in the tuples for snap points
 		for point in snap_point {
 			ret_String.append("," as Character)
-			ret_String = ret_String.stringByAppendingString(get_string_snap_point(point.0,
+			ret_String = ret_String + get_string_snap_point(point.0,
 				height: screenHeight,
-				width: screenWidth))
+				width: screenWidth)
 			ret_String.append(":" as Character)
-			ret_String = ret_String.stringByAppendingString(get_string_snap_point(point.1,
+			ret_String = ret_String + get_string_snap_point(point.1,
 				height: screenHeight,
-				width: screenWidth))
+				width: screenWidth)
 		}
 		ret_String.append("\n" as Character)
 		return ret_String
@@ -263,9 +258,9 @@ class SnapPoint{
 	
 		- Returns: `tuple` of `CGFloat` that is the scale factor to use for the current machine
      */
-    private func get_scale_factors() -> (CGFloat, CGFloat){
-        let curr_height: Int = Int((NSScreen.mainScreen()?.frame.height)!)
-        let curr_width: Int = Int((NSScreen.mainScreen()?.frame.width)!)
+    fileprivate func get_scale_factors() -> (CGFloat, CGFloat){
+        let curr_height: Int = Int((NSScreen.main()?.frame.height)!)
+        let curr_width: Int = Int((NSScreen.main()?.frame.width)!)
         
         return (CGFloat(curr_height)/CGFloat(orig_height), CGFloat(curr_width)/CGFloat(orig_width))
     }

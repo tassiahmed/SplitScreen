@@ -24,7 +24,7 @@ private var callback_executed: Bool = false
 	- Returns: The pid that is the top application
 */
 func get_focused_pid() -> pid_t{
-    let info = NSWorkspace.sharedWorkspace().frontmostApplication
+    let info = NSWorkspace.shared().frontmostApplication
 	
 	// If the focused app is `SplitScreen` return a `pid` of 0
     if(info == NSRunningApplication()){
@@ -91,7 +91,7 @@ func start_drawing(){
  
     - Parameter event: the input event for mouse dragging
  */
-func mouse_dragged_handler(event: NSEvent){
+func mouse_dragged_handler(_ event: NSEvent){
     
     //holds a reference to the last position of a drag
     last_known_mouse_drag = CGPoint(x: event.locationInWindow.x, y: event.locationInWindow.y)
@@ -118,7 +118,7 @@ func mouse_dragged_handler(event: NSEvent){
  
 	- Parameter event: `NSEvent` that is received when user releases the mouse
  */
-func mouse_up_handler(event: NSEvent) {
+func mouse_up_handler(_ event: NSEvent) {
     mouse_up_pos = event.locationInWindow
     mouse_seen = true
     
@@ -144,9 +144,9 @@ func mouse_up_handler(event: NSEvent) {
 /**
     Call back function for when a specific window moves
  */
-func moved_callback(observer: AXObserverRef ,element: AXUIElementRef, notificationName: CFStringRef, contextData: UnsafeMutablePointer<Void>){
+func moved_callback(_ observer: AXObserver, element: AXUIElement, notificationName: CFString, contextData: UnsafeMutableRawPointer?) -> Void {
     
-    AXObserverRemoveNotification(observer, element, kAXMovedNotification);
+    AXObserverRemoveNotification(observer, element, kAXMovedNotification as CFString);
     if callback_seen == false{
         callback_seen = true
     }else{
@@ -170,45 +170,33 @@ func moved_callback(observer: AXObserverRef ,element: AXUIElementRef, notificati
 }
 
 /**
-    DUMMY FUNCTION REQUIRED FOR LEGACY C CODE
- 
-    DO NOT REFACTOR
- 
-    IT ACTUALLY IS IMPORTANT
- */
-func data(){
-    // DONT YOU DARE DELETE THIS FUNCTION
-}
-
-/**
     Sets up the observer for the moved notification
  */
-func setup_observer(pid: pid_t){
+func setup_observer(_ pid: pid_t){
     var frontMostApp: AXUIElement
-    let frontMostWindow: UnsafeMutablePointer<AnyObject?> = UnsafeMutablePointer<AnyObject?>.alloc(1)
+    let frontMostWindow: UnsafeMutablePointer<AnyObject?> = UnsafeMutablePointer<AnyObject?>.allocate(capacity: 1)
     
-    frontMostApp = AXUIElementCreateApplication(pid).takeUnretainedValue()
-    AXUIElementCopyAttributeValue(frontMostApp, kAXFocusedWindowAttribute, frontMostWindow);
+    frontMostApp = AXUIElementCreateApplication(pid)
+    AXUIElementCopyAttributeValue(frontMostApp, kAXFocusedWindowAttribute as CFString, frontMostWindow);
     
     // Check if the frontMostWindow object is nil or not
-    if let placeHolder = frontMostWindow.memory {
-        let frontMostWindow_true: AXUIElementRef = placeHolder as! AXUIElementRef
+    if let placeHolder = frontMostWindow.pointee {
+        let frontMostWindow_true: AXUIElement = placeHolder as! AXUIElement
        
-        let observer: UnsafeMutablePointer<AXObserverRef?> = UnsafeMutablePointer<AXObserverRef?>.alloc(1)
-        AXObserverCreate(pid, moved_callback, observer)
-        let observer_true: AXObserverRef = observer.memory!
-        let data_ptr: UnsafeMutablePointer<Void> = UnsafeMutablePointer<Void>.alloc(1)
-        data_ptr.memory = data()
-        
-        AXObserverAddNotification(observer_true, frontMostWindow_true, kAXMovedNotification, data_ptr);
-        CFRunLoopAddSource(CFRunLoopGetCurrent(), AXObserverGetRunLoopSource(observer_true).takeUnretainedValue(), kCFRunLoopDefaultMode);
+        let observer: UnsafeMutablePointer<AXObserver?> = UnsafeMutablePointer<AXObserver?>.allocate(capacity: 1)
+        AXObserverCreate(pid, moved_callback as AXObserverCallback, observer)
+        let observer_true: AXObserver = observer.pointee!
+        let data_ptr: UnsafeMutablePointer<UInt16> = UnsafeMutablePointer<UInt16>.allocate(capacity: 1)
+		
+        AXObserverAddNotification(observer_true, frontMostWindow_true, kAXMovedNotification as CFString, data_ptr);
+        CFRunLoopAddSource(CFRunLoopGetCurrent(), AXObserverGetRunLoopSource(observer_true), CFRunLoopMode.defaultMode);
     }
 }
 
 /**
     Handles the mouse down event
  */
-func mouse_down_handler(event: NSEvent){
+func mouse_down_handler(_ event: NSEvent){
     // Reset all of the sync checks
     mouse_seen = false
     callback_seen = false

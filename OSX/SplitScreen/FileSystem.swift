@@ -11,22 +11,22 @@ import AppKit
 
 class FileSystem {
 	
-	private var fileManager: NSFileManager
-	private var dirPath: NSURL
-	private var files: [File]
-	private let pathExtension = ".lao"
-	let HEIGHT = Int((NSScreen.mainScreen()?.frame.height)!)
-	let WIDTH = Int((NSScreen.mainScreen()?.frame.width)!)
+	fileprivate var fileManager: FileManager
+	fileprivate var dirPath: URL
+	fileprivate var files: [File]
+	fileprivate let pathExtension = ".lao"
+	let HEIGHT = Int((NSScreen.main()?.frame.height)!)
+	let WIDTH = Int((NSScreen.main()?.frame.width)!)
 	
 	/**
 		Inits `FileSystem` with default `NSFileManager`, retrieves current directory path, and
 		retrieves all currently existing `SnapLayout` files that exist in the directory
 	*/
 	init() {
-		fileManager = NSFileManager.defaultManager()
+		fileManager = FileManager.default
 		
-		let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
-		dirPath = appDelegate.applicationDocumentsDirectory
+		let appDelegate = NSApplication.shared().delegate as! AppDelegate
+		dirPath = appDelegate.applicationDocumentsDirectory as URL
 		files = [File]()
 		self.getAllLayoutFiles()
 	}
@@ -37,12 +37,12 @@ class FileSystem {
 	*/
 	func createBasicLayouts() {
 		var file = File(dirPath: dirPath, name: "Standard.lao")
-		if files.indexOf(file) == nil {
+		if files.index(of: file) == nil {
 			layout.load("standard")
 			let content: String = layout.toString()
 			
 			do {
-				try content.writeToFile(file.getPathString(), atomically: false, encoding: NSUTF8StringEncoding)
+				try content.write(toFile: file.getPathString(), atomically: false, encoding: String.Encoding.utf8)
 			} catch _ {
 				print("Could not write to \(file.getFileName()))")
 			}
@@ -51,12 +51,12 @@ class FileSystem {
 		}
 		
 		file = File(dirPath: dirPath, name: "Horizontal.lao")
-		if files.indexOf(file) == nil {
+		if files.index(of: file) == nil {
 			layout.load("horizontal")
 			let content: String = layout.toString()
 			
 			do {
-				try content.writeToFile(file.getPathString(), atomically: false, encoding: NSUTF8StringEncoding)
+				try content.write(toFile: file.getPathString(), atomically: false, encoding: String.Encoding.utf8)
 			} catch _ {
 				print("Could not write to \(file.getFileName()))")
 			}
@@ -81,9 +81,9 @@ class FileSystem {
 	
 		- Parameter file_name: `String` that corresponds to the speciic name of a `SnapLayout` fle
 	*/
-	func loadLayout(file_name: String) {
-		let file = File(dirPath: dirPath, name: file_name.stringByAppendingString(pathExtension))
-		if files.indexOf(file) == nil {
+	func loadLayout(_ file_name: String) {
+		let file = File(dirPath: dirPath, name: file_name + pathExtension)
+		if files.index(of: file) == nil {
 			return
 		}
 		let snap_points = file.parseFileContent(HEIGHT, width: WIDTH)
@@ -100,16 +100,16 @@ class FileSystem {
 	
 		- Parameter name: `String` that corresponds to the new name of the `File`
 	*/
-	func saveLayout(name: String) {
-		let file = File(dirPath: dirPath, name: name.stringByAppendingString(pathExtension))
+	func saveLayout(_ name: String) {
+		let file = File(dirPath: dirPath, name: name + pathExtension)
 		let content = layout.toString()
 
 		do {
-			try content.writeToFile(file.getPathString(), atomically: false, encoding: NSUTF8StringEncoding)
+			try content.write(toFile: file.getPathString(), atomically: false, encoding: String.Encoding.utf8)
 		} catch _ {
 			print("Could not write to \(file.getFileName()))")
 		}
-		if files.indexOf(file) == nil {
+		if files.index(of: file) == nil {
 			files.append(file)
 		}
 	}
@@ -118,7 +118,7 @@ class FileSystem {
 		Get all the files that are located in the current documents directory
 	*/
 	func getAllLayoutFiles() {
-		if let enumerator = fileManager.enumeratorAtPath(dirPath.path!) {
+		if let enumerator = fileManager.enumerator(atPath: dirPath.path) {
 			while let file = enumerator.nextObject() {
 				let file_name = file as! String
 				if file_name.hasSuffix(".lao") {

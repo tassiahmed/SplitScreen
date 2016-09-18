@@ -14,24 +14,24 @@ class StatusMenuController: NSObject {
     @IBOutlet weak var statusMenu: NSMenu!
     @IBOutlet weak var MenuTemplates: NSMenu!
     
-    let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
+    let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
     
     //***********************************************************************
     
     //Action handlers for buttons
     
     //Opens the template designer
-    @IBAction func templateDesignerClicked(sender: NSMenuItem) {
+    @IBAction func templateDesignerClicked(_ sender: NSMenuItem) {
         print("Template Designer was clicked!")
     }
 
     //redirect to our website? Open new window? no idea really
-    @IBAction func AboutClicked(sender: NSMenuItem) {
+    @IBAction func AboutClicked(_ sender: NSMenuItem) {
         print("About was clicked")
     }
     
-    @IBAction func quitClicked(sender: NSMenuItem) {
-        NSApplication.sharedApplication().terminate(self)
+    @IBAction func quitClicked(_ sender: NSMenuItem) {
+        NSApplication.shared().terminate(self)
     }
     
     //***********************************************************************
@@ -39,22 +39,22 @@ class StatusMenuController: NSObject {
     //Selectors for menu items
     
     //When a template is clicked
-    func TemplateClicked(send: NSMenuItem?){
+    func TemplateClicked(_ send: NSMenuItem?){
 		
 		file_system.loadLayout(send!.title)
 		
-		MenuTemplates.itemAtIndex(0)?.state = NSOffState
+		MenuTemplates.item(at: 0)?.state = NSOffState
 		
         // Rearranges the positions of the menu items
-        let index = MenuTemplates.indexOfItem(send!)
-        MenuTemplates.removeItemAtIndex(index)
-        MenuTemplates.insertItem(send!, atIndex: 0)
+        let index = MenuTemplates.index(of: send!)
+        MenuTemplates.removeItem(at: index)
+        MenuTemplates.insertItem(send!, at: 0)
 		
-		MenuTemplates.itemAtIndex(0)?.state = NSOnState
+		MenuTemplates.item(at: 0)?.state = NSOnState
     }
     
     // When the others option is clicked. Probably open up the Template Designer?
-    func OthersClicked(send: AnyObject?){
+    func OthersClicked(_ send: AnyObject?){
         print(" Others was clicked: \(send)")
     }
     
@@ -62,23 +62,23 @@ class StatusMenuController: NSObject {
     
     override func awakeFromNib() {
         let icon = NSImage(named: "MenuIcons")
-        icon?.template = false // best for dark mode
+        icon?.isTemplate = false // best for dark mode
         statusItem.image = icon
         statusItem.menu = statusMenu
         
         
-        MenuTemplates.removeItemAtIndex(0)
+        MenuTemplates.removeItem(at: 0)
         
-        MenuTemplates.addItemWithTitle("Standard", action: #selector(StatusMenuController.TemplateClicked(_:)), keyEquivalent: "")
-        MenuTemplates.itemAtIndex(0)?.target = self
-        MenuTemplates.addItemWithTitle("Horizontal", action: #selector(StatusMenuController.TemplateClicked(_:)), keyEquivalent: "")
-        MenuTemplates.itemAtIndex(1)?.target = self
-        MenuTemplates.addItemWithTitle("Default", action: #selector(StatusMenuController.TemplateClicked(_:)), keyEquivalent: "")
-        MenuTemplates.itemAtIndex(2)?.target = self
-        MenuTemplates.addItemWithTitle("Others...", action: #selector(StatusMenuController.OthersClicked(_:)), keyEquivalent: "")
-        MenuTemplates.itemAtIndex(3)?.target = self
+        MenuTemplates.addItem(withTitle: "Standard", action: #selector(StatusMenuController.TemplateClicked(_:)), keyEquivalent: "")
+        MenuTemplates.item(at: 0)?.target = self
+        MenuTemplates.addItem(withTitle: "Horizontal", action: #selector(StatusMenuController.TemplateClicked(_:)), keyEquivalent: "")
+        MenuTemplates.item(at: 1)?.target = self
+        MenuTemplates.addItem(withTitle: "Default", action: #selector(StatusMenuController.TemplateClicked(_:)), keyEquivalent: "")
+        MenuTemplates.item(at: 2)?.target = self
+        MenuTemplates.addItem(withTitle: "Others...", action: #selector(StatusMenuController.OthersClicked(_:)), keyEquivalent: "")
+        MenuTemplates.item(at: 3)?.target = self
 		
-		MenuTemplates.itemAtIndex(0)?.state = NSOnState
+		MenuTemplates.item(at: 0)?.state = NSOnState
         
     }
     
