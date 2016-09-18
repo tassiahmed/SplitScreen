@@ -96,6 +96,7 @@ func mouse_dragged_handler(_ event: NSEvent) {
     last_known_mouse_drag = CGPoint(x: event.locationInWindow.x, y: event.locationInWindow.y)
 	if !current_screen.withinBounds(Int(event.locationInWindow.x), y_coord: Int(event.locationInWindow.y)) {
 		current_screen = screens.getCurrentScreen(Int(event.locationInWindow.x), y_coord: Int(event.locationInWindow.y))
+		layout = current_screen.getLayout()
 		print("Origin:", current_screen.getOrigin(), "Dimensions:", current_screen.getDimensions(),
 		      "Top-Right:", current_screen.getTopRight())
 	}

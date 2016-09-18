@@ -93,6 +93,7 @@ class FileSystem {
 			let snap_points = file.parseFileContent(screens.get(i))
 			let temp_layout: SnapLayout = SnapLayout()
 			for snap_point in snap_points {
+				print(snap_point)
 				let snap: SnapPoint = SnapPoint.init(height: snap_point[0], width: snap_point[1], x_dim: snap_point[2], y_dim: snap_point[3], x_snap_loc: snap_point[4], y_snap_loc: snap_point[5], log: snap_point[6])
 				snap.add_snap_point(snap_point[7], y0: snap_point[8], x1: snap_point[9], y1: snap_point[10])
 				temp_layout.snap_points.append(snap)

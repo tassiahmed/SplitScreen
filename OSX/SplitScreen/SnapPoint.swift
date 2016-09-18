@@ -86,9 +86,13 @@ class SnapPoint {
         
         // Run through each snap_point and check if it fits the guessed location
         for snaps in snap_point{
-            
+			
+//			print(scale_factor_h)
+//			print(scale_factor_w)
+//			print(x)
+//			print(y)
 //            print("snap_point scaled: x0: \(CGFloat(snaps.0.0) * scale_factor_w) x1: \(CGFloat(snaps.1.0) * scale_factor_w) y0: \(CGFloat(snaps.0.1) * scale_factor_h) y1: \(CGFloat(snaps.1.1) * scale_factor_h)")
-//            
+//
             if x >= Int(CGFloat(snaps.0.0) * scale_factor_w) && x <= Int(CGFloat(snaps.1.0) * scale_factor_w) && y >= Int(CGFloat(snaps.0.1) * scale_factor_h) && y <= Int(CGFloat(snaps.1.1) * scale_factor_h) {
 //                print(" - falls in range (\(x),\(y))")
                 return true
@@ -259,9 +263,12 @@ class SnapPoint {
 		- Returns: `tuple` of `CGFloat` that is the scale factor to use for the current machine
      */
     fileprivate func get_scale_factors() -> (CGFloat, CGFloat){
-        let curr_height: Int = Int((NSScreen.main()?.frame.height)!)
-        let curr_width: Int = Int((NSScreen.main()?.frame.width)!)
-        
+        let curr_height: Int = current_screen.getDimensions().1
+        let curr_width: Int = current_screen.getDimensions().0
+		
+		print(curr_width, curr_height)
+		print(orig_height, orig_width)
+		
         return (CGFloat(curr_height)/CGFloat(orig_height), CGFloat(curr_width)/CGFloat(orig_width))
     }
     
