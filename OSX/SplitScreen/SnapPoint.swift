@@ -14,7 +14,6 @@ class SnapPoint{
     fileprivate var snap_point = [((Int,Int),(Int,Int))]() // All snap locations that can snap to a point
     fileprivate var snap_location: (Int, Int)
     fileprivate var dimensions: (Int, Int)
-    fileprivate var logic: Int
     fileprivate var orig_height: Int
     fileprivate var orig_width: Int
     
@@ -34,13 +33,10 @@ class SnapPoint{
         x_snap_loc - the x-coordinate of where the window will be moved to
      
         y_snap_loc - the y-coordinate of where the window will be moved to
-     
-        log - the logic bit to determine what action will be performed by the snap
-     */
-    init(height: Int, width: Int, x_dim: Int, y_dim: Int, x_snap_loc: Int, y_snap_loc: Int, log: Int) {
+	*/
+    init(height: Int, width: Int, x_dim: Int, y_dim: Int, x_snap_loc: Int, y_snap_loc: Int) {
         snap_location = (x_snap_loc, y_snap_loc)
         dimensions = (x_dim,y_dim)
-        logic = log
         orig_height = height
         orig_width = width
     }
@@ -121,15 +117,6 @@ class SnapPoint{
         let (scale_factor_h, scale_factor_w) = get_scale_factors()
         
         return (Int(CGFloat(dimensions.0) * scale_factor_w), Int(CGFloat(dimensions.1) * scale_factor_h))
-    }
-    
-    /**
-        Returns the logic associated with the snap
-	
-		- Returns: `Int` that corresponds to the logic behind the snap behavior
-     */
-    func get_logic() -> Int {
-        return Int(logic)
     }
 
     /**
@@ -227,11 +214,7 @@ class SnapPoint{
 		ret_String = ret_String + self.get_string_scalar_representation(snap_location.1,
 				original: screenHeight,
 				original_string: "HEIGHT")
-		
-		// Add in logic for the `SnapPoint`
-		ret_String.append("," as Character)
-		ret_String = ret_String + String(logic)
-		
+
 		// Add in the tuples for snap points
 		for point in snap_point {
 			ret_String.append("," as Character)
