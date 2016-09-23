@@ -73,10 +73,8 @@ class StatusMenuController: NSObject {
         MenuTemplates.item(at: 0)?.target = self
         MenuTemplates.addItem(withTitle: "Horizontal", action: #selector(StatusMenuController.TemplateClicked(_:)), keyEquivalent: "")
         MenuTemplates.item(at: 1)?.target = self
-        MenuTemplates.addItem(withTitle: "Default", action: #selector(StatusMenuController.TemplateClicked(_:)), keyEquivalent: "")
-        MenuTemplates.item(at: 2)?.target = self
         MenuTemplates.addItem(withTitle: "Others...", action: #selector(StatusMenuController.OthersClicked(_:)), keyEquivalent: "")
-        MenuTemplates.item(at: 3)?.target = self
+        MenuTemplates.item(at: 2)?.target = self
 		
 		MenuTemplates.item(at: 0)?.state = NSOnState
         

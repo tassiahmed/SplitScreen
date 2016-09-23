@@ -89,8 +89,12 @@ class FileSystem {
 		let snap_points = file.parseFileContent(HEIGHT, width: WIDTH)
 		layout.snap_points.removeAll()
 		for snap_point in snap_points {
-			let snap: SnapPoint = SnapPoint.init(height: snap_point[0], width: snap_point[1], x_dim: snap_point[2], y_dim: snap_point[3], x_snap_loc: snap_point[4], y_snap_loc: snap_point[5])
-			snap.add_snap_point(snap_point[7], y0: snap_point[8], x1: snap_point[9], y1: snap_point[10])
+//			let snap: SnapPoint = SnapPoint.init(height: snap_point[0], width: snap_point[1], x_dim: snap_point[2], y_dim: snap_point[3], x_snap_loc: snap_point[4], y_snap_loc: snap_point[5])
+			let snap: SnapPoint = SnapPoint.init(screen_dim: (WIDTH, HEIGHT),
+			                                     snap_dim: (snap_point[0], snap_point[1]),
+			                                     snap_loc: (snap_point[2], snap_point[3]))
+			snap.add_snap_point(first: (snap_point[4], snap_point[5]),
+			                    second: (snap_point[6], snap_point[7]))
 			layout.snap_points.append(snap)
 		}
 	}
