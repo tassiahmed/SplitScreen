@@ -99,6 +99,7 @@ func mouse_dragged_handler(_ event: NSEvent){
             //if still in a position that requires highlighting
             if layout.is_hardpoint(event.locationInWindow.x, y: event.locationInWindow.y) {
                 snap_highlighter.update_window(layout.get_snap_dimensions(event.locationInWindow.x, y: event.locationInWindow.y))
+                print(layout.get_snap_dimensions(event.locationInWindow.x, y: event.locationInWindow.y))
             }else{
                 snap_highlighter.draw_destroy()
                 drawing = false
