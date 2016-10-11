@@ -51,10 +51,9 @@ func comparePosition() -> Bool {
 */
 func move_and_resize(){
     let loc: (CGFloat, CGFloat) = (mouse_up_pos!.x, mouse_up_pos!.y)
-    
     if layout.is_hardpoint(loc.0, y: loc.1) {
         let resize = layout.get_snap_dimensions(loc.0, y: loc.1)
-        
+        print(" ++ \(resize)")
         if resize.0 == -1 || resize.1 == -1 || resize.2 == -1 || resize.3 == -1 {
             return
         }
@@ -119,6 +118,8 @@ func mouse_dragged_handler(_ event: NSEvent){
 	- Parameter event: `NSEvent` that is received when user releases the mouse
  */
 func mouse_up_handler(_ event: NSEvent) {
+    print("mouse up")
+    
     mouse_up_pos = event.locationInWindow
     mouse_seen = true
     

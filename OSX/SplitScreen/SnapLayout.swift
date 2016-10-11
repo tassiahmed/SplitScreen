@@ -137,7 +137,6 @@ class SnapLayout {
     func is_hardpoint(_ x: CGFloat, y: CGFloat) -> Bool {
         let xpos:Int = Int(x + 0.5)
         let ypos:Int = Int(y + 0.5)
-        
         for i in 0 ..< snap_points.count {
 			if snap_points[i].check_point(x: xpos, y: ypos) {
                 return true

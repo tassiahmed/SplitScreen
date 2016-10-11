@@ -122,6 +122,7 @@ class FileSystem {
 		Get all the files that are located in the current documents directory
 	*/
 	func getAllLayoutFiles() {
+        //try to load the directory and get the files contained in it, if it cannot be opened, create it
 		if let enumerator = fileManager.enumerator(atPath: dirPath.path) {
 			while let file = enumerator.nextObject() {
 				let file_name = file as! String
@@ -129,7 +130,13 @@ class FileSystem {
 					files.append( File(dirPath: dirPath, name: file_name) )
 				}
 			}
-		}
+        }else{
+            do{
+                try fileManager.createDirectory(atPath: dirPath.path, withIntermediateDirectories: false, attributes: nil)
+            } catch let error as NSError {
+                print(error.description)
+            }
+        }
 	}
 	
 }
