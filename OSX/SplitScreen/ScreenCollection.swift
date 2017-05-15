@@ -11,7 +11,7 @@ import AppKit
 
 class ScreenCollection {
 	
-	fileprivate var screens: [Screen]
+	fileprivate var screens = [Screen]()
 	
 	init() {
 		screens = []
@@ -45,7 +45,7 @@ class ScreenCollection {
 		return screens[0]
 	}
 	
-	func getCurrentScreen(_ x_coord: Int, y_coord: Int) -> Screen {
+	func getCurrentScreen(x_coord: Int, y_coord: Int) -> Screen {
 		var current_screen: Screen = Screen()
 		for screen in screens {
 			if x_coord < screen.getOrigin().0 || x_coord > screen.getTopRight().0 {

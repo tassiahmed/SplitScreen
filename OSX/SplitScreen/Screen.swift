@@ -56,7 +56,7 @@ class Screen {
 		return (bottomLeft.1 + topRight.1)/dividend
 	}
 	
-	func withinBounds(_ x_coord: Int, y_coord: Int) -> Bool {
+	func withinBounds(x_coord: Int, y_coord: Int) -> Bool {
 		if x_coord < bottomLeft.0 || x_coord > topRight.0 {
 			return false
 		}

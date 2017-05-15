@@ -54,10 +54,10 @@ class StatusMenuController: NSObject {
     }
     
     // When the others option is clicked. Probably open up the Template Designer?
-    func OthersClicked(_ send: AnyObject?){
-        print(" Others was clicked: \(send)")
-    }
-    
+//    func OthersClicked(_ send: AnyObject?){
+//        print(" Others was clicked: \(send)")
+//    }
+	
     //***********************************************************************
     
     override func awakeFromNib() {
@@ -73,8 +73,8 @@ class StatusMenuController: NSObject {
         MenuTemplates.item(at: 0)?.target = self
         MenuTemplates.addItem(withTitle: "Horizontal", action: #selector(StatusMenuController.TemplateClicked(_:)), keyEquivalent: "")
         MenuTemplates.item(at: 1)?.target = self
-        MenuTemplates.addItem(withTitle: "Others...", action: #selector(StatusMenuController.OthersClicked(_:)), keyEquivalent: "")
-        MenuTemplates.item(at: 2)?.target = self
+//        MenuTemplates.addItem(withTitle: "Others...", action: #selector(StatusMenuController.OthersClicked(_:)), keyEquivalent: "")
+//        MenuTemplates.item(at: 2)?.target = self
 		
 		MenuTemplates.item(at: 0)?.state = NSOnState
         

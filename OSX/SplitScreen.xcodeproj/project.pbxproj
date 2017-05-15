@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4317FB911EC9DDBF007D4773 /* NewSnapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4317FB901EC9DDBF007D4773 /* NewSnapPoint.swift */; };
 		436C1FE01D84D79C000F976F /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C1FDF1D84D79C000F976F /* GlobalVariables.swift */; };
 		436C1FE21D84EA64000F976F /* ScreenCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C1FE11D84EA64000F976F /* ScreenCollection.swift */; };
 		436C1FE41D862B21000F976F /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C1FE31D862B21000F976F /* Screen.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4317FB901EC9DDBF007D4773 /* NewSnapPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSnapPoint.swift; sourceTree = "<group>"; };
 		436C1FDF1D84D79C000F976F /* GlobalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		436C1FE11D84EA64000F976F /* ScreenCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenCollection.swift; sourceTree = "<group>"; };
 		436C1FE31D862B21000F976F /* Screen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
@@ -78,6 +80,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4317FB921EC9E1DA007D4773 /* New Code */ = {
+			isa = PBXGroup;
+			children = (
+				4317FB901EC9DDBF007D4773 /* NewSnapPoint.swift */,
+			);
+			name = "New Code";
+			sourceTree = "<group>";
+		};
 		436C1FD91D847467000F976F /* C Code */ = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +110,7 @@
 		436C1FDB1D847697000F976F /* Windows Snapping */ = {
 			isa = PBXGroup;
 			children = (
+				4317FB921EC9E1DA007D4773 /* New Code */,
 				E845E5141D26DF0200DF35B2 /* SnapHighlighter.swift */,
 				E855D4E31BCDAAA0008C511B /* SnapLayout.swift */,
 				E898E52F1C8A2BF1008D8DCF /* SnapPoint.swift */,
@@ -229,11 +240,11 @@
 				TargetAttributes = {
 					43AE6B291B9F84EA000B2B53 = {
 						CreatedOnToolsVersion = 6.4;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0830;
 					};
 					43AE6B3E1B9F84EA000B2B53 = {
 						CreatedOnToolsVersion = 6.4;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0830;
 						TestTargetID = 43AE6B291B9F84EA000B2B53;
 					};
 				};
@@ -286,6 +297,7 @@
 				E8BD3F8B1CA1E7CB00433D61 /* StatusMenuController.swift in Sources */,
 				436C1FE41D862B21000F976F /* Screen.swift in Sources */,
 				E8076D9C1BF649EF00BD84C7 /* MoveAndResize.c in Sources */,
+				4317FB911EC9DDBF007D4773 /* NewSnapPoint.swift in Sources */,
 				436C1FE21D84EA64000F976F /* ScreenCollection.swift in Sources */,
 				437BF8341CCFE82100F66E4B /* File.swift in Sources */,
 				E855D4E41BCDAAA0008C511B /* SnapLayout.swift in Sources */,

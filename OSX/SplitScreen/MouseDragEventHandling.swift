@@ -94,8 +94,10 @@ func start_drawing() {
 func mouse_dragged_handler(_ event: NSEvent) {
     // Holds a reference to the last position of a drag
     last_known_mouse_drag = CGPoint(x: event.locationInWindow.x, y: event.locationInWindow.y)
-	if !current_screen.withinBounds(Int(event.locationInWindow.x), y_coord: Int(event.locationInWindow.y)) {
-		current_screen = screens.getCurrentScreen(Int(event.locationInWindow.x), y_coord: Int(event.locationInWindow.y))
+	if !current_screen.withinBounds(x_coord: Int(event.locationInWindow.x),
+	                                y_coord: Int(event.locationInWindow.y)) {
+		current_screen = screens.getCurrentScreen(x_coord: Int(event.locationInWindow.x),
+		                                          y_coord: Int(event.locationInWindow.y))
 		layout = current_screen.getLayout()
 		print("Origin:", current_screen.getOrigin(), "Dimensions:", current_screen.getDimensions(),
 		      "Top-Right:", current_screen.getTopRight())

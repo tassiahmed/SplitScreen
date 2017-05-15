@@ -24,7 +24,7 @@ class File: Equatable {
 	init(dirPath: URL, name: String) {
 		file_name = name
 		path = dirPath.appendingPathComponent(name)
-		print(path)
+//		print(path)
 	}
 	
 	/**
@@ -71,7 +71,7 @@ class File: Equatable {
 			// Split line into the different values of a SnapPoint
 			let components = line.characters.split(separator: ",").map(String.init)
 			var snap_param: [Int] = []
-			print(line)
+//			print(line)
 			for component in components {
 				// General values
 				if component == "HEIGHT" {

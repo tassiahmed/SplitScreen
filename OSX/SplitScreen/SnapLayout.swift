@@ -100,7 +100,7 @@ class SnapLayout {
         snap_points.append(right_upper)
 		
 		let right_lower: SnapPoint = SnapPoint.init(screen_dim: (WIDTH, HEIGHT),
-		                                         snap_dim: (WIDTH/2, HEIGHT/2),
+		                                         snap_dim: (WIDTH, HEIGHT/2),
 		                                         snap_loc: (0, HEIGHT/2))
 		right_lower.add_snap_point(first: (WIDTH, 0), second: (WIDTH, HEIGHT/2))
         

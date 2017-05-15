@@ -57,6 +57,7 @@ class SnapPoint {
 	*/
 	func check_point(x: Int, y: Int) -> Bool {
 		let (width_factor, height_factor) = get_scale_factors()
+		print(width_factor, height_factor)
 		
 		for snap_area in snap_areas {
 			if x < snap_area.0.0 * width_factor || x > snap_area.1.0 * width_factor {
@@ -136,13 +137,13 @@ class SnapPoint {
 	//*************************************************
 	
 	/**
-	- Returns: `tuple` of `(Int, Int)` of sacle factors for resolution adjustments
+	- Returns: `tuple` of `(Int, Int)` of scale factors for resolution adjustments
 	*/
 	fileprivate func get_scale_factors() -> (Int, Int) {
-		let width_factor = CGFloat(screen_dimensions.0)/(NSScreen.main()?.frame.width)!
-		let height_factor = CGFloat(screen_dimensions.1)/(NSScreen.main()?.frame.height)!
+		let width_factor = screen_dimensions.0/current_screen.getDimensions().0
+		let height_factor = screen_dimensions.1/current_screen.getDimensions().1
 		
-		return (Int(width_factor), Int(height_factor))
+		return (width_factor, height_factor)
 	}
 	
 	/**
