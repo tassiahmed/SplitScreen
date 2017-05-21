@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		430EFB661ED0DC6C00D7A25B /* NewScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430EFB651ED0DC6C00D7A25B /* NewScreen.swift */; };
 		4317FB911EC9DDBF007D4773 /* NewSnapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4317FB901EC9DDBF007D4773 /* NewSnapPoint.swift */; };
+		4317FB941ECA074E007D4773 /* NewSnapLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4317FB931ECA074E007D4773 /* NewSnapLayout.swift */; };
 		436C1FE01D84D79C000F976F /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C1FDF1D84D79C000F976F /* GlobalVariables.swift */; };
 		436C1FE21D84EA64000F976F /* ScreenCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C1FE11D84EA64000F976F /* ScreenCollection.swift */; };
 		436C1FE41D862B21000F976F /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C1FE31D862B21000F976F /* Screen.swift */; };
@@ -37,7 +39,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		430EFB651ED0DC6C00D7A25B /* NewScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewScreen.swift; sourceTree = "<group>"; };
 		4317FB901EC9DDBF007D4773 /* NewSnapPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSnapPoint.swift; sourceTree = "<group>"; };
+		4317FB931ECA074E007D4773 /* NewSnapLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSnapLayout.swift; sourceTree = "<group>"; };
 		436C1FDF1D84D79C000F976F /* GlobalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		436C1FE11D84EA64000F976F /* ScreenCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenCollection.swift; sourceTree = "<group>"; };
 		436C1FE31D862B21000F976F /* Screen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
@@ -84,6 +88,8 @@
 			isa = PBXGroup;
 			children = (
 				4317FB901EC9DDBF007D4773 /* NewSnapPoint.swift */,
+				4317FB931ECA074E007D4773 /* NewSnapLayout.swift */,
+				430EFB651ED0DC6C00D7A25B /* NewScreen.swift */,
 			);
 			name = "New Code";
 			sourceTree = "<group>";
@@ -296,6 +302,8 @@
 				E855D4E21BCDA77D008C511B /* MouseDragEventHandling.swift in Sources */,
 				E8BD3F8B1CA1E7CB00433D61 /* StatusMenuController.swift in Sources */,
 				436C1FE41D862B21000F976F /* Screen.swift in Sources */,
+				430EFB661ED0DC6C00D7A25B /* NewScreen.swift in Sources */,
+				4317FB941ECA074E007D4773 /* NewSnapLayout.swift in Sources */,
 				E8076D9C1BF649EF00BD84C7 /* MoveAndResize.c in Sources */,
 				4317FB911EC9DDBF007D4773 /* NewSnapPoint.swift in Sources */,
 				436C1FE21D84EA64000F976F /* ScreenCollection.swift in Sources */,
