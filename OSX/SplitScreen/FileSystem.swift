@@ -15,8 +15,8 @@ class FileSystem {
 	fileprivate var dirPath: URL
 	fileprivate var files: [File]
 	fileprivate let pathExtension = ".lao"
-	let HEIGHT = Int((NSScreen.main()?.frame.height)!)
-	let WIDTH = Int((NSScreen.main()?.frame.width)!)
+	let HEIGHT = Int((NSScreen.main?.frame.height)!)
+	let WIDTH = Int((NSScreen.main?.frame.width)!)
 	
 	/**
 		Inits `FileSystem` with default `NSFileManager`, retrieves current directory path, and
@@ -25,7 +25,7 @@ class FileSystem {
 	init() {
 		fileManager = FileManager.default
 		
-		let appDelegate = NSApplication.shared().delegate as! AppDelegate
+		let appDelegate = NSApplication.shared.delegate as! AppDelegate
 		dirPath = appDelegate.applicationDocumentsDirectory as URL
 		files = [File]()
 		self.getAllLayoutFiles()

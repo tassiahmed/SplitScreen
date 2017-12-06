@@ -14,7 +14,7 @@ class StatusMenuController: NSObject {
     @IBOutlet weak var statusMenu: NSMenu!
     @IBOutlet weak var MenuTemplates: NSMenu!
     
-    let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
+    let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     
     //***********************************************************************
     
@@ -31,7 +31,7 @@ class StatusMenuController: NSObject {
     }
     
     @IBAction func quitClicked(_ sender: NSMenuItem) {
-        NSApplication.shared().terminate(self)
+        NSApplication.shared.terminate(self)
     }
     
     //***********************************************************************
@@ -39,29 +39,29 @@ class StatusMenuController: NSObject {
     //Selectors for menu items
     
     //When a template is clicked
-    func TemplateClicked(_ send: NSMenuItem?){
+    @objc func TemplateClicked(_ send: NSMenuItem?){
 		
 		file_system.loadLayout(send!.title)
 		
-		MenuTemplates.item(at: 0)?.state = NSOffState
+		MenuTemplates.item(at: 0)?.state = NSControl.StateValue.off
 		
         // Rearranges the positions of the menu items
         let index = MenuTemplates.index(of: send!)
         MenuTemplates.removeItem(at: index)
         MenuTemplates.insertItem(send!, at: 0)
 		
-		MenuTemplates.item(at: 0)?.state = NSOnState
+		MenuTemplates.item(at: 0)?.state = NSControl.StateValue.on
     }
     
     // When the others option is clicked. Probably open up the Template Designer?
-    func OthersClicked(_ send: AnyObject?){
-        print(" Others was clicked: \(send)")
+    @objc func OthersClicked(_ send: AnyObject?){
+			print(" Others was clicked: \(String(describing: send))")
     }
     
     //***********************************************************************
     
     override func awakeFromNib() {
-        let icon = NSImage(named: "MenuIcons")
+        let icon = NSImage(named: NSImage.Name(rawValue: "MenuIcons"))
         icon?.isTemplate = false // best for dark mode
         statusItem.image = icon
         statusItem.menu = statusMenu
@@ -76,7 +76,7 @@ class StatusMenuController: NSObject {
         MenuTemplates.addItem(withTitle: "Others...", action: #selector(StatusMenuController.OthersClicked(_:)), keyEquivalent: "")
         MenuTemplates.item(at: 2)?.target = self
 		
-		MenuTemplates.item(at: 0)?.state = NSOnState
+		MenuTemplates.item(at: 0)?.state = NSControl.StateValue.on
         
     }
     
