@@ -65,11 +65,11 @@ class File: Equatable {
 		}
 		
 		// Split the text into lines
-		let lines = text.characters.split(separator: "\n").map(String.init)
+		let lines = text.split(separator: "\n").map(String.init)
 		for line in lines {
 			
 			// Split line into the different values of a SnapPoint
-			let components = line.characters.split(separator: ",").map(String.init)
+			let components = line.split(separator: ",").map(String.init)
 			var snap_param: [Int] = []
 			for component in components {
 				
@@ -82,14 +82,14 @@ class File: Equatable {
 					snap_param.append(0)
 				} else if component != components.last {
 					if component.range(of: "/") != nil {
-						let dividends = component.characters.split(separator: "/").map(String.init)
+						let dividends = component.split(separator: "/").map(String.init)
 						if dividends[0] == "HEIGHT" {
 							snap_param.append(height/Int(dividends[1])!)
 						} else {
 							snap_param.append(width/Int(dividends[1])!)
 						}
 					} else if component.range(of: "-") != nil {
-						let dividends = component.characters.split(separator: "-").map(String.init)
+						let dividends = component.split(separator: "-").map(String.init)
 						if dividends[0] == "HEIGHT" {
 							snap_param.append(height - Int(dividends[1])!)
 						} else {
@@ -99,21 +99,21 @@ class File: Equatable {
 					
 				// For the snap points that are stored as pairs
 				} else {
-					let snap_points = component.characters.split(separator: ":").map(String.init)
+					let snap_points = component.split(separator: ":").map(String.init)
 					for snap_point in snap_points {
 						var xCoord: Int
 						var yCoord: Int
 						var tuple: String = snap_point
 						tuple.remove(at: tuple.startIndex)
-						tuple.remove(at: tuple.characters.index(before: tuple.endIndex))
-						let coords = tuple.characters.split(separator: ";").map(String.init)
+						tuple.remove(at: tuple.index(before: tuple.endIndex))
+						let coords = tuple.split(separator: ";").map(String.init)
 						if coords[0] == "0" {
 							xCoord = 0
 						} else if coords[0].range(of: "-") != nil {
-							let dividends = coords[0].characters.split(separator: "-").map(String.init)
+							let dividends = coords[0].split(separator: "-").map(String.init)
 							xCoord = width - Int(dividends[1])!
 						} else if coords[0].range(of: "/") != nil {
-							let dividends = coords[0].characters.split(separator: "/").map(String.init)
+							let dividends = coords[0].split(separator: "/").map(String.init)
 							xCoord = width/Int(dividends[1])!
 						} else {
 							xCoord = width
@@ -122,10 +122,10 @@ class File: Equatable {
 						if coords[1] == "0" {
 							yCoord = 0
 						} else if coords[1].range(of: "-") != nil {
-							let dividends = coords[1].characters.split(separator: "-").map(String.init)
+							let dividends = coords[1].split(separator: "-").map(String.init)
 							yCoord = height - Int(dividends[1])!
 						} else if coords[1].range(of: "/") != nil {
-							let dividends = coords[1].characters.split(separator: "/").map(String.init)
+							let dividends = coords[1].split(separator: "/").map(String.init)
 							yCoord = height/Int(dividends[1])!
 						} else {
 							yCoord = height
