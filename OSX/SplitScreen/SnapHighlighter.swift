@@ -11,42 +11,42 @@ import AppKit
 
 class SnapHighlighter {
     
-    fileprivate var timer_delay_create: Timer // Timer used to delay creation of the highlighting window
-    fileprivate var timer_updater: Timer // Timer used for window updating (.4 seconds)
-    fileprivate var highlight_window: NSWindow? // The actual highlighting window
-    fileprivate var window_dims: (Int, Int, Int, Int) // The dimensions for the hightlighting window
+    fileprivate var creationDelayTimer: Timer // Timer used to delay creation of the highlighting window
+    fileprivate var updateTimer: Timer // Timer used for window updating (.4 seconds)
+    fileprivate var highlightWindow: NSWindow? // The actual highlighting window
+    fileprivate var windowDimensions: (Int, Int, Int, Int) // The dimensions for the hightlighting window
 	
 	
 	/**
 		Inits `SnapHighlighter` with timer vairiables and actual window
 	*/
     init(){
-        timer_delay_create = Timer()
-        timer_updater = Timer()
-        highlight_window = NSWindow()
-        window_dims = (0,0,0,0)
+        creationDelayTimer = Timer()
+        updateTimer = Timer()
+        highlightWindow = NSWindow()
+        windowDimensions = (0,0,0,0)
     }
 	
 	/**
 		Creates and draws the actual window also setting it up to update
 	*/
     func draw_create (){
-        let window_rect = NSRect(x: window_dims.0, y: Int((NSScreen.main?.frame.height)!) - (window_dims.1 + window_dims.3), width: window_dims.2, height: window_dims.3)
+        let window_rect = NSRect(x: windowDimensions.0, y: Int((NSScreen.main?.frame.height)!) - (windowDimensions.1 + windowDimensions.3), width: windowDimensions.2, height: windowDimensions.3)
         
         // The setup for the highlighting window
-        highlight_window = NSWindow(contentRect: window_rect, styleMask: NSWindow.StyleMask(rawValue: UInt(0)), backing: NSWindow.BackingStoreType.nonretained, defer: true)
-        highlight_window?.isOpaque = true
-        highlight_window?.backgroundColor = NSColor.blue
-        highlight_window?.setIsVisible(true)
-        highlight_window?.alphaValue = 0.3
-        highlight_window?.orderFrontRegardless()
+        highlightWindow = NSWindow(contentRect: window_rect, styleMask: NSWindow.StyleMask(rawValue: UInt(0)), backing: NSWindow.BackingStoreType.nonretained, defer: true)
+        highlightWindow?.isOpaque = true
+        highlightWindow?.backgroundColor = NSColor.blue
+        highlightWindow?.setIsVisible(true)
+        highlightWindow?.alphaValue = 0.3
+        highlightWindow?.orderFrontRegardless()
         
         //need to make the window the front most window?
         //want it to be an overlay as opposed to behind the dragged window
         //user needs to be able to see it
         
         // Start updating the window
-        timer_updater = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(highlight_update), userInfo: nil, repeats: true)
+        updateTimer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(highlight_update), userInfo: nil, repeats: true)
         
     }
     
@@ -63,38 +63,38 @@ class SnapHighlighter {
 		Sets up the timer to delay the creation of the window
 	*/
     func delay_update(_ delay: Double){
-        timer_delay_create = Timer.scheduledTimer(timeInterval: delay, target: self, selector: #selector(update_on_delay), userInfo: nil, repeats: false)
+        creationDelayTimer = Timer.scheduledTimer(timeInterval: delay, target: self, selector: #selector(update_on_delay), userInfo: nil, repeats: false)
     }
     
 	/**
 		Stops timer for delayed creation
 	*/
     func kill_delay_create(){
-        timer_delay_create.invalidate()
+        creationDelayTimer.invalidate()
     }
     
 	/**
 		Updates the window for highlighting
 	*/
     @objc func highlight_update(){
-        highlight_window?.update()
+        highlightWindow?.update()
     }
     
 	/**
 		Destroys the window
 	*/
     func draw_destroy (){
-        timer_updater.invalidate()
-        highlight_window?.isOpaque = false
-        highlight_window?.setIsVisible(false)
+        updateTimer.invalidate()
+        highlightWindow?.isOpaque = false
+        highlightWindow?.setIsVisible(false)
     }
     
 	/**
 		Updates the window dimensions
 	*/
     func update_window(_ new_dimensions: (Int, Int, Int, Int)){
-        window_dims = new_dimensions
-        let new_frame = NSRect(x: window_dims.0, y: Int((NSScreen.main?.frame.height)!) - (window_dims.1 + window_dims.3), width: window_dims.2, height: window_dims.3)
-        highlight_window?.setFrame(new_frame, display: true, animate: true)
+        windowDimensions = new_dimensions
+        let new_frame = NSRect(x: windowDimensions.0, y: Int((NSScreen.main?.frame.height)!) - (windowDimensions.1 + windowDimensions.3), width: windowDimensions.2, height: windowDimensions.3)
+        highlightWindow?.setFrame(new_frame, display: true, animate: true)
     }
 }
