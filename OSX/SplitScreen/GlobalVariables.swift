@@ -18,4 +18,4 @@ var layout: SnapLayout = SnapLayout()
 var snapHighlighter: SnapHighlighter = SnapHighlighter()
 
 // Mouse position
-var last_known_mouse_drag: CGPoint?
+var lastKnownMouseDrag: CGPoint?

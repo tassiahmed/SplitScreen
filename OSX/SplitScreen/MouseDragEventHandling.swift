@@ -81,7 +81,7 @@ func start_drawing(){
     drawing = true
     
     //adds the dimensions info so that a window can be created
-    snapHighlighter.update_window(layout.get_snap_dimensions(last_known_mouse_drag!.x, y: last_known_mouse_drag!.y))
+    snapHighlighter.update_window(layout.get_snap_dimensions(lastKnownMouseDrag!.x, y: lastKnownMouseDrag!.y))
     snapHighlighter.draw_create()
 }
 
@@ -93,7 +93,7 @@ func start_drawing(){
 func mouse_dragged_handler(_ event: NSEvent){
     
     //holds a reference to the last position of a drag
-    last_known_mouse_drag = CGPoint(x: event.locationInWindow.x, y: event.locationInWindow.y)
+    lastKnownMouseDrag = CGPoint(x: event.locationInWindow.x, y: event.locationInWindow.y)
     if callback_seen {
         if drawing {
             //if still in a position that requires highlighting
@@ -159,7 +159,7 @@ func moved_callback(_ observer: AXObserver, element: AXUIElement, notificationNa
     // Check if the mouse up handler was executed
     if mouse_seen == false {
         //handle highlighting
-        if drawing == false && layout.is_hardpoint(last_known_mouse_drag!.x, y: last_known_mouse_drag!.y) {
+        if drawing == false && layout.is_hardpoint(lastKnownMouseDrag!.x, y: lastKnownMouseDrag!.y) {
             snapHighlighter = SnapHighlighter()
             start_drawing()
         }
