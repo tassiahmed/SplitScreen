@@ -15,9 +15,9 @@ class ScreenCollection {
 	
 	init() {
 		screens = []
-		for screen in NSScreen.screens()! {
-			let new_screen = Screen.init(screen: screen)
-			screens.append(new_screen)
+		for screen in NSScreen.screens {
+			let newScreen = Screen.init(screen: screen)
+			screens.append(newScreen)
 		}
 	}
 	
@@ -29,15 +29,15 @@ class ScreenCollection {
 		return screens[index]
 	}
 	
-	func setLayoutforScreen(_ index: Int, layout: SnapLayout) {
-		screens[index].setSnapLayout(layout)
+	func setLayoutforScreen(index: Int, layout: NewSnapLayout) {
+		screens[index].setSnapLayout(layout: layout)
 	}
 	
 	func reload() {
 		screens.removeAll()
-		for screen in NSScreen.screens()! {
-			let new_screen = Screen.init(screen: screen)
-			screens.append(new_screen)
+		for screen in NSScreen.screens {
+			let newScreen = Screen.init(screen: screen)
+			screens.append(newScreen)
 		}
 	}
 	
@@ -46,7 +46,7 @@ class ScreenCollection {
 	}
 	
 	func getCurrentScreen(x_coord: Int, y_coord: Int) -> Screen {
-		var current_screen: Screen = Screen()
+		var currentScreen: Screen = Screen()
 		for screen in screens {
 			if x_coord < screen.getOrigin().0 || x_coord > screen.getTopRight().0 {
 				continue
@@ -54,9 +54,10 @@ class ScreenCollection {
 			if y_coord < screen.getOrigin().1 || y_coord > screen.getTopRight().1 {
 				continue
 			}
-			current_screen = screen
+			currentScreen = screen
+			break
 		}
-		return current_screen
+		return currentScreen
 	}
 	
 	func printScreens() {

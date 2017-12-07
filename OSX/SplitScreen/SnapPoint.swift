@@ -140,8 +140,8 @@ class SnapPoint {
 	- Returns: `tuple` of `(Int, Int)` of scale factors for resolution adjustments
 	*/
 	fileprivate func get_scale_factors() -> (Int, Int) {
-		let width_factor = screen_dimensions.0/current_screen.getDimensions().0
-		let height_factor = screen_dimensions.1/current_screen.getDimensions().1
+		let width_factor = screen_dimensions.0/currentScreen.getDimensions().0
+		let height_factor = screen_dimensions.1/currentScreen.getDimensions().1
 		
 		return (width_factor, height_factor)
 	}

@@ -14,7 +14,7 @@ class StatusMenuController: NSObject {
     @IBOutlet weak var statusMenu: NSMenu!
     @IBOutlet weak var MenuTemplates: NSMenu!
     
-    let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
+    let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     
     //***********************************************************************
     
@@ -31,7 +31,7 @@ class StatusMenuController: NSObject {
     }
     
     @IBAction func quitClicked(_ sender: NSMenuItem) {
-        NSApplication.shared().terminate(self)
+        NSApplication.shared.terminate(self)
     }
     
     //***********************************************************************
@@ -39,9 +39,9 @@ class StatusMenuController: NSObject {
     //Selectors for menu items
     
     //When a template is clicked
-    func TemplateClicked(_ send: NSMenuItem?){
+    @objc func TemplateClicked(_ send: NSMenuItem?){
 		
-		file_system.loadLayout(send!.title)
+		fileSystem.loadLayout(send!.title)
 		
 		MenuTemplates.item(at: 0)?.state = NSOffState
 		
@@ -61,7 +61,7 @@ class StatusMenuController: NSObject {
     //***********************************************************************
     
     override func awakeFromNib() {
-        let icon = NSImage(named: "MenuIcons")
+        let icon = NSImage(named: NSImage.Name(rawValue: "MenuIcons"))
         icon?.isTemplate = false // best for dark mode
         statusItem.image = icon
         statusItem.menu = statusMenu

@@ -12,17 +12,17 @@ let DEFAULT: String = "Standard"
 
 
 //File System
-var file_system: FileSystem = FileSystem.init()
+var fileSystem: FileSystem = FileSystem.init()
 
 // Layout currently being used
-var layout: SnapLayout = SnapLayout()
+var layout: NewSnapLayout = NewSnapLayout()
 
 // Display the position of potential window snap
-var snap_highlighter: SnapHighlighter = SnapHighlighter()
+var snapHighlighter: SnapHighlighter = SnapHighlighter()
 
 // Mouse position
-var last_known_mouse_drag: CGPoint?
+var lastKnownMouseDrag: CGPoint?
 
 var screens: ScreenCollection = ScreenCollection.init()
 
-var current_screen: Screen = screens.getMainScreen()
+var currentScreen: Screen = screens.getMainScreen()

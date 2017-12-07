@@ -11,7 +11,7 @@ import AppKit
 
 class Screen {
 	
-	fileprivate var snapLayout: SnapLayout
+	fileprivate var snapLayout: NewSnapLayout
 	fileprivate var bottomLeft, dimensions, topRight: (Int, Int)
 	
 	init() {
@@ -28,11 +28,11 @@ class Screen {
 		topRight = (bottomLeft.0 + dimensions.0, bottomLeft.1 + dimensions.1)
 	}
 	
-	func setSnapLayout(_ layout: SnapLayout) {
+	func setSnapLayout(layout: NewSnapLayout) {
 		snapLayout = layout
 	}
 	
-	func getLayout() -> SnapLayout {
+	func getLayout() -> NewSnapLayout {
 		return snapLayout
 	}
 	
@@ -48,11 +48,11 @@ class Screen {
 		return topRight
 	}
 	
-	func getWidthFraction(_ dividend: Int) -> Int {
+	func getWidthFraction(dividend: Int) -> Int {
 		return (bottomLeft.0 + topRight.0)/dividend
 	}
 	
-	func getHeightFraction(_ dividend: Int) -> Int {
+	func getHeightFraction(dividend: Int) -> Int {
 		return (bottomLeft.1 + topRight.1)/dividend
 	}
 	

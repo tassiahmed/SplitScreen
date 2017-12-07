@@ -8,8 +8,8 @@
 
 import Foundation
 
-class NewSnapPoint {
-	fileprivate var snapArea: ((Int, Int), (Int, Int))
+class NewSnapArea {
+	fileprivate var area: ((Int, Int), (Int, Int))
 	fileprivate var screenDimensions, snapDimensions, snapLocation: (Int, Int)
 	
 	/**
@@ -23,11 +23,11 @@ class NewSnapPoint {
 	
 		- Parameter snapLocation: The location of the window upon snapping
 	*/
-	init(snapArea: ( (Int, Int), (Int, Int) ),
+	init(area: ( (Int, Int), (Int, Int) ),
 	     screenDimensions: (Int, Int),
 	     snapDimensions: (Int, Int),
 	     snapLocation: (Int, Int)) {
-		self.snapArea = snapArea
+		self.area = area
 		self.screenDimensions = screenDimensions
 		self.snapDimensions = snapDimensions
 		self.snapLocation = snapLocation
@@ -45,10 +45,10 @@ class NewSnapPoint {
 	func inSnapArea(x: Int, y: Int) -> Bool {
 		updateAllPoints()
 		
-		if x < snapArea.0.0 || x > snapArea.1.0 {
+		if x < area.0.0 || x > area.1.0 {
 			return false
 		}
-		if y < snapArea.0.1 || y > snapArea.1.1 {
+		if y < area.0.1 || y > area.1.1 {
 			return false
 		}
 		return true
@@ -99,10 +99,10 @@ class NewSnapPoint {
 			return
 		}
 		
-		snapArea.0.0 *= widthScalar
-		snapArea.0.1 *= heightScalar
-		snapArea.1.0 *= widthScalar
-		snapArea.1.1 *= heightScalar
+		area.0.0 *= widthScalar
+		area.0.1 *= heightScalar
+		area.1.0 *= widthScalar
+		area.1.1 *= heightScalar
 		
 		screenDimensions.0 *= widthScalar
 		screenDimensions.1 *= heightScalar

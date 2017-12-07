@@ -18,8 +18,8 @@ class SnapLayout {
 		according the standard layout
 	*/
     func standard_layout(){
-        HEIGHT = Int((NSScreen.main()?.frame.height)!)
-        WIDTH = Int((NSScreen.main()?.frame.width)!)
+        HEIGHT = Int((NSScreen.main?.frame.height)!)
+        WIDTH = Int((NSScreen.main?.frame.width)!)
 		
         // Hardcoded Windows 10 Aero Snap
 		let top_left: SnapPoint = SnapPoint.init(screen_dim: (WIDTH, HEIGHT),
@@ -186,7 +186,7 @@ class SnapLayout {
 		return retString
 	}
     
-    let menu = NSApplication.shared().mainMenu
-    fileprivate var HEIGHT: Int = Int((NSScreen.main()?.frame.height)!)
-    fileprivate var WIDTH: Int = Int((NSScreen.main()?.frame.width)!)
+    let menu = NSApplication.shared.mainMenu
+    fileprivate var HEIGHT: Int = Int((NSScreen.main?.frame.height)!)
+    fileprivate var WIDTH: Int = Int((NSScreen.main?.frame.width)!)
 }

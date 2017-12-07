@@ -14,18 +14,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	func applicationDidFinishLaunching(_ aNotification: Notification){
 		
 		// Will create files for the basic templates if they don't exist
-		file_system.createBasicLayouts()
+		fileSystem.createBasicLayouts()
 		
-        // Loads a layout using a file location (blank string for testing)
-		file_system.loadLayout(DEFAULT)
+		// Loads a layout using a file location (blank string for testing)
+		fileSystem.loadLayout(DEFAULT)
 		
 		
 //		screens.printScreens()
 		
         // Setup a global listener for mouse drag events
-        NSEvent.addGlobalMonitorForEvents(matching: NSEventMask.leftMouseUp, handler: mouse_up_handler)
-        NSEvent.addGlobalMonitorForEvents(matching: NSEventMask.leftMouseDown, handler: mouse_down_handler)
-		NSEvent.addGlobalMonitorForEvents(matching: NSEventMask.leftMouseDragged, handler: mouse_dragged_handler)
+        NSEvent.addGlobalMonitorForEvents(matching: NSEvent.EventTypeMask.leftMouseUp, handler: mouse_up_handler)
+        NSEvent.addGlobalMonitorForEvents(matching: NSEvent.EventTypeMask.leftMouseDown, handler: mouse_down_handler)
+		NSEvent.addGlobalMonitorForEvents(matching: NSEvent.EventTypeMask.leftMouseDragged, handler: mouse_dragged_handler)
     }
 
 	func applicationWillTerminate(_ aNotification: Notification) {
@@ -104,7 +104,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	            dict[NSUnderlyingErrorKey] = error
 	        }
 	        error = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
-	        NSApplication.shared().presentError(error!)
+	        NSApplication.shared.presentError(error!)
 	        return nil
 	    } else {
 	        return coordinator
@@ -136,7 +136,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     try moc.save()
                 } catch let error1 as NSError {
                     error = error1
-	                NSApplication.shared().presentError(error!)
+	                NSApplication.shared.presentError(error!)
 	            }
             }
 	    }
@@ -151,7 +151,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	    }
 	}
 
-	func applicationShouldTerminate(_ sender: NSApplication) -> NSApplicationTerminateReply {
+	func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
 	    // Save changes in the application's managed object context before the application terminates.
 	    
 	    if let moc = managedObjectContext {
@@ -186,7 +186,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	            alert.addButton(withTitle: cancelButton)
 	            
 	            let answer = alert.runModal()
-	            if answer == NSAlertFirstButtonReturn {
+	            if answer == NSApplication.ModalResponse.alertFirstButtonReturn {
 	                return .terminateCancel
 	            }
 	        }
