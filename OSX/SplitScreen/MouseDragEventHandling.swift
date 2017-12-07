@@ -24,7 +24,7 @@ private var callback_executed: Bool = false
 	- Returns: The pid that is the top application
 */
 func get_focused_pid() -> pid_t{
-    let info = NSWorkspace.shared().frontmostApplication
+    let info = NSWorkspace.shared.frontmostApplication
 	
 	// If the focused app is `SplitScreen` return a `pid` of 0
     if(info == NSRunningApplication()){

@@ -139,8 +139,8 @@ class SnapPoint {
 	- Returns: `tuple` of `(Int, Int)` of sacle factors for resolution adjustments
 	*/
 	fileprivate func get_scale_factors() -> (Int, Int) {
-		let width_factor = CGFloat(screen_dimensions.0)/(NSScreen.main()?.frame.width)!
-		let height_factor = CGFloat(screen_dimensions.1)/(NSScreen.main()?.frame.height)!
+		let width_factor = CGFloat(screen_dimensions.0)/(NSScreen.main?.frame.width)!
+		let height_factor = CGFloat(screen_dimensions.1)/(NSScreen.main?.frame.height)!
 		
 		return (Int(width_factor), Int(height_factor))
 	}

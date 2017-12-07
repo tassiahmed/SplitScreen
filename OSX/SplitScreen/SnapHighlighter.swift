@@ -31,10 +31,10 @@ class SnapHighlighter {
 		Creates and draws the actual window also setting it up to update
 	*/
     func draw_create (){
-        let window_rect = NSRect(x: window_dims.0, y: Int((NSScreen.main()?.frame.height)!) - (window_dims.1 + window_dims.3), width: window_dims.2, height: window_dims.3)
+        let window_rect = NSRect(x: window_dims.0, y: Int((NSScreen.main?.frame.height)!) - (window_dims.1 + window_dims.3), width: window_dims.2, height: window_dims.3)
         
         // The setup for the highlighting window
-        highlight_window = NSWindow(contentRect: window_rect, styleMask: NSWindowStyleMask(rawValue: UInt(0)), backing: NSBackingStoreType.nonretained, defer: true)
+        highlight_window = NSWindow(contentRect: window_rect, styleMask: NSWindow.StyleMask(rawValue: UInt(0)), backing: NSWindow.BackingStoreType.nonretained, defer: true)
         highlight_window?.isOpaque = true
         highlight_window?.backgroundColor = NSColor.blue
         highlight_window?.setIsVisible(true)
@@ -94,7 +94,7 @@ class SnapHighlighter {
 	*/
     func update_window(_ new_dimensions: (Int, Int, Int, Int)){
         window_dims = new_dimensions
-        let new_frame = NSRect(x: window_dims.0, y: Int((NSScreen.main()?.frame.height)!) - (window_dims.1 + window_dims.3), width: window_dims.2, height: window_dims.3)
+        let new_frame = NSRect(x: window_dims.0, y: Int((NSScreen.main?.frame.height)!) - (window_dims.1 + window_dims.3), width: window_dims.2, height: window_dims.3)
         highlight_window?.setFrame(new_frame, display: true, animate: true)
     }
 }
