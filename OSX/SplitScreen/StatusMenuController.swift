@@ -41,7 +41,7 @@ class StatusMenuController: NSObject {
     //When a template is clicked
     @objc func TemplateClicked(_ send: NSMenuItem?){
 		
-		file_system.loadLayout(send!.title)
+		fileSystem.loadLayout(send!.title)
 		
 		MenuTemplates.item(at: 0)?.state = NSControl.StateValue.off
 		

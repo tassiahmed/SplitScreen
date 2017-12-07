@@ -9,7 +9,7 @@
 import Foundation
 
 //File System
-var file_system: FileSystem = FileSystem.init()
+var fileSystem: FileSystem = FileSystem.init()
 
 // Layout currently being used
 var layout: SnapLayout = SnapLayout()

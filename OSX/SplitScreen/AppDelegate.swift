@@ -10,15 +10,15 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-	
+
 	func applicationDidFinishLaunching(_ aNotification: Notification){
-		
+
 		// Will create files for the basic templates if they don't exist
-		file_system.createBasicLayouts()
-		
+		fileSystem.createBasicLayouts()
+
         // Loads a layout using a file location (blank string for testing)
-		file_system.loadLayout("Standard")
-		
+		fileSystem.loadLayout("Standard")
+
         // Setup a global listener for mouse drag events
         NSEvent.addGlobalMonitorForEvents(matching: NSEvent.EventTypeMask.leftMouseUp, handler: mouse_up_handler)
         NSEvent.addGlobalMonitorForEvents(matching: NSEvent.EventTypeMask.leftMouseDown, handler: mouse_down_handler)
@@ -28,13 +28,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	func applicationWillTerminate(_ aNotification: Notification) {
 		// Insert code here to tear down your application
 	}
-	
+
 	// MARK: - Core Data stack
 
 	lazy var applicationDocumentsDirectory: URL = {
 	    // The directory the application uses to store the Core Data store file. This code uses a directory named "SplitScreen.SplitScreen" in the user's Application Support directory.
 	    let urls = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)
-	    let appSupportURL = urls[urls.count - 1] 
+	    let appSupportURL = urls[urls.count - 1]
 	    return appSupportURL.appendingPathComponent("SplitScreen.SplitScreen")
 	}()
 
@@ -76,7 +76,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 fatalError()
             }
 	    }
-	    
+
 	    // Create the coordinator and store
 	    var coordinator: NSPersistentStoreCoordinator?
 	    if !shouldFail && (error == nil) {
@@ -91,7 +91,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 fatalError()
             }
 	    }
-	    
+
 	    if shouldFail || (error != nil) {
 	        // Report any error we got.
 	        var dict = [String: AnyObject]()
@@ -150,17 +150,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 	func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
 	    // Save changes in the application's managed object context before the application terminates.
-	    
+
 	    if let moc = managedObjectContext {
 	        if !moc.commitEditing() {
 	            NSLog("\(NSStringFromClass(type(of: self))) unable to commit editing to terminate")
 	            return .terminateCancel
 	        }
-	        
+
 	        if !moc.hasChanges {
 	            return .terminateNow
 	        }
-	        
+
 	        var error: NSError? = nil
 	        do {
                 try moc.save()
@@ -171,7 +171,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	            if (result) {
 	                return .terminateCancel
 	            }
-	            
+
 	            let question = NSLocalizedString("Could not save changes while quitting. Quit anyway?", comment: "Quit without saves error question message")
 	            let info = NSLocalizedString("Quitting now will lose any changes you have made since the last successful save", comment: "Quit without saves error question info");
 	            let quitButton = NSLocalizedString("Quit anyway", comment: "Quit anyway button title")
@@ -181,7 +181,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	            alert.informativeText = info
 	            alert.addButton(withTitle: quitButton)
 	            alert.addButton(withTitle: cancelButton)
-	            
+
 	            let answer = alert.runModal()
 	            if answer == NSApplication.ModalResponse.alertFirstButtonReturn {
 	                return .terminateCancel
@@ -193,4 +193,3 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 
 }
-
