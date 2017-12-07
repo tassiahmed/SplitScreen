@@ -15,7 +15,7 @@ var fileSystem: FileSystem = FileSystem.init()
 var layout: SnapLayout = SnapLayout()
 
 // Display the position of potential window snap
-var snap_highlighter: SnapHighlighter = SnapHighlighter()
+var snapHighlighter: SnapHighlighter = SnapHighlighter()
 
 // Mouse position
 var last_known_mouse_drag: CGPoint?

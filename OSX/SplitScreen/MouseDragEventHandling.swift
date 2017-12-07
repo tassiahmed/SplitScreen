@@ -81,8 +81,8 @@ func start_drawing(){
     drawing = true
     
     //adds the dimensions info so that a window can be created
-    snap_highlighter.update_window(layout.get_snap_dimensions(last_known_mouse_drag!.x, y: last_known_mouse_drag!.y))
-    snap_highlighter.draw_create()
+    snapHighlighter.update_window(layout.get_snap_dimensions(last_known_mouse_drag!.x, y: last_known_mouse_drag!.y))
+    snapHighlighter.draw_create()
 }
 
 /**
@@ -98,17 +98,17 @@ func mouse_dragged_handler(_ event: NSEvent){
         if drawing {
             //if still in a position that requires highlighting
             if layout.is_hardpoint(event.locationInWindow.x, y: event.locationInWindow.y) {
-                snap_highlighter.update_window(layout.get_snap_dimensions(event.locationInWindow.x, y: event.locationInWindow.y))
+                snapHighlighter.update_window(layout.get_snap_dimensions(event.locationInWindow.x, y: event.locationInWindow.y))
                 print(layout.get_snap_dimensions(event.locationInWindow.x, y: event.locationInWindow.y))
             }else{
-                snap_highlighter.draw_destroy()
+                snapHighlighter.draw_destroy()
                 drawing = false
             }
         }else if layout.is_hardpoint(event.locationInWindow.x, y: event.locationInWindow.y) {
             drawing = true
             //prevents annoying immediate display during quick motions
             //also prevents lag on highligh window creation
-            snap_highlighter.delay_update(0.2)
+            snapHighlighter.delay_update(0.2)
         }
     }
 }
@@ -126,8 +126,8 @@ func mouse_up_handler(_ event: NSEvent) {
     
     if drawing {
         //end the drawing
-        snap_highlighter.kill_delay_create()
-        snap_highlighter.draw_destroy()
+        snapHighlighter.kill_delay_create()
+        snapHighlighter.draw_destroy()
         drawing = false
     }
     
@@ -160,7 +160,7 @@ func moved_callback(_ observer: AXObserver, element: AXUIElement, notificationNa
     if mouse_seen == false {
         //handle highlighting
         if drawing == false && layout.is_hardpoint(last_known_mouse_drag!.x, y: last_known_mouse_drag!.y) {
-            snap_highlighter = SnapHighlighter()
+            snapHighlighter = SnapHighlighter()
             start_drawing()
         }
         

@@ -55,8 +55,8 @@ class SnapHighlighter {
 	*/
     @objc func update_on_delay() {
         // Adds the dimensions info so that a window can be created
-        snap_highlighter.update_window(layout.get_snap_dimensions(last_known_mouse_drag!.x, y: last_known_mouse_drag!.y))
-        snap_highlighter.draw_create()
+        snapHighlighter.update_window(layout.get_snap_dimensions(last_known_mouse_drag!.x, y: last_known_mouse_drag!.y))
+        snapHighlighter.draw_create()
     }
     
 	/**
