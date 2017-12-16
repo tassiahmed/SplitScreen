@@ -6,8 +6,6 @@
 //  Copyright © 2017 SplitScreen. All rights reserved.
 //
 
-import Foundation
-
 class SnapArea {
 
 	private var area: ((Int, Int), (Int, Int))
@@ -33,9 +31,7 @@ class SnapArea {
 			Determines if `(x, y)` pair is in the `SnapArea`
 
 			- Parameter x: `x` coordinate
-
 			- Parameter y: `y` coordinate
-
 			- Returns: `true` if the point `(x, y)` falls in the `SnapArea`; `false` otherwise
 	*/
 	func inSnapArea(x: Int, y: Int) -> Bool {
@@ -67,11 +63,34 @@ class SnapArea {
 	}
 
 	/**
-			- Returns: `tuple` of `(Int, Int)` SnapPoint's corresponding `Screen` dimensions
+			- Returns: `tuple` of `(Int, Int)` SnapArea's corresponding `Screen` dimensions
 	*/
 	func getScreenDimension() -> (Int, Int) {
 		updatePoints()
 		return (screenDimensions.0, screenDimensions.1)
+	}
+
+	func toString() -> String {
+		var result: String = String()
+
+		result += getScalarString(denom: snapDimensions.0, numer: screenDimensions.0, numerString: "WIDTH")
+		result.append(",")
+
+		result += getScalarString(denom: snapDimensions.1, numer: screenDimensions.1, numerString: "HEIGHT")
+		result.append(",")
+
+		result += getScalarString(denom: snapLocation.0, numer: screenDimensions.0, numerString: "WIDTH")
+		result.append(",")
+
+		result += getScalarString(denom: snapLocation.1, numer: screenDimensions.1, numerString: "HEIGHT")
+		result.append(",")
+
+		result += getTupleString(tuple: area.0)
+		result.append(":")
+
+		result += getTupleString(tuple: area.1)
+		
+		return result
 	}
 
 	//*************************************************
@@ -83,6 +102,34 @@ class SnapArea {
 	*/
 	private func getDimensionScalars() -> (Int, Int) {
 		return (1, 1)
+	}
+
+	/**
+	Returns a `String` representation of 'numer/denom' with `numerString` replacing
+	`numer` in the result
+
+	- Parameter denom: `Int` that is a variable value of the SnapPoint
+	- Parameter numer: `Int` that corresponds to either the screen's width or height
+	- Parameter numerString: `String` representation of the `original` value; either WIDTH or HEIGHT
+	- Returns: `String` that represents the scalar between 'numer' and 'denom'
+	*/
+	private func getScalarString(denom: Int, numer: Int, numerString: String) -> String {
+		switch denom {
+		case 0:
+			return String(denom)
+		case numer:
+			return numerString
+		default:
+			let scale = Int(float_t(numer)/float_t(denom))
+			return "\(numerString)/\(scale)"
+		}
+	}
+
+	private func getTupleString(tuple: (Int, Int)) -> String {
+		let scalarX = getScalarString(denom: tuple.0, numer: screenDimensions.0, numerString: "WIDTH")
+		let scalarY = getScalarString(denom: tuple.1, numer: screenDimensions.1, numerString: "HEIGHT")
+
+		return "(\(scalarX);\(scalarY))"
 	}
 
 	/**

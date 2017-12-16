@@ -10,27 +10,27 @@ import Foundation
 import AppKit
 
 class FileSystem {
-	
+
 	fileprivate var fileManager: FileManager
 	fileprivate var dirPath: URL
 	fileprivate var files: [File]
 	fileprivate let pathExtension = ".lao"
 	let HEIGHT = Int((NSScreen.main?.frame.height)!)
 	let WIDTH = Int((NSScreen.main?.frame.width)!)
-	
+
 	/**
 		Inits `FileSystem` with default `NSFileManager`, retrieves current directory path, and
 		retrieves all currently existing `SnapLayout` files that exist in the directory
 	*/
 	init() {
 		fileManager = FileManager.default
-		
+
 		let appDelegate = NSApplication.shared.delegate as! AppDelegate
 		dirPath = appDelegate.applicationDocumentsDirectory as URL
 		files = [File]()
 		self.getAllLayoutFiles()
 	}
-	
+
 	/**
 		Checks to see if the the basic `SnapLayout` files are in the document directory and
 		if not, then they are created and added to the directory
@@ -40,31 +40,31 @@ class FileSystem {
 		if files.index(of: file) == nil {
 			layout.load("standard")
 			let content: String = layout.toString()
-			
+
 			do {
 				try content.write(toFile: file.getPathString(), atomically: false, encoding: String.Encoding.utf8)
 			} catch _ {
 				print("Could not write to \(file.getFileName()))")
 			}
-			
+
 			files.append(file)
 		}
-		
+
 		file = File(dirPath: dirPath, name: "Horizontal.lao")
 		if files.index(of: file) == nil {
 			layout.load("horizontal")
 			let content: String = layout.toString()
-			
+
 			do {
 				try content.write(toFile: file.getPathString(), atomically: false, encoding: String.Encoding.utf8)
 			} catch _ {
 				print("Could not write to \(file.getFileName()))")
 			}
-			
+
 			files.append(file)
 		}
 	}
-	
+
 	/**
 		Reads out all the layouts that are currently in the `FileSystem`
 	*/
@@ -74,11 +74,11 @@ class FileSystem {
 			print("******************")
 		}
 	}
-	
-	
+
+
 	/**
 		Load the `SnapLayout` file with the same name as `file_name`
-	
+
 		- Parameter file_name: `String` that corresponds to the speciic name of a `SnapLayout` fle
 	*/
 	func loadLayout(_ file_name: String) {
@@ -98,10 +98,10 @@ class FileSystem {
 			layout.snap_points.append(snap)
 		}
 	}
-	
+
 	/**
 		Saves the settings of the current layout to new `File` with the name `name`
-	
+
 		- Parameter name: `String` that corresponds to the new name of the `File`
 	*/
 	func saveLayout(_ name: String) {
@@ -117,7 +117,7 @@ class FileSystem {
 			files.append(file)
 		}
 	}
-	
+
 	/**
 		Get all the files that are located in the current documents directory
 	*/
@@ -138,5 +138,5 @@ class FileSystem {
             }
         }
 	}
-	
+
 }
