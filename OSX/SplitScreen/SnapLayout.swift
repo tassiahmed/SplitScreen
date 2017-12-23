@@ -16,6 +16,8 @@ class SnapLayout {
 	private var HEIGHT: Int = Int((NSScreen.main?.frame.height)!)
 	private var WIDTH: Int = Int((NSScreen.main?.frame.width)!)
 
+	// MARK: - New Methods
+
 	func standardLayout() {
 		HEIGHT = Int((NSScreen.main?.frame.height)!)
 		WIDTH = Int((NSScreen.main?.frame.width)!)
@@ -63,6 +65,77 @@ class SnapLayout {
 																 snapLocation: (0, 0))
 		snapAreas.append(top)
 	}
+
+	func horizontalLayout() {
+		let leftUpper: SnapArea = SnapArea(area: ((0, HEIGHT/2), (0, HEIGHT)),
+																					screenDimensions: (WIDTH, HEIGHT),
+																					snapDimensions: (WIDTH, HEIGHT/2),
+																					snapLocation: (0, HEIGHT/2))
+		snapAreas.append(leftUpper)
+
+		let leftLower: SnapArea = SnapArea(area: ((0, 0), (0, HEIGHT/2)),
+																			 screenDimensions: (WIDTH, HEIGHT),
+																			 snapDimensions: (WIDTH, HEIGHT/2),
+																			 snapLocation: (0, 0))
+		snapAreas.append(leftLower)
+
+		let rightUpper: SnapArea = SnapArea(area: ((WIDTH, HEIGHT/2), (WIDTH, HEIGHT)),
+																				 screenDimensions: (WIDTH, HEIGHT),
+																				 snapDimensions: (WIDTH,HEIGHT/2),
+																				 snapLocation: (0, HEIGHT/2))
+		snapAreas.append(rightUpper)
+
+		let rightLower: SnapArea = SnapArea(area: ((WIDTH, 0), (WIDTH, HEIGHT/2)),
+																				screenDimensions: (WIDTH, HEIGHT),
+																				snapDimensions: (WIDTH, HEIGHT/2),
+																				snapLocation: (0, 0))
+		snapAreas.append(rightLower)
+	}
+
+	func loadLayout(templateName: String) {
+		snapAreas.removeAll()
+
+		switch templateName {
+		case "standard":
+			standardLayout()
+		case "horizontal":
+			horizontalLayout()
+		default:
+			standardLayout()
+		}
+	}
+
+	func isHardPoint(x: CGFloat, y: CGFloat) -> Bool {
+		for snapArea in snapAreas {
+			if snapArea.inSnapArea(x: Int(x), y: Int(y)) {
+				return true
+			}
+		}
+
+		return false
+	}
+
+	func getSnapWindow(x: CGFloat, y: CGFloat) -> ((Int, Int), (Int, Int)) {
+		for snapArea in snapAreas {
+			if snapArea.inSnapArea(x: Int(x), y: Int(y)) {
+				return (snapArea.getSnapLocation(), snapArea.getSnapDimensions())
+			}
+		}
+
+		return ((-1, -1), (-1, -1))
+	}
+
+	func toString() -> String {
+		var result: String = String()
+		for snapArea in snapAreas {
+			result += snapArea.toString()
+		}
+
+		return result
+	}
+
+	
+	// MARK: - Old Methods
 
 	/**
 		Creates `SnapPoint` objects and adds them to the SnapLayout in order to make it behave
@@ -124,32 +197,6 @@ class SnapLayout {
 		snap_points.append(top)
 	}
 
-	func horizontalLayout() {
-		let leftUpper: SnapArea = SnapArea(area: ((0, HEIGHT/2), (0, HEIGHT)),
-																					screenDimensions: (WIDTH, HEIGHT),
-																					snapDimensions: (WIDTH, HEIGHT/2),
-																					snapLocation: (0, HEIGHT/2))
-		snapAreas.append(leftUpper)
-
-		let leftLower: SnapArea = SnapArea(area: ((0, 0), (0, HEIGHT/2)),
-																			 screenDimensions: (WIDTH, HEIGHT),
-																			 snapDimensions: (WIDTH, HEIGHT/2),
-																			 snapLocation: (0, 0))
-		snapAreas.append(leftLower)
-
-		let rightUpper: SnapArea = SnapArea(area: ((WIDTH, HEIGHT/2), (WIDTH, HEIGHT)),
-																				 screenDimensions: (WIDTH, HEIGHT),
-																				 snapDimensions: (WIDTH,HEIGHT/2),
-																				 snapLocation: (0, HEIGHT/2))
-		snapAreas.append(rightUpper)
-
-		let rightLower: SnapArea = SnapArea(area: ((WIDTH, 0), (WIDTH, HEIGHT/2)),
-																				screenDimensions: (WIDTH, HEIGHT),
-																				snapDimensions: (WIDTH, HEIGHT/2),
-																				snapLocation: (0, 0))
-		snapAreas.append(rightLower)
-	}
-
 	/**
 		Creates `SnapPoint` objects and adds them to the SnapLayout in order to make it behave
 		according the horizontal layout
@@ -183,19 +230,6 @@ class SnapLayout {
 		snap_points.append(right_lower)
   }
 
-	func loadLayout(templateName: String) {
-		snapAreas.removeAll()
-
-		switch templateName {
-		case "standard":
-			standardLayout()
-		case "horizontal":
-			horizontalLayout()
-		default:
-			standardLayout()
-		}
-	}
-
 	/**
 		Loads a file at `file_path` with preset hardpoints
 
@@ -211,16 +245,6 @@ class SnapLayout {
 			horizontal_layout()
     }
   }
-
-	func isHardPoint(x: CGFloat, y: CGFloat) -> Bool {
-		for snapArea in snapAreas {
-			if snapArea.inSnapArea(x: Int(x), y: Int(y)) {
-				return true
-			}
-		}
-
-		return false
-	}
 
 	/**
 		Checks to see if the given `x` and `y` points are hardpoints
@@ -241,16 +265,6 @@ class SnapLayout {
 		}
 
 		return false
-	}
-
-	func getSnapWindow(x: CGFloat, y: CGFloat) -> ((Int, Int), (Int, Int)) {
-		for snapArea in snapAreas {
-			if snapArea.inSnapArea(x: Int(x), y: Int(y)) {
-				return (snapArea.getSnapLocation(), snapArea.getSnapDimensions())
-			}
-		}
-
-		return ((-1, -1), (-1, -1))
 	}
 
 	/**
@@ -276,15 +290,6 @@ class SnapLayout {
 
 		// Should never reach this point
     return (-1,-1,-1,-1)
-	}
-
-	func toString() -> String {
-		var result: String = String()
-		for snapArea in snapAreas {
-			result += snapArea.toString()
-		}
-
-		return result
 	}
 
 	/**
