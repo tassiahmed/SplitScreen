@@ -130,26 +130,26 @@ class SnapLayout {
 																					snapDimensions: (WIDTH, HEIGHT/2),
 																					snapLocation: (0, HEIGHT/2))
 		snapAreas.append(leftUpper)
-		
+
 		let leftLower: SnapArea = SnapArea(area: ((0, 0), (0, HEIGHT/2)),
 																			 screenDimensions: (WIDTH, HEIGHT),
 																			 snapDimensions: (WIDTH, HEIGHT/2),
 																			 snapLocation: (0, 0))
 		snapAreas.append(leftLower)
-		
+
 		let rightUpper: SnapArea = SnapArea(area: ((WIDTH, HEIGHT/2), (WIDTH, HEIGHT)),
 																				 screenDimensions: (WIDTH, HEIGHT),
 																				 snapDimensions: (WIDTH,HEIGHT/2),
 																				 snapLocation: (0, HEIGHT/2))
 		snapAreas.append(rightUpper)
-		
+
 		let rightLower: SnapArea = SnapArea(area: ((WIDTH, 0), (WIDTH, HEIGHT/2)),
 																				screenDimensions: (WIDTH, HEIGHT),
 																				snapDimensions: (WIDTH, HEIGHT/2),
 																				snapLocation: (0, 0))
 		snapAreas.append(rightLower)
 	}
-	
+
 	/**
 		Creates `SnapPoint` objects and adds them to the SnapLayout in order to make it behave
 		according the horizontal layout
@@ -185,7 +185,7 @@ class SnapLayout {
 
 	func loadLayout(templateName: String) {
 		snapAreas.removeAll()
-		
+
 		switch templateName {
 		case "standard":
 			standardLayout()
@@ -195,7 +195,7 @@ class SnapLayout {
 			standardLayout()
 		}
 	}
-	
+
 	/**
 		Loads a file at `file_path` with preset hardpoints
 
@@ -221,7 +221,7 @@ class SnapLayout {
 
 		return false
 	}
-	
+
 	/**
 		Checks to see if the given `x` and `y` points are hardpoints
 
@@ -249,10 +249,10 @@ class SnapLayout {
 				return (snapArea.getSnapLocation(), snapArea.getSnapDimensions())
 			}
 		}
-		
+
 		return ((-1, -1), (-1, -1))
 	}
-	
+
 	/**
 		Get the new dimensions for a dragged window
 
@@ -278,21 +278,21 @@ class SnapLayout {
     return (-1,-1,-1,-1)
 	}
 
-	func toStringV2() -> String {
+	func toString() -> String {
 		var result: String = String()
 		for snapArea in snapAreas {
 			result += snapArea.toString()
 		}
-		
+
 		return result
 	}
-	
+
 	/**
 		Creates and returns a string representation of the SnapLayout
 
 		- Returns: `String` which represents the SnapLayout
 	*/
-	func toString() -> String {
+	func to_string() -> String {
 		var retString: String = String()
 		for snap_point in snap_points {
 			retString = retString + snap_point.to_string()

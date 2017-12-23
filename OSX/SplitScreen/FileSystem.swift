@@ -39,7 +39,7 @@ class FileSystem {
 		var file = File(dirPath: dirPath, name: "Standard.lao")
 		if files.index(of: file) == nil {
 			layout.load("standard")
-			let content: String = layout.toString()
+			let content: String = layout.to_string()
 
 			do {
 				try content.write(toFile: file.getPathString(), atomically: false, encoding: String.Encoding.utf8)
@@ -53,7 +53,7 @@ class FileSystem {
 		file = File(dirPath: dirPath, name: "Horizontal.lao")
 		if files.index(of: file) == nil {
 			layout.load("horizontal")
-			let content: String = layout.toString()
+			let content: String = layout.to_string()
 
 			do {
 				try content.write(toFile: file.getPathString(), atomically: false, encoding: String.Encoding.utf8)
@@ -106,7 +106,7 @@ class FileSystem {
 	*/
 	func saveLayout(_ name: String) {
 		let file = File(dirPath: dirPath, name: name + pathExtension)
-		let content = layout.toString()
+		let content = layout.to_string()
 
 		do {
 			try content.write(toFile: file.getPathString(), atomically: false, encoding: String.Encoding.utf8)
