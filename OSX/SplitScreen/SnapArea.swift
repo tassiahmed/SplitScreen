@@ -89,7 +89,8 @@ class SnapArea {
 		result.append(":")
 
 		result += getTupleString(tuple: area.1)
-		
+		result.append("\n" as Character)
+
 		return result
 	}
 

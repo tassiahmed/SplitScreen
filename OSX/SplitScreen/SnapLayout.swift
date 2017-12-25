@@ -11,8 +11,8 @@ import AppKit
 
 class SnapLayout {
 	var snap_points = [SnapPoint]()
-	var snapAreas = [SnapArea]()
 	let menu = NSApplication.shared.mainMenu
+	private var snapAreas = [SnapArea]()
 	private var HEIGHT: Int = Int((NSScreen.main?.frame.height)!)
 	private var WIDTH: Int = Int((NSScreen.main?.frame.width)!)
 
@@ -92,6 +92,14 @@ class SnapLayout {
 		snapAreas.append(rightLower)
 	}
 
+	func addArea(area: SnapArea) {
+		snapAreas.append(area)
+	}
+	
+	func clearLayout() {
+		snapAreas.removeAll()
+	}
+	
 	func loadLayout(templateName: String) {
 		snapAreas.removeAll()
 
@@ -134,7 +142,6 @@ class SnapLayout {
 		return result
 	}
 
-	
 	// MARK: - Old Methods
 
 	/**
@@ -276,7 +283,7 @@ class SnapLayout {
 
 		- Returns: `tuple` of 4 `Ints` that correspond to the dragged windows four corners
 	*/
-  func get_snap_dimensions(_ x: CGFloat, y: CGFloat) ->(Int,Int,Int,Int) {
+  func get_snap_dimensions(_ x: CGFloat, y: CGFloat) ->(Int, Int, Int, Int) {
 		let x_i:Int = Int(x + 0.5)
 		let y_i:Int = Int(y + 0.5)
 

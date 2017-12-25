@@ -38,8 +38,9 @@ class FileSystem {
 	func createBasicLayouts() {
 		var file = File(dirPath: dirPath, name: "Standard.lao")
 		if files.index(of: file) == nil {
-			layout.load("standard")
-			let content: String = layout.to_string()
+//			layout.load("standard")
+			layout.loadLayout(templateName: "standard")
+			let content: String = layout.toString()
 
 			do {
 				try content.write(toFile: file.getPathString(), atomically: false, encoding: String.Encoding.utf8)
@@ -52,8 +53,9 @@ class FileSystem {
 
 		file = File(dirPath: dirPath, name: "Horizontal.lao")
 		if files.index(of: file) == nil {
-			layout.load("horizontal")
-			let content: String = layout.to_string()
+//			layout.load("horizontal")
+			layout.loadLayout(templateName: "horizontal")
+			let content: String = layout.toString()
 
 			do {
 				try content.write(toFile: file.getPathString(), atomically: false, encoding: String.Encoding.utf8)
@@ -70,11 +72,10 @@ class FileSystem {
 	*/
 	func readLayouts() {
 		for file in files {
-			print(file.parseFileContent(HEIGHT, width: WIDTH))
+			print(file.parseFileContent(height: HEIGHT, width: WIDTH))
 			print("******************")
 		}
 	}
-
 
 	/**
 		Load the `SnapLayout` file with the same name as `file_name`
@@ -86,16 +87,25 @@ class FileSystem {
 		if files.index(of: file) == nil {
 			return
 		}
-		let snap_points = file.parseFileContent(HEIGHT, width: WIDTH)
-		layout.snap_points.removeAll()
-		for snap_point in snap_points {
-//			let snap: SnapPoint = SnapPoint.init(height: snap_point[0], width: snap_point[1], x_dim: snap_point[2], y_dim: snap_point[3], x_snap_loc: snap_point[4], y_snap_loc: snap_point[5])
-			let snap: SnapPoint = SnapPoint.init(screen_dim: (WIDTH, HEIGHT),
-			                                     snap_dim: (snap_point[0], snap_point[1]),
-			                                     snap_loc: (snap_point[2], snap_point[3]))
-			snap.add_snap_point(first: (snap_point[4], snap_point[5]),
-			                    second: (snap_point[6], snap_point[7]))
-			layout.snap_points.append(snap)
+//		let snap_points = file.parseFileContent(height: HEIGHT, width: WIDTH)
+//		layout.snap_points.removeAll()
+//		for snap_point in snap_points {
+//			let snap: SnapPoint = SnapPoint.init(screen_dim: (WIDTH, HEIGHT),
+//			                                     snap_dim: (snap_point[0], snap_point[1]),
+//			                                     snap_loc: (snap_point[2], snap_point[3]))
+//			snap.add_snap_point(first: (snap_point[4], snap_point[5]),
+//			                    second: (snap_point[6], snap_point[7]))
+//			layout.snap_points.append(snap)
+//		}
+		let snapAreas = file.parseFileContent(height: HEIGHT, width: WIDTH)
+		layout.clearLayout()
+		for snapArea in snapAreas {
+			let area: SnapArea = SnapArea(area: ((snapArea[4], snapArea[5]), (snapArea[6], snapArea[7])),
+																		screenDimensions: (WIDTH, HEIGHT),
+																		snapDimensions: (snapArea[0], snapArea[1]),
+																		snapLocation: (snapArea[2], snapArea[3]))
+			print(area.toString())
+			layout.addArea(area: area)
 		}
 	}
 
@@ -106,7 +116,8 @@ class FileSystem {
 	*/
 	func saveLayout(_ name: String) {
 		let file = File(dirPath: dirPath, name: name + pathExtension)
-		let content = layout.to_string()
+//		let content = layout.to_string()
+		let content = layout.toString()
 
 		do {
 			try content.write(toFile: file.getPathString(), atomically: false, encoding: String.Encoding.utf8)
@@ -130,8 +141,8 @@ class FileSystem {
 					files.append( File(dirPath: dirPath, name: file_name) )
 				}
 			}
-        }else{
-            do{
+        } else {
+            do {
                 try fileManager.createDirectory(atPath: dirPath.path, withIntermediateDirectories: false, attributes: nil)
             } catch let error as NSError {
                 print(error.description)
