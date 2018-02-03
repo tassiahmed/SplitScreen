@@ -37,7 +37,7 @@ class SnapHighlighter {
   }
 
   // MARK: - New Methods
-	func update(newDimensions: ((Int, Int), (Int, Int))) {
+	func update(_ newDimensions: ((Int, Int), (Int, Int))) {
 		dimensions = newDimensions
 		let frame: NSRect = NSRect(x: dimensions.0.0,
 															 y: dimensions.0.1,
@@ -65,7 +65,7 @@ class SnapHighlighter {
 																					 repeats: true)
   }
 
-	func delayDraw(delay: Double) {
+	func delayDraw(_ delay: Double) {
 		drawDelayTimer = Timer.scheduledTimer(timeInterval: delay,
 																					target: self,
 																					selector: #selector(drawOnDelay),
@@ -84,8 +84,8 @@ class SnapHighlighter {
   }
 
 	@objc private func drawOnDelay() {
-		snapHighlighter.update(newDimensions: layout.getSnapWindow(x: lastKnownMouseDrag!.x,
-																															 y: lastKnownMouseDrag!.y))
+		snapHighlighter.update(layout.getSnapWindow(x: lastKnownMouseDrag!.x,
+																								y: lastKnownMouseDrag!.y))
 		snapHighlighter.draw()
 	}
 
