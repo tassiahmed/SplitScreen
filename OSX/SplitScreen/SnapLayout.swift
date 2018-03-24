@@ -95,11 +95,11 @@ class SnapLayout {
 	func addArea(area: SnapArea) {
 		snapAreas.append(area)
 	}
-	
+
 	func clearLayout() {
 		snapAreas.removeAll()
 	}
-	
+
 	func loadLayout(templateName: String) {
 		snapAreas.removeAll()
 
