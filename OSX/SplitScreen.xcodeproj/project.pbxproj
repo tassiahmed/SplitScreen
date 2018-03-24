@@ -17,6 +17,8 @@
 		43AE6B371B9F84EA000B2B53 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43AE6B361B9F84EA000B2B53 /* Images.xcassets */; };
 		43AE6B3A1B9F84EA000B2B53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43AE6B381B9F84EA000B2B53 /* Main.storyboard */; };
 		43AE6B461B9F84EA000B2B53 /* SplitScreenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE6B451B9F84EA000B2B53 /* SplitScreenTests.swift */; };
+		43D97CCF2026732700F45F3D /* SnapAreaTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D97CCE2026732700F45F3D /* SnapAreaTest.swift */; };
+		43D97CD22066FCE300F45F3D /* SnapLayoutTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D97CD12066FCE300F45F3D /* SnapLayoutTest.swift */; };
 		E8076D9C1BF649EF00BD84C7 /* MoveAndResize.c in Sources */ = {isa = PBXBuildFile; fileRef = E8076D9A1BF649EF00BD84C7 /* MoveAndResize.c */; };
 		E845E5151D26DF0200DF35B2 /* SnapHighlighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E845E5141D26DF0200DF35B2 /* SnapHighlighter.swift */; };
 		E855D4E21BCDA77D008C511B /* MouseDragEventHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = E855D4E11BCDA77D008C511B /* MouseDragEventHandling.swift */; };
@@ -50,6 +52,8 @@
 		43AE6B3F1B9F84EA000B2B53 /* SplitScreenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SplitScreenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		43AE6B441B9F84EA000B2B53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43AE6B451B9F84EA000B2B53 /* SplitScreenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitScreenTests.swift; sourceTree = "<group>"; };
+		43D97CCE2026732700F45F3D /* SnapAreaTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapAreaTest.swift; sourceTree = "<group>"; };
+		43D97CD12066FCE300F45F3D /* SnapLayoutTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapLayoutTest.swift; sourceTree = "<group>"; };
 		E8076D971BF6490500BD84C7 /* SplitScreen-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SplitScreen-Bridging-Header.h"; sourceTree = "<group>"; };
 		E8076D9A1BF649EF00BD84C7 /* MoveAndResize.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MoveAndResize.c; sourceTree = "<group>"; };
 		E8076D9B1BF649EF00BD84C7 /* MoveAndResize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveAndResize.h; sourceTree = "<group>"; };
@@ -164,7 +168,9 @@
 		43AE6B421B9F84EA000B2B53 /* SplitScreenTests */ = {
 			isa = PBXGroup;
 			children = (
+				43D97CCE2026732700F45F3D /* SnapAreaTest.swift */,
 				43AE6B451B9F84EA000B2B53 /* SplitScreenTests.swift */,
+				43D97CD12066FCE300F45F3D /* SnapLayoutTest.swift */,
 				43AE6B431B9F84EA000B2B53 /* Supporting Files */,
 			);
 			path = SplitScreenTests;
@@ -301,7 +307,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43D97CCF2026732700F45F3D /* SnapAreaTest.swift in Sources */,
 				43AE6B461B9F84EA000B2B53 /* SplitScreenTests.swift in Sources */,
+				43D97CD22066FCE300F45F3D /* SnapLayoutTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

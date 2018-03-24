@@ -65,7 +65,7 @@ class SnapArea {
 	/**
 			- Returns: `tuple` of `(Int, Int)` SnapArea's corresponding `Screen` dimensions
 	*/
-	func getScreenDimension() -> (Int, Int) {
+	func getScreenDimensions() -> (Int, Int) {
 		updatePoints()
 		return (screenDimensions.0, screenDimensions.1)
 	}
