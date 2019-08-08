@@ -10,11 +10,139 @@ import Foundation
 import AppKit
 
 class SnapLayout {
-
 	var snap_points = [SnapPoint]()
 	let menu = NSApplication.shared.mainMenu
-	fileprivate var HEIGHT: Int = Int((NSScreen.main?.frame.height)!)
-	fileprivate var WIDTH: Int = Int((NSScreen.main?.frame.width)!)
+	private var snapAreas = [SnapArea]()
+	private var HEIGHT: Int = Int((NSScreen.main?.frame.height)!)
+	private var WIDTH: Int = Int((NSScreen.main?.frame.width)!)
+
+	// MARK: - New Methods
+
+	func standardLayout() {
+		HEIGHT = Int((NSScreen.main?.frame.height)!)
+		WIDTH = Int((NSScreen.main?.frame.width)!)
+
+		let topLeft: SnapArea = SnapArea(area: ((0, HEIGHT), (0, HEIGHT)),
+																		 screenDimensions: (WIDTH, HEIGHT),
+																		 snapDimensions: (WIDTH/2, HEIGHT/2),
+																		 snapLocation: (0, HEIGHT/2))
+		snapAreas.append(topLeft)
+
+		let bottomLeft: SnapArea = SnapArea(area: ((0, 0), (0, 0)),
+																				screenDimensions: (WIDTH, HEIGHT),
+																				snapDimensions: (WIDTH/2, HEIGHT/2),
+																				snapLocation: (0, 0))
+		snapAreas.append(bottomLeft)
+
+		let leftSide: SnapArea = SnapArea(area: ((0, 0), (0, HEIGHT)),
+																			screenDimensions: (WIDTH, HEIGHT),
+																			snapDimensions: (WIDTH/2, HEIGHT),
+																			snapLocation: (0, 0))
+		snapAreas.append(leftSide)
+
+		let topRight: SnapArea = SnapArea(area: ((WIDTH, HEIGHT), (WIDTH, HEIGHT)),
+																			screenDimensions: (WIDTH, HEIGHT),
+																			snapDimensions: (WIDTH/2, HEIGHT/2),
+																			snapLocation: (WIDTH/2, HEIGHT/2))
+		snapAreas.append(topRight)
+
+		let bottomRight: SnapArea = SnapArea(area: ((WIDTH, 0), (WIDTH, 0)),
+																				 screenDimensions: (WIDTH, HEIGHT),
+																				 snapDimensions: (WIDTH/2, HEIGHT/2),
+																				 snapLocation: (WIDTH/2, 0))
+		snapAreas.append(bottomRight)
+
+		let rightSide: SnapArea = SnapArea(area: ((WIDTH, 0), (WIDTH, HEIGHT)),
+																			 screenDimensions: (WIDTH, HEIGHT),
+																			 snapDimensions: (WIDTH/2, HEIGHT),
+																			 snapLocation: (WIDTH/2, 0))
+
+		snapAreas.append(rightSide)
+
+		let top: SnapArea = SnapArea(area: ((0, HEIGHT), (WIDTH, HEIGHT)),
+																 screenDimensions: (WIDTH, HEIGHT),
+																 snapDimensions: (WIDTH, HEIGHT),
+																 snapLocation: (0, 0))
+		snapAreas.append(top)
+	}
+
+	func horizontalLayout() {
+		let leftUpper: SnapArea = SnapArea(area: ((0, HEIGHT/2), (0, HEIGHT)),
+																					screenDimensions: (WIDTH, HEIGHT),
+																					snapDimensions: (WIDTH, HEIGHT/2),
+																					snapLocation: (0, HEIGHT/2))
+		snapAreas.append(leftUpper)
+
+		let leftLower: SnapArea = SnapArea(area: ((0, 0), (0, HEIGHT/2)),
+																			 screenDimensions: (WIDTH, HEIGHT),
+																			 snapDimensions: (WIDTH, HEIGHT/2),
+																			 snapLocation: (0, 0))
+		snapAreas.append(leftLower)
+
+		let rightUpper: SnapArea = SnapArea(area: ((WIDTH, HEIGHT/2), (WIDTH, HEIGHT)),
+																				 screenDimensions: (WIDTH, HEIGHT),
+																				 snapDimensions: (WIDTH,HEIGHT/2),
+																				 snapLocation: (0, HEIGHT/2))
+		snapAreas.append(rightUpper)
+
+		let rightLower: SnapArea = SnapArea(area: ((WIDTH, 0), (WIDTH, HEIGHT/2)),
+																				screenDimensions: (WIDTH, HEIGHT),
+																				snapDimensions: (WIDTH, HEIGHT/2),
+																				snapLocation: (0, 0))
+		snapAreas.append(rightLower)
+	}
+
+	func addArea(area: SnapArea) {
+		snapAreas.append(area)
+	}
+
+	func clearLayout() {
+		snapAreas.removeAll()
+	}
+
+	func loadLayout(templateName: String) {
+		snapAreas.removeAll()
+
+		switch templateName {
+		case "standard":
+			standardLayout()
+		case "horizontal":
+			horizontalLayout()
+		default:
+			standardLayout()
+		}
+	}
+
+	func isHardPoint(x: CGFloat, y: CGFloat) -> Bool {
+		for snapArea in snapAreas {
+			if snapArea.inSnapArea(x: Int(x), y: Int(y)) {
+				return true
+			}
+		}
+
+		return false
+	}
+
+	func getSnapWindow(x: CGFloat, y: CGFloat) -> ((Int, Int), (Int, Int)) {
+		for snapArea in snapAreas {
+			if snapArea.inSnapArea(x: Int(x), y: Int(y)) {
+				return (snapArea.getSnapLocation(), snapArea.getSnapDimensions())
+			}
+		}
+
+		return ((-1, -1), (-1, -1))
+	}
+
+	func toString() -> String {
+		var result: String = String()
+		for snapArea in snapAreas {
+			result += snapArea.toString()
+		}
+
+		return result
+	}
+
+	// MARK: - Old Methods
 
 	/**
 		Creates `SnapPoint` objects and adds them to the SnapLayout in order to make it behave
@@ -25,6 +153,7 @@ class SnapLayout {
     WIDTH = Int((NSScreen.main?.frame.width)!)
 
     // Hardcoded Windows 10 Aero Snap
+
 		let top_left: SnapPoint = SnapPoint.init(screen_dim: (WIDTH, HEIGHT),
 		                                         snap_dim: (WIDTH/2, HEIGHT/2),
 		                                         snap_loc: (0, 0))
@@ -108,7 +237,6 @@ class SnapLayout {
 		snap_points.append(right_lower)
   }
 
-
 	/**
 		Loads a file at `file_path` with preset hardpoints
 
@@ -155,7 +283,7 @@ class SnapLayout {
 
 		- Returns: `tuple` of 4 `Ints` that correspond to the dragged windows four corners
 	*/
-  func get_snap_dimensions(_ x: CGFloat, y: CGFloat) ->(Int,Int,Int,Int) {
+  func get_snap_dimensions(_ x: CGFloat, y: CGFloat) ->(Int, Int, Int, Int) {
 		let x_i:Int = Int(x + 0.5)
 		let y_i:Int = Int(y + 0.5)
 
@@ -171,13 +299,12 @@ class SnapLayout {
     return (-1,-1,-1,-1)
 	}
 
-
 	/**
 		Creates and returns a string representation of the SnapLayout
 
 		- Returns: `String` which represents the SnapLayout
 	*/
-	func toString() -> String {
+	func to_string() -> String {
 		var retString: String = String()
 		for snap_point in snap_points {
 			retString = retString + snap_point.to_string()

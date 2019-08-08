@@ -53,7 +53,7 @@ class File: Equatable {
 	
 		- Returns: `array` of `arrays` of `Int` that contains values for a `SnapPoint` for each `array`
 	*/
-	func parseFileContent(_ height: Int, width: Int) -> [[Int]] {
+	func parseFileContent(height: Int, width: Int) -> [[Int]] {
 		var text: String = String()
 		var snap_params: [[Int]] = []
 		

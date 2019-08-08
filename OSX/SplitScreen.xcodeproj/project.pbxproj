@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		435BD64A1FD9DCBE00757E15 /* SnapArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435BD6491FD9DCBE00757E15 /* SnapArea.swift */; };
+		435BD64C1FF16F3D00757E15 /* MouseEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435BD64B1FF16F3D00757E15 /* MouseEventHandler.swift */; };
 		436C1FE01D84D79C000F976F /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C1FDF1D84D79C000F976F /* GlobalVariables.swift */; };
 		43737BB41CB45D2900198D34 /* FileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43737BB31CB45D2900198D34 /* FileSystem.swift */; };
 		437BF8341CCFE82100F66E4B /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437BF8331CCFE82100F66E4B /* File.swift */; };
@@ -15,6 +17,8 @@
 		43AE6B371B9F84EA000B2B53 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43AE6B361B9F84EA000B2B53 /* Images.xcassets */; };
 		43AE6B3A1B9F84EA000B2B53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43AE6B381B9F84EA000B2B53 /* Main.storyboard */; };
 		43AE6B461B9F84EA000B2B53 /* SplitScreenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE6B451B9F84EA000B2B53 /* SplitScreenTests.swift */; };
+		43D97CCF2026732700F45F3D /* SnapAreaTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D97CCE2026732700F45F3D /* SnapAreaTest.swift */; };
+		43D97CD22066FCE300F45F3D /* SnapLayoutTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D97CD12066FCE300F45F3D /* SnapLayoutTest.swift */; };
 		E8076D9C1BF649EF00BD84C7 /* MoveAndResize.c in Sources */ = {isa = PBXBuildFile; fileRef = E8076D9A1BF649EF00BD84C7 /* MoveAndResize.c */; };
 		E845E5151D26DF0200DF35B2 /* SnapHighlighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E845E5141D26DF0200DF35B2 /* SnapHighlighter.swift */; };
 		E855D4E21BCDA77D008C511B /* MouseDragEventHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = E855D4E11BCDA77D008C511B /* MouseDragEventHandling.swift */; };
@@ -34,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		435BD6491FD9DCBE00757E15 /* SnapArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapArea.swift; sourceTree = "<group>"; };
+		435BD64B1FF16F3D00757E15 /* MouseEventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseEventHandler.swift; sourceTree = "<group>"; };
 		436C1FDF1D84D79C000F976F /* GlobalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		43737BB31CB45D2900198D34 /* FileSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSystem.swift; sourceTree = "<group>"; };
 		437BF8331CCFE82100F66E4B /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
@@ -46,6 +52,8 @@
 		43AE6B3F1B9F84EA000B2B53 /* SplitScreenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SplitScreenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		43AE6B441B9F84EA000B2B53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43AE6B451B9F84EA000B2B53 /* SplitScreenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitScreenTests.swift; sourceTree = "<group>"; };
+		43D97CCE2026732700F45F3D /* SnapAreaTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapAreaTest.swift; sourceTree = "<group>"; };
+		43D97CD12066FCE300F45F3D /* SnapLayoutTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapLayoutTest.swift; sourceTree = "<group>"; };
 		E8076D971BF6490500BD84C7 /* SplitScreen-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SplitScreen-Bridging-Header.h"; sourceTree = "<group>"; };
 		E8076D9A1BF649EF00BD84C7 /* MoveAndResize.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MoveAndResize.c; sourceTree = "<group>"; };
 		E8076D9B1BF649EF00BD84C7 /* MoveAndResize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveAndResize.h; sourceTree = "<group>"; };
@@ -99,6 +107,7 @@
 				E845E5141D26DF0200DF35B2 /* SnapHighlighter.swift */,
 				E855D4E31BCDAAA0008C511B /* SnapLayout.swift */,
 				E898E52F1C8A2BF1008D8DCF /* SnapPoint.swift */,
+				435BD6491FD9DCBE00757E15 /* SnapArea.swift */,
 			);
 			name = "Windows Snapping";
 			sourceTree = "<group>";
@@ -110,6 +119,7 @@
 				E855D4E11BCDA77D008C511B /* MouseDragEventHandling.swift */,
 				E8BD3F8A1CA1E7CB00433D61 /* StatusMenuController.swift */,
 				436C1FDF1D84D79C000F976F /* GlobalVariables.swift */,
+				435BD64B1FF16F3D00757E15 /* MouseEventHandler.swift */,
 			);
 			name = "System Code";
 			sourceTree = "<group>";
@@ -158,7 +168,9 @@
 		43AE6B421B9F84EA000B2B53 /* SplitScreenTests */ = {
 			isa = PBXGroup;
 			children = (
+				43D97CCE2026732700F45F3D /* SnapAreaTest.swift */,
 				43AE6B451B9F84EA000B2B53 /* SplitScreenTests.swift */,
+				43D97CD12066FCE300F45F3D /* SnapLayoutTest.swift */,
 				43AE6B431B9F84EA000B2B53 /* Supporting Files */,
 			);
 			path = SplitScreenTests;
@@ -218,7 +230,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = SplitScreen;
 				TargetAttributes = {
 					43AE6B291B9F84EA000B2B53 = {
@@ -281,8 +293,10 @@
 				E8076D9C1BF649EF00BD84C7 /* MoveAndResize.c in Sources */,
 				437BF8341CCFE82100F66E4B /* File.swift in Sources */,
 				E855D4E41BCDAAA0008C511B /* SnapLayout.swift in Sources */,
+				435BD64A1FD9DCBE00757E15 /* SnapArea.swift in Sources */,
 				43AE6B351B9F84EA000B2B53 /* SplitScreen.xcdatamodeld in Sources */,
 				436C1FE01D84D79C000F976F /* GlobalVariables.swift in Sources */,
+				435BD64C1FF16F3D00757E15 /* MouseEventHandler.swift in Sources */,
 				43AE6B301B9F84EA000B2B53 /* AppDelegate.swift in Sources */,
 				E898E5301C8A2BF1008D8DCF /* SnapPoint.swift in Sources */,
 				E845E5151D26DF0200DF35B2 /* SnapHighlighter.swift in Sources */,
@@ -293,7 +307,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43D97CCF2026732700F45F3D /* SnapAreaTest.swift in Sources */,
 				43AE6B461B9F84EA000B2B53 /* SplitScreenTests.swift in Sources */,
+				43D97CD22066FCE300F45F3D /* SnapLayoutTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,14 +343,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -375,14 +397,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
